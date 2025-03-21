@@ -1,0 +1,469 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.repository\\implementation\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|solutionrelative:studybuddy.repository\\implementation\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.repository\\interface\\iquizrepoistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|solutionrelative:studybuddy.repository\\interface\\iquizrepoistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.repository\\implementation\\quizrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|solutionrelative:studybuddy.repository\\implementation\\quizrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.repository\\interface\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|solutionrelative:studybuddy.repository\\interface\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddywebapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|solutionrelative:studybuddywebapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{819A320F-E4B0-47DA-A1D0-5211CCA0C10F}|StudyBuddy.Service\\StudyBuddy.Service.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.service\\implementation\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{819A320F-E4B0-47DA-A1D0-5211CCA0C10F}|StudyBuddy.Service\\StudyBuddy.Service.csproj|solutionrelative:studybuddy.service\\implementation\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddywebapplication\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|solutionrelative:studybuddywebapplication\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.repository\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|solutionrelative:studybuddy.repository\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddywebapplication\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|solutionrelative:studybuddywebapplication\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddywebapplication\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|solutionrelative:studybuddywebapplication\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.domainentities\\domain\\quiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|solutionrelative:studybuddy.domainentities\\domain\\quiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.domainentities\\identity\\studybuddyuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|solutionrelative:studybuddy.domainentities\\identity\\studybuddyuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.domainentities\\dto\\request\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|solutionrelative:studybuddy.domainentities\\dto\\request\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{819A320F-E4B0-47DA-A1D0-5211CCA0C10F}|StudyBuddy.Service\\StudyBuddy.Service.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.service\\interface\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{819A320F-E4B0-47DA-A1D0-5211CCA0C10F}|StudyBuddy.Service\\StudyBuddy.Service.csproj|solutionrelative:studybuddy.service\\interface\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddywebapplication\\controllers\\quizcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|solutionrelative:studybuddywebapplication\\controllers\\quizcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.domainentities\\dto\\request\\quizrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|solutionrelative:studybuddy.domainentities\\dto\\request\\quizrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddywebapplication\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|solutionrelative:studybuddywebapplication\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddywebapplication\\studybuddywebapplication.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{9B43B903-ECCC-456F-8353-467E3D8BBE37}|StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj|solutionrelative:studybuddywebapplication\\studybuddywebapplication.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.domainentities\\dto\\request\\answersrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|solutionrelative:studybuddy.domainentities\\dto\\request\\answersrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.domainentities\\dto\\request\\correctanswersrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|solutionrelative:studybuddy.domainentities\\dto\\request\\correctanswersrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.domainentities\\dto\\request\\tagrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|solutionrelative:studybuddy.domainentities\\dto\\request\\tagrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.repository\\studybuddy.repository.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|solutionrelative:studybuddy.repository\\studybuddy.repository.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.domainentities\\domain\\correctanswer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|solutionrelative:studybuddy.domainentities\\domain\\correctanswer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.domainentities\\domain\\answer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|solutionrelative:studybuddy.domainentities\\domain\\answer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.domainentities\\domain\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D827B53-DCAD-42DC-8046-8D4D8605172D}|StudyBuddy.DomainEntities\\StudyBuddy.DomainEntities.csproj|solutionrelative:studybuddy.domainentities\\domain\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.repository\\implementation\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|solutionrelative:studybuddy.repository\\implementation\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.repository\\interface\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|solutionrelative:studybuddy.repository\\interface\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|c:\\users\\vladi\\onedrive\\desktop\\finki\\semestri\\final boss\\ikt\\project\\ikt-project\\study-buddy-backend\\studybuddy.repository\\migrations\\20250321222639_testmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4608C581-5B15-421E-A3E2-43D1A17F0540}|StudyBuddy.Repository\\StudyBuddy.Repository.csproj|solutionrelative:studybuddy.repository\\migrations\\20250321222639_testmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "QuizRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Implementation\\QuizRepository.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.Repository\\Implementation\\QuizRepository.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Implementation\\QuizRepository.cs",
+              "RelativeToolTip": "StudyBuddy.Repository\\Implementation\\QuizRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBAAAABZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T22:44:41.182Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IQuizRepoistory.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Interface\\IQuizRepoistory.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.Repository\\Interface\\IQuizRepoistory.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Interface\\IQuizRepoistory.cs",
+              "RelativeToolTip": "StudyBuddy.Repository\\Interface\\IQuizRepoistory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAwAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T22:42:48.967Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "20250321222639_testMigration.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Migrations\\20250321222639_testMigration.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.Repository\\Migrations\\20250321222639_testMigration.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Migrations\\20250321222639_testMigration.cs",
+              "RelativeToolTip": "StudyBuddy.Repository\\Migrations\\20250321222639_testMigration.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T22:26:39.968Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.Repository\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\ApplicationDbContext.cs",
+              "RelativeToolTip": "StudyBuddy.Repository\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAYwBsAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:15:05.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthenticationController.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\Controllers\\AuthenticationController.cs",
+              "RelativeDocumentMoniker": "StudyBuddyWebApplication\\Controllers\\AuthenticationController.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\Controllers\\AuthenticationController.cs",
+              "RelativeToolTip": "StudyBuddyWebApplication\\Controllers\\AuthenticationController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T21:42:05.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Service\\Implementation\\UserService.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.Service\\Implementation\\UserService.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Service\\Implementation\\UserService.cs",
+              "RelativeToolTip": "StudyBuddy.Service\\Implementation\\UserService.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAIAywCoAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T21:46:44.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Implementation\\Repository.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.Repository\\Implementation\\Repository.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Implementation\\Repository.cs",
+              "RelativeToolTip": "StudyBuddy.Repository\\Implementation\\Repository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBEAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:38:32.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserRequest.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\DTO\\Request\\UserRequest.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.DomainEntities\\DTO\\Request\\UserRequest.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\DTO\\Request\\UserRequest.cs",
+              "RelativeToolTip": "StudyBuddy.DomainEntities\\DTO\\Request\\UserRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAgAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T21:40:46.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\Program.cs",
+              "RelativeDocumentMoniker": "StudyBuddyWebApplication\\Program.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\Program.cs",
+              "RelativeToolTip": "StudyBuddyWebApplication\\Program.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAADkAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T18:10:37.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Interface\\IRepository.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.Repository\\Interface\\IRepository.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Interface\\IRepository.cs",
+              "RelativeToolTip": "StudyBuddy.Repository\\Interface\\IRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:35:02.404Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ApplicationDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "StudyBuddyWebApplication\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeToolTip": "StudyBuddyWebApplication\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T22:23:18.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "StudyBuddyUser.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\Identity\\StudyBuddyUser.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.DomainEntities\\Identity\\StudyBuddyUser.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\Identity\\StudyBuddyUser.cs",
+              "RelativeToolTip": "StudyBuddy.DomainEntities\\Identity\\StudyBuddyUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:19:13.564Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\appsettings.json",
+              "RelativeDocumentMoniker": "StudyBuddyWebApplication\\appsettings.json",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\appsettings.json",
+              "RelativeToolTip": "StudyBuddyWebApplication\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAACdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-21T21:39:37.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Quiz.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\Domain\\Quiz.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.DomainEntities\\Domain\\Quiz.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\Domain\\Quiz.cs",
+              "RelativeToolTip": "StudyBuddy.DomainEntities\\Domain\\Quiz.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:47:45.117Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Service\\Interface\\IUserService.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.Service\\Interface\\IUserService.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Service\\Interface\\IUserService.cs",
+              "RelativeToolTip": "StudyBuddy.Service\\Interface\\IUserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAsAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T21:46:23.354Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "_LoginPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeDocumentMoniker": "StudyBuddyWebApplication\\Views\\Shared\\_LoginPartial.cshtml",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeToolTip": "StudyBuddyWebApplication\\Views\\Shared\\_LoginPartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-21T18:50:48.564Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "QuizRequest.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\DTO\\Request\\QuizRequest.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.DomainEntities\\DTO\\Request\\QuizRequest.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\DTO\\Request\\QuizRequest.cs",
+              "RelativeToolTip": "StudyBuddy.DomainEntities\\DTO\\Request\\QuizRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T15:17:43.192Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "StudyBuddyWebApplication.csproj",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj",
+              "RelativeDocumentMoniker": "StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj",
+              "RelativeToolTip": "StudyBuddyWebApplication\\StudyBuddyWebApplication.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-21T15:10:22.965Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "StudyBuddy.Repository.csproj",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\StudyBuddy.Repository.csproj",
+              "RelativeDocumentMoniker": "StudyBuddy.Repository\\StudyBuddy.Repository.csproj",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\StudyBuddy.Repository.csproj",
+              "RelativeToolTip": "StudyBuddy.Repository\\StudyBuddy.Repository.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-21T15:09:10.994Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "QuizController.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\Controllers\\QuizController.cs",
+              "RelativeDocumentMoniker": "StudyBuddyWebApplication\\Controllers\\QuizController.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddyWebApplication\\Controllers\\QuizController.cs",
+              "RelativeToolTip": "StudyBuddyWebApplication\\Controllers\\QuizController.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAAAB4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:57:50.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CorrectAnswersRequest.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\DTO\\Request\\CorrectAnswersRequest.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.DomainEntities\\DTO\\Request\\CorrectAnswersRequest.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\DTO\\Request\\CorrectAnswersRequest.cs",
+              "RelativeToolTip": "StudyBuddy.DomainEntities\\DTO\\Request\\CorrectAnswersRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAkAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T15:21:38.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AnswersRequest.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\DTO\\Request\\AnswersRequest.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.DomainEntities\\DTO\\Request\\AnswersRequest.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\DTO\\Request\\AnswersRequest.cs",
+              "RelativeToolTip": "StudyBuddy.DomainEntities\\DTO\\Request\\AnswersRequest.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAA0wBsAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T15:21:08.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "TagRequest.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\DTO\\Request\\TagRequest.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.DomainEntities\\DTO\\Request\\TagRequest.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\DTO\\Request\\TagRequest.cs",
+              "RelativeToolTip": "StudyBuddy.DomainEntities\\DTO\\Request\\TagRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T15:21:52.659Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Tag.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\Domain\\Tag.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.DomainEntities\\Domain\\Tag.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\Domain\\Tag.cs",
+              "RelativeToolTip": "StudyBuddy.DomainEntities\\Domain\\Tag.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:49:50.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "CorrectAnswer.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\Domain\\CorrectAnswer.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.DomainEntities\\Domain\\CorrectAnswer.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\Domain\\CorrectAnswer.cs",
+              "RelativeToolTip": "StudyBuddy.DomainEntities\\Domain\\CorrectAnswer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:48:56.373Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Answer.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\Domain\\Answer.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.DomainEntities\\Domain\\Answer.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.DomainEntities\\Domain\\Answer.cs",
+              "RelativeToolTip": "StudyBuddy.DomainEntities\\Domain\\Answer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:48:13.445Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Implementation\\UserRepository.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.Repository\\Implementation\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Implementation\\UserRepository.cs",
+              "RelativeToolTip": "StudyBuddy.Repository\\Implementation\\UserRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:42:09.842Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Interface\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "StudyBuddy.Repository\\Interface\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\Desktop\\FINKI\\Semestri\\Final Boss\\IKT\\Project\\IKT-Project\\study-buddy-backend\\StudyBuddy.Repository\\Interface\\IUserRepository.cs",
+              "RelativeToolTip": "StudyBuddy.Repository\\Interface\\IUserRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T14:36:54.257Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
