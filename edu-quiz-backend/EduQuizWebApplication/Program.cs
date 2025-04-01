@@ -34,9 +34,11 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+builder.Services.AddScoped(typeof(IQuizRepoistory), typeof(QuizRepository));
 
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IExportService, ExportService>();
+builder.Services.AddTransient<IQuizService, QuizService>();
 
 var app = builder.Build();
 

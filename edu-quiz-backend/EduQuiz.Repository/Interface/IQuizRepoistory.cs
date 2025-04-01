@@ -9,7 +9,10 @@ namespace EduQuiz.Repository.Interface
 {
     public interface IQuizRepoistory : IRepository<Quiz>
     {
+        Task<Quiz> GetQuizByCategory(string category);
+
         //Demo Purposes only
         Task<Quiz> GetQuizByQuestion(string question);
+        Task<List<Quiz>> GetQuizzesByCategories(List<string> allUniqueCategories);
     }
 }

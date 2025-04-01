@@ -12,9 +12,20 @@ namespace EduQuiz.Repository.Implementation
     public class QuizRepository : Repository<Quiz>, IQuizRepoistory
     {
         public QuizRepository(ApplicationDbContext context) : base(context) { }
+
+        public async Task<Quiz> GetQuizByCategory(string category)
+        {
+            return await _entities.FirstOrDefaultAsync(q => q.Category.Equals(category));
+        }
+
         public async Task<Quiz> GetQuizByQuestion(string question)
         {
-            return await _entities.FirstOrDefaultAsync(i => i.Question.Equals(question));
+            return await _entities.FirstOrDefaultAsync(i => i.Title.Equals(question));
+        }
+
+        public async Task<List<Quiz>> GetQuizzesByCategories(List<string> allUniqueCategories)
+        {
+            return await _entities.Where(x => allUniqueCategories.Contains(x.Category)).ToListAsync();
         }
     }
 }
