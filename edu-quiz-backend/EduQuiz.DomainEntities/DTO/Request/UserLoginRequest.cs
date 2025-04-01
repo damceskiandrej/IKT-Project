@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace EduQuiz.DomainEntities.DTO.Request
 {
-    public class UserRequest
+    public class UserLoginRequest : UserRequest
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
     }
 }

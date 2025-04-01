@@ -17,9 +17,25 @@ namespace EduQuizWebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register([FromBody] UserRequest request)
+        public async Task<IActionResult> Register([FromBody] UserRegisterRequest request)
         {
             var result = await _userService.RegisterUser(request);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] UserLoginRequest request)
+        {
+            var result = await _userService.AuthenticateUser(request);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result);
+            }
             return Ok(result);
         }
     }

@@ -1,4 +1,5 @@
 using EduQuiz.DomainEntities.DTO.Request;
+using EduQuiz.DomainEntities.DTO.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace EduQuiz.Service.Interface
 {
     public interface IUserService
     {
-        Task<bool> RegisterUser(UserRequest request);
+        Task<UserResponse> RegisterUser(UserRegisterRequest request);
+        Task<UserResponse> AuthenticateUser(UserLoginRequest request);
     }
 }
