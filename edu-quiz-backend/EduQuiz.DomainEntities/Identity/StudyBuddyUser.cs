@@ -1,3 +1,4 @@
+using EduQuiz.DomainEntities.Domain;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,6 @@ namespace EduQuiz.DomainEntities.Identity
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public ICollection<Quiz> Quizzes { get; set; }
     }
 }
