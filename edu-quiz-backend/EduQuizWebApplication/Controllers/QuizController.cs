@@ -15,14 +15,16 @@ namespace EduQuizWebApplication.Controllers
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly string _initialUrl = "https://quizapi.io/api/v1/questions?apiKey=v0X51vT9BPXbCuPrgBybFKHVHkomwqr9Az5VaL95";
         private readonly IQuizService _quizService;
+        private readonly IResultService _resultService;
 
-        public QuizController(IHttpClientFactory httpClientFactory, IQuizService quizService)
+        public QuizController(IHttpClientFactory httpClientFactory, IQuizService quizService, IResultService resultService)
         {
             _httpClientFactory = httpClientFactory;
             _quizService = quizService;
+            _resultService = resultService;
         }
 
-        [HttpGet]
+        [HttpGet("fetch-external")] //ima overlapping problem so GetAllQuizzes methodot zatoa go rename vo fetch-external
         public async Task<IActionResult> Index()
         {
             var httpClient = _httpClientFactory.CreateClient();
@@ -34,6 +36,64 @@ namespace EduQuizWebApplication.Controllers
                 await _quizService.PopulateDataPerCategory(jsonData);
             }
             return new OkObjectResult(jsonData);
+        }
+        
+        
+        [HttpGet("populate")]
+        public async Task<IActionResult> PopulateDatabase()
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+            var response = await httpClient.GetAsync(_initialUrl);
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var jsonData = JsonConvert.DeserializeObject<List<QuizRequest>>(jsonResponse);
+            if (jsonData != null)
+            {
+                await _quizService.PopulateDataPerCategory(jsonData);
+            }
+            return Ok(new { message = "Database populated successfully" });
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> GetAllQuizzes()
+        {
+            var quizzes = await _quizService.GetAllQuizzes();
+            return Ok(quizzes);
+        }
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetQuiz(Guid id)
+        {
+            var quiz = await _quizService.GetQuizById(id);
+            if (quiz == null)
+            {
+                return NotFound(new { message = "Quiz not found" });
+            }
+            return Ok(quiz);
+        }
+        
+        [HttpGet("category/{category}")]
+        public async Task<IActionResult> GetQuizzesByCategory(string category)
+        {
+            var quizzes = await _quizService.GetQuizzesByCategory(category);
+            return Ok(quizzes);
+        }
+        
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetQuizzesByUser(string userId)
+        {
+            var quizzes = await _quizService.GetQuizzesByUser(userId);
+            return Ok(quizzes);
+        }
+        
+        [HttpPost("submit")]
+        public async Task<IActionResult> SubmitQuizResult([FromBody] QuizResultRequest request)
+        {
+            var result = await _resultService.ProcessResult(request);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
     }
 }
