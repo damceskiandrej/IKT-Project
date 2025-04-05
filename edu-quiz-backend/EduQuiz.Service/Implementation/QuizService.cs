@@ -8,17 +8,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EduQuiz.DomainEntities.DTO.Response;
 
 namespace EduQuiz.Service.Implementation
 {
     public class QuizService : IQuizService
     {
 
-        public IQuizRepoistory _quizRepoistory;
+        public IQuizRepository _quizRepository;
+        private readonly IResultRepository _resultRepository;
 
-        public QuizService(IQuizRepoistory quizRepoistory)
+        public QuizService(IQuizRepository quizRepository, IResultRepository resultRepository)
         {
-            _quizRepoistory = quizRepoistory;
+            _quizRepository = quizRepository;
+            _resultRepository = resultRepository;
         }
 
         public Task PopulateData(List<QuizRequest> quizRequests)
@@ -52,7 +55,7 @@ namespace EduQuiz.Service.Implementation
 
             }
 
-            _quizRepoistory.Insert(quiz);
+            _quizRepository.Insert(quiz);
 
             return Task.CompletedTask;
         }
@@ -68,7 +71,7 @@ namespace EduQuiz.Service.Implementation
 
             foreach (var category in allUniqueCategories)
             {
-                var quiz = await _quizRepoistory.GetQuizByCategory(category);
+                var quiz = await _quizRepository.GetQuizByCategory(category);
                 var insertOperation = false;
                 if (quiz == null)
                 {
@@ -99,11 +102,11 @@ namespace EduQuiz.Service.Implementation
 
                 if (insertOperation)
                 {
-                    _quizRepoistory.Insert(quiz);
+                    _quizRepository.Insert(quiz);
                 }
                 else
                 {
-                    _quizRepoistory.Update(quiz);
+                    _quizRepository.Update(quiz);
                 }
 
             }
@@ -118,7 +121,7 @@ namespace EduQuiz.Service.Implementation
         //    var allUniqueCategories = allTags.Concat(allCategories).Distinct().ToList();
 
         //    // Fetch all quizzes for these categories in a single batch operation if possible
-        //    var existingQuizzes = await _quizRepoistory.GetQuizzesByCategories(allUniqueCategories);
+        //    var existingQuizzes = await _quizRepository.GetQuizzesByCategories(allUniqueCategories);
         //    var quizzesByCategory = existingQuizzes.ToDictionary(q => q.Category, q => q);
 
         //    var quizzesToUpdate = new List<Quiz>();
@@ -172,12 +175,12 @@ namespace EduQuiz.Service.Implementation
         //    // Batch operations instead of individual updates
         //    if (quizzesToInsert.Any())
         //    {
-        //        await _quizRepoistory.InsertMany(quizzesToInsert);
+        //        await _quizRepository.InsertMany(quizzesToInsert);
         //    }
 
         //    if (quizzesToUpdate.Any())
         //    {
-        //        await _quizRepoistory.UpdateMany(quizzesToUpdate);
+        //        await _quizRepository.UpdateMany(quizzesToUpdate);
         //    }
         //}
         private List<Answer> GetAnswer(List<string> allAnswers, int correctIndex)
@@ -214,6 +217,63 @@ namespace EduQuiz.Service.Implementation
                 { Answer_F_Correct: true } => 5,
                 _ => -1
             };
+        }
+        
+        
+        public async Task<List<QuizResponse>> GetAllQuizzes()
+        {
+            var quizzes = await _quizRepository.GetAll();
+            return quizzes.Select(q => new QuizResponse
+            {
+                Id = q.Id,
+                Title = q.Title,
+                Category = q.Category,
+                QuestionCount = q.Questions?.Count ?? 0
+            }).ToList();
+        }
+
+        public async Task<QuizResponse> GetQuizById(Guid id)
+        {
+            var quiz = await _quizRepository.GetById(id);
+            if (quiz == null)
+            {
+                return null;
+            }
+
+            return new QuizResponse
+            {
+                Id = quiz.Id,
+                Title = quiz.Title,
+                Category = quiz.Category,
+                QuestionCount = quiz.Questions?.Count ?? 0  
+            };
+        }
+
+        public async Task<List<QuizResponse>> GetQuizzesByCategory(string category)
+        {
+            var quizzes = await _quizRepository.GetQuizzesByCategory(category);
+            return quizzes.Select(q => new QuizResponse
+            {
+                Id = q.Id,
+                Title = q.Title,
+                Category = q.Category,
+                QuestionCount = q.Questions?.Count ?? 0  
+            }).ToList();
+        }
+
+        public async Task<List<QuizResponse>> GetQuizzesByUser(string userId)
+        {
+            var results = await _resultRepository.GetResultsByUser(userId);
+            var quizIds = results.Select(r => r.QuizId).Distinct().ToList();
+            var quizzes = await _quizRepository.GetQuizzesByIds(quizIds);
+    
+            return quizzes.Select(q => new QuizResponse
+            {
+                Id = q.Id,
+                Title = q.Title,
+                Category = q.Category,
+                QuestionCount = q.Questions?.Count ?? 0  
+            }).ToList();
         }
 
 
