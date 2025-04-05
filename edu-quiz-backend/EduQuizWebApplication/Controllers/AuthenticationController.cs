@@ -38,5 +38,29 @@ namespace EduQuizWebApplication.Controllers
             }
             return Ok(result);
         }
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserProfile(string id)
+        {
+            var result = await _userService.GetUserProfile(id);
+            if (!result.IsSuccess)
+            {
+                return NotFound(result);
+            }
+            return Ok(result);
+        }
+
+        // Edit user profile
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditProfile(string id, [FromBody] UserUpdateRequest request)
+        {
+            var result = await _userService.UpdateUserProfile(id, request);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+        
     }
 }
