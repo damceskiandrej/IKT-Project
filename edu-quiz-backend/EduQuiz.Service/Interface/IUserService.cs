@@ -12,5 +12,9 @@ namespace EduQuiz.Service.Interface
     {
         Task<UserResponse> RegisterUser(UserRegisterRequest request);
         Task<UserResponse> AuthenticateUser(UserLoginRequest request);
+        
+        Task<UserResponse> GetUserProfile(string userId);
+        Task<UserResponse> UpdateUserProfile(string userId, UserUpdateRequest request);
+       
     }
 }
