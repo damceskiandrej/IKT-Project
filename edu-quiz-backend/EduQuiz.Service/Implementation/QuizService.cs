@@ -239,7 +239,7 @@ namespace EduQuiz.Service.Implementation
                 var userQuizzes = user.Quizzes;
                 if (userQuizzes.Any())
                 {
-                    userQuizzes.ToList().AddRange(quizzes);
+                    //userQuizzes.ToList().AddRange(quizzes);
                     foreach (var quiz in quizzes)
                     {
                         userQuizzes.Add(quiz);
