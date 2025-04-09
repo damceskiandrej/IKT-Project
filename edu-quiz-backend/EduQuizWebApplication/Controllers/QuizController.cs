@@ -8,7 +8,7 @@ using EduQuiz.Service.Interface;
 
 namespace EduQuizWebApplication.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class QuizController : ControllerBase
     {
@@ -34,6 +34,17 @@ namespace EduQuizWebApplication.Controllers
                 await _quizService.PopulateDataPerCategory(jsonData);
             }
             return new OkObjectResult(jsonData);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> InsertQuizzesForUser([FromBody] UserQuizzesRequest userQuizzesRequest)
+        {
+            var response = await _quizService.InsertQuizzesForUser(userQuizzesRequest.UserId, userQuizzesRequest.QuizzesId);
+            if (!response.IsSuccess)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
         }
     }
 }

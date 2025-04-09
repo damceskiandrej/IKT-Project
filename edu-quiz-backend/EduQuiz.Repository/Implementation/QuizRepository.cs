@@ -27,5 +27,11 @@ namespace EduQuiz.Repository.Implementation
         {
             return await _entities.Where(x => allUniqueCategories.Contains(x.Category)).ToListAsync();
         }
+
+        public async Task<List<Quiz>> GetQuizzesByIds(List<string> quizIds)
+        {
+            var quizIdsParsed = quizIds.Select(Guid.Parse).ToList();
+            return await _entities.Where(x => quizIdsParsed.Contains(x.Id)).ToListAsync();
+        }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using EduQuiz.DomainEntities.Domain;
 using EduQuiz.DomainEntities.DTO.Request;
+using EduQuiz.DomainEntities.DTO.Response;
+using EduQuiz.DomainEntities.Identity;
 using EduQuiz.Repository.Interface;
 using EduQuiz.Service.Interface;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -14,11 +17,13 @@ namespace EduQuiz.Service.Implementation
     public class QuizService : IQuizService
     {
 
-        public IQuizRepoistory _quizRepoistory;
+        public readonly IQuizRepoistory _quizRepoistory;
+        public readonly UserManager<EduQuizUser> _userManager;
 
-        public QuizService(IQuizRepoistory quizRepoistory)
+        public QuizService(IQuizRepoistory quizRepoistory, UserManager<EduQuizUser> userManager)
         {
             _quizRepoistory = quizRepoistory;
+            _userManager = userManager;
         }
 
         public Task PopulateData(List<QuizRequest> quizRequests)
@@ -216,6 +221,46 @@ namespace EduQuiz.Service.Implementation
             };
         }
 
+        public async Task<ResponseModel> InsertQuizzesForUser(string userId, List<string> quizIds)
+        {
+            var result = new ResponseModel();
+            try
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                var quizzes = await _quizRepoistory.GetQuizzesByIds(quizIds);
 
+                if (user == null)
+                {
+                    result.IsSuccess = false;
+                    result.Message = $"Quizzes for User with Id: {userId} Not added";
+                    return result;
+                }
+
+                var userQuizzes = user.Quizzes;
+                if (userQuizzes.Any())
+                {
+                    userQuizzes.ToList().AddRange(quizzes);
+                    foreach (var quiz in quizzes)
+                    {
+                        userQuizzes.Add(quiz);
+                    }
+                }
+
+                user.Quizzes = userQuizzes;
+                await _userManager.UpdateAsync(user);
+                result.IsSuccess = true;
+                result.Message = $"Quizzes for User with Id: {userId} Added Successfully";
+                return result;
+               
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message;
+                return result;
+            }
+          
+
+        }
     }
 }
