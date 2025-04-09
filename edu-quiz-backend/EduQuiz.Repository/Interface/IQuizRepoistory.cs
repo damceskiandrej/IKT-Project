@@ -14,5 +14,6 @@ namespace EduQuiz.Repository.Interface
         //Demo Purposes only
         Task<Quiz> GetQuizByQuestion(string question);
         Task<List<Quiz>> GetQuizzesByCategories(List<string> allUniqueCategories);
+        Task<List<Quiz>> GetQuizzesByIds(List<string> quizIds);
     }
 }
