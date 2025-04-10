@@ -8,7 +8,7 @@ using EduQuiz.Service.Interface;
 
 namespace EduQuizWebApplication.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class QuizController : ControllerBase
     {
@@ -24,8 +24,8 @@ namespace EduQuizWebApplication.Controllers
             _resultService = resultService;
         }
 
-        [HttpGet("fetch-external")] //ima overlapping problem so GetAllQuizzes methodot zatoa go rename vo fetch-external
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> FetchExternal()
         {
             var httpClient = _httpClientFactory.CreateClient();
             var response = await httpClient.GetAsync(_initialUrl);
@@ -39,7 +39,7 @@ namespace EduQuizWebApplication.Controllers
         }
         
         
-        [HttpGet("populate")]
+        [HttpGet]
         public async Task<IActionResult> PopulateDatabase()
         {
             var httpClient = _httpClientFactory.CreateClient();
@@ -60,7 +60,7 @@ namespace EduQuizWebApplication.Controllers
             return Ok(quizzes);
         }
         
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<IActionResult> GetQuiz(Guid id)
         {
             var quiz = await _quizService.GetQuizById(id);
@@ -71,21 +71,21 @@ namespace EduQuizWebApplication.Controllers
             return Ok(quiz);
         }
         
-        [HttpGet("category/{category}")]
+        [HttpGet]
         public async Task<IActionResult> GetQuizzesByCategory(string category)
         {
             var quizzes = await _quizService.GetQuizzesByCategory(category);
             return Ok(quizzes);
         }
         
-        [HttpGet("user/{userId}")]
+        [HttpGet]
         public async Task<IActionResult> GetQuizzesByUser(string userId)
         {
             var quizzes = await _quizService.GetQuizzesByUser(userId);
             return Ok(quizzes);
         }
         
-        [HttpPost("submit")]
+        [HttpPost]
         public async Task<IActionResult> SubmitQuizResult([FromBody] QuizResultRequest request)
         {
             var result = await _resultService.ProcessResult(request);

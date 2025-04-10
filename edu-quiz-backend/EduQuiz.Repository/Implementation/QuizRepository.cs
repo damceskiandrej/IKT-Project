@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace EduQuiz.Repository.Implementation
 {
     public class QuizRepository : Repository<Quiz>, IQuizRepository
@@ -63,8 +62,10 @@ namespace EduQuiz.Repository.Implementation
                 .ToListAsync();
         }
 
-
-      
-        
+        public async Task<List<Quiz>> GetQuizzesByIds(List<string> quizIds)
+        {
+            var quizIdsParsed = quizIds.Select(Guid.Parse).ToList();
+            return await _entities.Where(x => quizIdsParsed.Contains(x.Id)).ToListAsync();
+        }
     }
 }

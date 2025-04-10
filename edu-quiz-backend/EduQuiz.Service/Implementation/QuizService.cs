@@ -1,7 +1,10 @@
 ﻿using EduQuiz.DomainEntities.Domain;
 using EduQuiz.DomainEntities.DTO.Request;
+using EduQuiz.DomainEntities.DTO.Response;
+using EduQuiz.DomainEntities.Identity;
 using EduQuiz.Repository.Interface;
 using EduQuiz.Service.Interface;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -249,6 +252,48 @@ namespace EduQuiz.Service.Implementation
             };
         }
 
+        public async Task<ResponseModel> InsertQuizzesForUser(string userId, List<string> quizIds)
+        {
+            var result = new ResponseModel();
+            try
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                var quizzes = await _quizRepoistory.GetQuizzesByIds(quizIds);
+
+                if (user == null)
+                {
+                    result.IsSuccess = false;
+                    result.Message = $"Quizzes for User with Id: {userId} Not added";
+                    return result;
+                }
+
+                var userQuizzes = user.Quizzes;
+                if (userQuizzes.Any())
+                {
+                    //userQuizzes.ToList().AddRange(quizzes);
+                    foreach (var quiz in quizzes)
+                    {
+                        userQuizzes.Add(quiz);
+                    }
+                }
+
+                user.Quizzes = userQuizzes;
+                await _userManager.UpdateAsync(user);
+                result.IsSuccess = true;
+                result.Message = $"Quizzes for User with Id: {userId} Added Successfully";
+                return result;
+               
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message;
+                return result;
+            }
+          
+
+        }
+
         public async Task<List<QuizResponse>> GetQuizzesByCategory(string category)
         {
             var quizzes = await _quizRepository.GetQuizzesByCategory(category);
@@ -257,7 +302,7 @@ namespace EduQuiz.Service.Implementation
                 Id = q.Id,
                 Title = q.Title,
                 Category = q.Category,
-                QuestionCount = q.Questions?.Count ?? 0  
+                QuestionCount = q.Questions?.Count ?? 0
             }).ToList();
         }
 
@@ -266,16 +311,15 @@ namespace EduQuiz.Service.Implementation
             var results = await _resultRepository.GetResultsByUser(userId);
             var quizIds = results.Select(r => r.QuizId).Distinct().ToList();
             var quizzes = await _quizRepository.GetQuizzesByIds(quizIds);
-    
+
             return quizzes.Select(q => new QuizResponse
             {
                 Id = q.Id,
                 Title = q.Title,
                 Category = q.Category,
-                QuestionCount = q.Questions?.Count ?? 0  
+                QuestionCount = q.Questions?.Count ?? 0
             }).ToList();
         }
-
 
     }
 }

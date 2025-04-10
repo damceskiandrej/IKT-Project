@@ -7,6 +7,8 @@ using EduQuiz.Repository.Interface;
 using EduQuiz.Service.Implementation;
 using EduQuiz.Service.Interface;
 using EduQuizWebApplication.Data;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +21,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<EduQuizUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+;
 builder.Services.AddHttpClient();
 
 builder.Services.AddCors(options =>
@@ -39,6 +43,7 @@ builder.Services.AddScoped<IResultRepository, ResultRepository>();
 
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IExportService, ExportService>();
+builder.Services.AddTransient<IImportService, ImportService>();
 builder.Services.AddTransient<IQuizService, QuizService>();
 builder.Services.AddTransient<IResultService, ResultService>();  
 
