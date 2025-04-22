@@ -1,4 +1,4 @@
-function CustomAIResponse() {
+function CustomAIMessage() {
     return (
         <div className="mb-3 text-start">
             <p className="text-dark p-0 m-0">РАЗБЕРИ ГИ ОСНОВНИТЕ КОНЦЕПТИ</p>
@@ -7,4 +7,4 @@ function CustomAIResponse() {
     )
 }
 
-export default CustomAIResponse
+export default CustomAIMessage

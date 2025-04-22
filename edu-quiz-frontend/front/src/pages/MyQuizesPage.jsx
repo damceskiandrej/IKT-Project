@@ -1,4 +1,4 @@
-import CustomCardsList from '../components/CustomCardsList'
+import CustomCardsList2 from '../components/CustomCardsList2'
 
 function MyQuizesPage() {
     return (
@@ -8,7 +8,7 @@ function MyQuizesPage() {
                     <h3 style={{color: "rgba(60, 141, 123, 1)"}}>ТВОИ КВИЗОВИ</h3>
                 </div>
             </div>
-            <CustomCardsList className='row g-4'/>
+            <CustomCardsList2 className='row g-4'/>
         </div>
     )
 }
