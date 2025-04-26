@@ -1,12 +1,19 @@
 import CustomButton from './CustomButton'
 
-function CustomCard() {
+function CustomCard({ title, category, questionCount }) {
     return (
         <div className="card border-0" style={{width: "25em"}}>
             <div className="card-body p-4">
-                <h4 className="card-title">Агентски базирани системи и нивна примена</h4>
-                <p className="card-text">Развој и симулација на автономни агенти во различни сложени средини.</p>
-                <div className="d-flex justify-content-center">
+                <h4 className="card-title">{title}</h4>
+                <div className="card-text">
+                    <div className="mb-2">
+                        <strong>Category:</strong> {category || 'Uncategorized'}
+                    </div>
+                    <div>
+                        <strong>Questions:</strong> {questionCount}
+                    </div>
+                </div>
+                <div className="d-flex justify-content-center mt-3">
                     <CustomButton btnText={"ПОЧНИ КВИЗ"}/>
                 </div>
             </div>

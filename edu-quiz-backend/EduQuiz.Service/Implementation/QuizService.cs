@@ -20,11 +20,13 @@ namespace EduQuiz.Service.Implementation
 
         public IQuizRepository _quizRepository;
         private readonly IResultRepository _resultRepository;
+        private readonly UserManager<EduQuizUser> _userManager;
 
-        public QuizService(IQuizRepository quizRepository, IResultRepository resultRepository)
+        public QuizService(IQuizRepository quizRepository, IResultRepository resultRepository, UserManager<EduQuizUser> userManager)
         {
             _quizRepository = quizRepository;
             _resultRepository = resultRepository;
+            _userManager = userManager;
         }
 
         public Task PopulateData(List<QuizRequest> quizRequests)
@@ -258,7 +260,8 @@ namespace EduQuiz.Service.Implementation
             try
             {
                 var user = await _userManager.FindByIdAsync(userId);
-                var quizzes = await _quizRepoistory.GetQuizzesByIds(quizIds);
+                var quizzes = await _quizRepository.GetQuizzesByIds(quizIds.Select(Guid.Parse).ToList());
+
 
                 if (user == null)
                 {
