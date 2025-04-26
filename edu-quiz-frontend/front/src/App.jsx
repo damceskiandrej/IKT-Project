@@ -5,10 +5,12 @@ import QuizesPage from './pages/QuizesPage'
 import QAPage from './pages/QAPage'
 import ResultPage from './pages/ResultPage'
 import QuizQuestionsPage from './pages/QuizQuestionsPage'
+import CustomHeader from './components/CustomHeader'
 
 function App() {
   return (
     <>
+      <CustomHeader/>
       <QuizQuestionsPage/>
       <ResultPage score={69}/>
       <QAPage/>
