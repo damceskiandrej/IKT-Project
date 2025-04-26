@@ -8,10 +8,10 @@ function CustomHeader() {
 
                 <nav>
                     <ul className="d-flex list-unstyled mb-0">
-                        <li className="ms-4"><a href="#home" className="text-dark text-decoration-none">ПОЧЕТНА</a></li>
-                        <li className="ms-4"><a href="#about" className="text-dark text-decoration-none">ЗА НАС</a></li>
-                        <li className="ms-4"><a href="#quizzes" className="text-dark text-decoration-none">КВИЗОВИ</a></li>
-                        <li className="ms-4"><a href="#profile" className="text-dark text-decoration-none">ПРОФИЛ</a></li>
+                        <li className="ms-4"><a href="/home" className="text-dark text-decoration-none">ПОЧЕТНА</a></li>
+                        <li className="ms-4"><a href="/about" className="text-dark text-decoration-none">ЗА НАС</a></li>
+                        <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">КВИЗОВИ</a></li>
+                        <li className="ms-4"><a href="/profile" className="text-dark text-decoration-none">ПРОФИЛ</a></li>
                     </ul>
                 </nav>
             </div>

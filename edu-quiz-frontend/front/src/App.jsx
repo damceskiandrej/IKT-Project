@@ -1,22 +1,23 @@
-import './App.css'
-import AboutUsPage from './pages/AboutUsPage'
-import MyQuizesPage from './pages/MyQuizesPage'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Layout from './Layout'
 import QuizesPage from './pages/QuizesPage'
-import QAPage from './pages/QAPage'
-import ResultPage from './pages/ResultPage'
-import QuizQuestionsPage from './pages/QuizQuestionsPage'
-import CustomHeader from './components/CustomHeader'
+import AboutUsPage from './pages/AboutUsPage'
 
 function App() {
   return (
     <>
-      <CustomHeader/>
-      <QuizQuestionsPage/>
-      <ResultPage score={69}/>
-      <QAPage/>
-      <AboutUsPage/>
-      <MyQuizesPage/>
-      <QuizesPage/>
+      <Router>  
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<QuizesPage/>} />
+          <Route path="/home" element={<QuizesPage/>} />
+          <Route path="/quizes" element={<QuizesPage/>} />
+          <Route path="/about" element={<AboutUsPage/>} />
+          <Route path="/profile" element={<AboutUsPage/>} />
+        </Route>
+      </Routes>
+    </Router>
     </>
   )
 }
