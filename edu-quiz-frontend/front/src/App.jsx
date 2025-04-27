@@ -4,6 +4,7 @@ import Layout from './Layout'
 import QuizesPage from './pages/QuizesPage'
 import AboutUsPage from './pages/AboutUsPage'
 import QuizQuestionsPage from './pages/QuizQuestionsPage'
+import ResultPage from './pages/ResultPage'
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Router>  
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<QuizesPage/>} />
+          <Route path="/" element={<ResultPage/>} />
           <Route path="/home" element={<QuizesPage/>} />
           <Route path="/quizes" element={<QuizesPage/>} />
           <Route path="/about" element={<AboutUsPage/>} />
