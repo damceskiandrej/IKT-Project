@@ -1,6 +1,14 @@
+import { useNavigate } from 'react-router-dom'
 import CustomButton from './CustomButton'
 
-function CustomCard({ title, category, questionCount }) {
+function CustomCard({ id, title, category, questionCount }) {
+
+    const navigate = useNavigate()
+
+    const handleStartQuiz = () => {
+        navigate(`/quiz/${id}`)
+    }
+
     return (
         <div className="card border-0" style={{width: "25em"}}>
             <div className="card-body p-4">
@@ -14,7 +22,7 @@ function CustomCard({ title, category, questionCount }) {
                     </div>
                 </div>
                 <div className="d-flex justify-content-center mt-3">
-                    <CustomButton btnText={"ПОЧНИ КВИЗ"}/>
+                    <CustomButton onClick={handleStartQuiz} btnText={"ПОЧНИ КВИЗ"}/>
                 </div>
             </div>
         </div>

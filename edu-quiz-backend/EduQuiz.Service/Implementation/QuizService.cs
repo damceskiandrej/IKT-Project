@@ -250,7 +250,16 @@ namespace EduQuiz.Service.Implementation
                 Id = quiz.Id,
                 Title = quiz.Title,
                 Category = quiz.Category,
-                QuestionCount = quiz.Questions?.Count ?? 0  
+                QuestionCount = quiz.Questions?.Count ?? 0,
+                Questions = quiz.Questions?.Select(q => new QuestionResponse
+                {
+                    QuestionText = q.QuestionText,
+                    Answers = q.Answers?.Select(a => new AnswerResponse
+                    {
+                        AnswerText = a.AnswerText,
+                        IsCorrect = a.isCorrect
+                    }).ToList()
+                }).ToList()
             };
         }
 

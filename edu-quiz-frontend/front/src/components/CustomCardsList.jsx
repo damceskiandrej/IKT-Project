@@ -14,6 +14,7 @@ function CustomCardsList({ quizzes }) {
                 {quizzes.map((quiz) => (
                     <div className="col-md-4" key={quiz.id}>
                         <CustomCard 
+                            id={quiz.id}
                             title={quiz.title}
                             category={quiz.category}
                             questionCount={quiz.questionCount}

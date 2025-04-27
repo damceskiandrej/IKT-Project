@@ -14,6 +14,7 @@ function QuizesPage() {
                 setIsLoading(true);
                 const data = await getAllQuizzes();
                 setQuizzes(data);
+                console.log(data)
             } catch (err) {
                 setError(err.message);
             } finally {

@@ -37,8 +37,8 @@ namespace EduQuizWebApplication.Controllers
             }
             return new OkObjectResult(jsonData);
         }
-        
-        
+
+
         [HttpGet]
         public async Task<IActionResult> PopulateDatabase()
         {
@@ -52,14 +52,14 @@ namespace EduQuizWebApplication.Controllers
             }
             return Ok(new { message = "Database populated successfully" });
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> GetAllQuizzes()
         {
             var quizzes = await _quizService.GetAllQuizzes();
             return Ok(quizzes);
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> GetQuiz(Guid id)
         {
