@@ -31,9 +31,9 @@ namespace EduQuiz.Repository.Implementation
         public async Task<Quiz> GetById(Guid id)
         {
             return await _entities
-                .Include(q => q.Questions)
-                .ThenInclude(q => q.Answers)
-                .FirstOrDefaultAsync(q => q.Id == id);
+        .Include(q => q.Questions) 
+        .ThenInclude(q => q.Answers) 
+        .FirstOrDefaultAsync(q => q.Id == id);
         }
 
         public async Task<List<Quiz>> GetAll()
