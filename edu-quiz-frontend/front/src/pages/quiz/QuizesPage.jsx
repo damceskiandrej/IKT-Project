@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import CustomSearch from '../components/CustomSearch';
-import CustomCardsList from '../components/CustomCardsList';
-import { getAllQuizzes } from '../api/quizApi';
+import CustomSearch from '../../components/CustomSearch';
+import CustomCardsList from '../../components/CustomCardsList';
+import { getAllQuizzes } from '../../api/quizApi';
 
 function QuizesPage() {
     const [quizzes, setQuizzes] = useState([]);

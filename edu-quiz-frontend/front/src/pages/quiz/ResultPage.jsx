@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import CustomReviewCard from "../components/CustomReviewCard";
-import CustomButton from "../components/CustomButton";
+import CustomReviewCard from "../../components/CustomReviewCard";
+import CustomButton from "../../components/CustomButton";
 
 function ResultPage() {
     const location = useLocation();
