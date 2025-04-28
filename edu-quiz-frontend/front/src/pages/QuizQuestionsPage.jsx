@@ -123,15 +123,6 @@ function QuizQuestionsPage() {
                     onClick={handleNextQuestion} 
                 />
             </div>
-            <div className="mt-4 d-flex justify-content-center">
-                <CustomButton 
-                    btnText={"ПРЕТХОДНО"} 
-                    onClick={handlePreviousQuestion} 
-                    disabled={currentQuestionIndex === 0}
-                />
-            </div>
-            
-            
         </div>
     );
 }
