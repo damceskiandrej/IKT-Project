@@ -119,15 +119,15 @@ function QuizQuestionsPage() {
             </div>
             <div className="mt-4 d-flex justify-content-center">
                 <CustomButton 
-                    btnText={"СЛЕДНО ПРАШАЊЕ"} 
+                    btnText={currentQuestionIndex === quiz.questions.length - 1 ? "ФИНАЛНО ПРАШАЊЕ" : "СЛЕДНО ПРАШАЊЕ"} 
                     onClick={handleNextQuestion} 
                 />
             </div>
             <div className="mt-4 d-flex justify-content-center">
                 <CustomButton 
-                    btnText={"Претходно"} 
+                    btnText={"ПРЕТХОДНО"} 
                     onClick={handlePreviousQuestion} 
-                    disabled={currentQuestionIndex === 0} // Disable if it's the first question
+                    disabled={currentQuestionIndex === 0}
                 />
             </div>
             
