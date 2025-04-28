@@ -2,19 +2,19 @@ import CustomQuestion from "../components/CustomQuestion";
 import CustomAnswer from "../components/CustomAnswer";
 import CustomButton from "../components/CustomButton";
 import { getQuizById } from "../api/quizApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function QuizQuestionsPage() {
     const { id } = useParams();
     const [quiz, setQuiz] = useState(null);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Track current question
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [selectedAnswer, setSelectedAnswers] = useState([]);
+    const [selectedAnswers, setSelectedAnswers] = useState([]);
+    const navigate = useNavigate()
 
 
-    // Fetch quiz data
     useEffect(() => {
         const fetchQuiz = async () => {
             try {
@@ -36,22 +36,66 @@ function QuizQuestionsPage() {
 
     if (!quiz || quiz.questions.length === 0) return <div>No questions found</div>;
 
-    // Get the current question and answers
+   
     const currentQuestion = quiz.questions[currentQuestionIndex];
 
-    const handleAnswerClick = (selectedAnswer) => {
+
+    const handleAnswerClick = (answerText) => {
         const updatedAnswers = [...selectedAnswers];
-        updatedAnswers[currentQuestionIndex] = selectedAnswer;
+        updatedAnswers[currentQuestionIndex] = answerText;
         setSelectedAnswers(updatedAnswers);
+        console.log(updatedAnswers); 
+        console.log(answerText)
     };
 
+    const calculateScore = () => {
+        let correctAnswersCount = 0;
+    
+        selectedAnswers.forEach((selectedAnswerText, index) => {
+            const question = quiz.questions[index];
+            const correctAnswer = question.answers.find((answer) => answer.isCorrect);
+    
+            if (correctAnswer && selectedAnswerText === correctAnswer.answerText) {
+                correctAnswersCount++;
+            }
+        });
+        
+        return correctAnswersCount;
+    };
+    
+    
+
     const handleNextQuestion = () => {
+
+        if (!selectedAnswers[currentQuestionIndex]) {
+            alert("Please select an answer before proceeding.");
+            return;
+        }
+
         if (currentQuestionIndex < quiz.questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            alert("Quiz Completed!");
+            const score = calculateScore();
+            navigate('/result' , 
+                    { state: 
+                        {
+                            score,
+                            totalQuestions: quiz.questions.length,
+                            questions: quiz.questions, 
+                            selectedAnswers,
+                            title: quiz.title
+                        }
+                    }
+            )
+            alert(`Quiz Completed!!! Your score ${score}/${quiz.questions.length}`);
         }
     }
+
+    const handlePreviousQuestion = () => {
+        if (currentQuestionIndex > 0) {
+            setCurrentQuestionIndex(currentQuestionIndex - 1);
+        }
+    };
 
     return (
         <div className="container mt-5">
@@ -67,7 +111,8 @@ function QuizQuestionsPage() {
                         <CustomAnswer
                             letter={String.fromCharCode(65 + index)} 
                             answer={answer.answerText}
-                            
+                            onClick={() => handleAnswerClick(answer.answerText)}
+                            isSelected={selectedAnswers[currentQuestionIndex] === answer.answerText}
                         />
                     </div>
                 ))}
@@ -78,8 +123,19 @@ function QuizQuestionsPage() {
                     onClick={handleNextQuestion} 
                 />
             </div>
+            <div className="mt-4 d-flex justify-content-center">
+                <CustomButton 
+                    btnText={"Претходно"} 
+                    onClick={handlePreviousQuestion} 
+                    disabled={currentQuestionIndex === 0} // Disable if it's the first question
+                />
+            </div>
+            
+            
         </div>
     );
 }
+
+
 
 export default QuizQuestionsPage;
