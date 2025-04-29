@@ -7,7 +7,6 @@ function CustomHeader() {
 
     // Logout function
     const handleLogout = () => {
-
         localStorage.removeItem('user');
         navigate('/login');
     };
