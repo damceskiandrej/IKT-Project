@@ -1,7 +1,7 @@
-import CustomQuestion from "../components/CustomQuestion";
-import CustomAnswer from "../components/CustomAnswer";
-import CustomButton from "../components/CustomButton";
-import { getQuizById } from "../api/quizApi";
+import CustomQuestion from "../../components/CustomQuestion";
+import CustomAnswer from "../../components/CustomAnswer";
+import CustomButton from "../../components/CustomButton";
+import { getQuizById } from "../../api/quizApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -117,20 +117,21 @@ function QuizQuestionsPage() {
                     </div>
                 ))}
             </div>
-            <div className="mt-4 d-flex justify-content-center">
-                <CustomButton 
-                    btnText={currentQuestionIndex === quiz.questions.length - 1 ? "ФИНАЛНО ПРАШАЊЕ" : "СЛЕДНО ПРАШАЊЕ"} 
-                    onClick={handleNextQuestion} 
-                />
+            <div className="container d-flex justify-content-around">
+                <div className="mt-4 d-flex justify-content-center">
+                    <CustomButton 
+                        btnText={"ПРЕТХОДНО"} 
+                        onClick={handlePreviousQuestion} 
+                        disabled={currentQuestionIndex === 0}
+                    />
+                </div>
+                <div className="mt-4 d-flex justify-content-center">
+                    <CustomButton 
+                        btnText={currentQuestionIndex === quiz.questions.length - 1 ? "ФИНАЛНО ПРАШАЊЕ" : "СЛЕДНО ПРАШАЊЕ"} 
+                        onClick={handleNextQuestion} 
+                    />
+                </div>
             </div>
-            <div className="mt-4 d-flex justify-content-center">
-                <CustomButton 
-                    btnText={"ПРЕТХОДНО"} 
-                    onClick={handlePreviousQuestion} 
-                    disabled={currentQuestionIndex === 0}
-                />
-            </div>
-            
             
         </div>
     );

@@ -4,7 +4,7 @@ function AboutUsPage() {
      
     const navigate = useNavigate()
     const handleOnClick = () => {
-        navigate("/home")
+        navigate("/quizes")
     }
 
     return (

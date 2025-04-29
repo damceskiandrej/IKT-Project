@@ -8,9 +8,9 @@ namespace EduQuiz.DomainEntities.DTO.Request
 {
     public class UserRegisterRequest : UserRequest
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Username { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Username { get; set; }
         
     }
 }

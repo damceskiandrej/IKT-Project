@@ -1,4 +1,4 @@
-import CustomCardsList2 from '../components/CustomCardsList2'
+import CustomCardsList2 from '../../components/CustomCardsList2'
 
 function MyQuizesPage() {
     return (

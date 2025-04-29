@@ -39,7 +39,10 @@ namespace EduQuiz.Service.Implementation
                 return result;
             }
             result.Message = "User exists";
-            result.UserName = user.UserName;
+            result.UserName = user.UserName ?? "";
+            result.FirstName = user.FirstName;  
+            result.LastName = user.LastName;    
+            result.Email = user.Email;
             result.UserId = user.Id;
             result.IsSuccess = true;
             return result;
