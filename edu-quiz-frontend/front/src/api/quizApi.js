@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 
 const URL = "http://localhost:5190/api/quiz"
 
@@ -22,6 +24,9 @@ export const getQuizById = async (id) => {
         throw error;  
     }
 }
+
+
+
 
 
 
