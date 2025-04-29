@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EduQuiz.Repository.Interface
 {
-    public interface IQuizRepoistory : IRepository<Quiz>
+    public interface IQuizRepository : IRepository<Quiz>
     {
         Task<Quiz> GetQuizByCategory(string category);
 
