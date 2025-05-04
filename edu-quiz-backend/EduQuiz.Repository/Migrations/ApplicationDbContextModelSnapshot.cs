@@ -42,7 +42,7 @@ namespace EduQuiz.Repository.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("Answers");
+                    b.ToTable("Answers", (string)null);
                 });
 
             modelBuilder.Entity("EduQuiz.DomainEntities.Domain.Question", b =>
@@ -65,7 +65,7 @@ namespace EduQuiz.Repository.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Questions", (string)null);
                 });
 
             modelBuilder.Entity("EduQuiz.DomainEntities.Domain.Quiz", b =>
@@ -84,7 +84,7 @@ namespace EduQuiz.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Quizzes");
+                    b.ToTable("Quizzes", (string)null);
                 });
 
             modelBuilder.Entity("EduQuiz.DomainEntities.Domain.Reccomendation", b =>
@@ -110,7 +110,7 @@ namespace EduQuiz.Repository.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reccomendations");
+                    b.ToTable("Reccomendations", (string)null);
                 });
 
             modelBuilder.Entity("EduQuiz.DomainEntities.Domain.Result", b =>
@@ -138,7 +138,7 @@ namespace EduQuiz.Repository.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Results");
+                    b.ToTable("Results", (string)null);
                 });
 
             modelBuilder.Entity("EduQuiz.DomainEntities.Identity.EduQuizUser", b =>
@@ -224,7 +224,7 @@ namespace EduQuiz.Repository.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("EduQuizUserQuiz");
+                    b.ToTable("EduQuizUserQuiz", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
