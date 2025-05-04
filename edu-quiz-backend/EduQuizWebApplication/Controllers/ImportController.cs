@@ -34,5 +34,20 @@ namespace EduQuizWebApplication.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> ImportStudents(IFormFile file)
+        {
+            string pathToUpload = Path.Combine(Directory.GetCurrentDirectory(), "Files", file.FileName);
+
+            using (var fileStream = System.IO.File.Create(pathToUpload))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+
+            var students = await _importService.GetStudentsFromFile(file.FileName);
+            return Ok(students);
+        }
+
+
     }
 }
