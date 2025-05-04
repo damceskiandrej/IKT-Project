@@ -1,7 +1,11 @@
-﻿using EduQuiz.DomainEntities.Domain;
+﻿using Azure.Core;
+using EduQuiz.DomainEntities.Domain;
+using EduQuiz.DomainEntities.DTO.Response;
+using EduQuiz.DomainEntities.Identity;
 using EduQuiz.Repository.Interface;
 using EduQuiz.Service.Interface;
 using ExcelDataReader;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -14,10 +18,12 @@ namespace EduQuiz.Service.Implementation
     public class ImportService : IImportService
     {
         private readonly IRepository<Quiz> _quizRepository;
+        private readonly UserManager<EduQuizUser> _userManager;
 
-        public ImportService(IRepository<Quiz> quizRepository)
+        public ImportService(IRepository<Quiz> quizRepository, UserManager<EduQuizUser> userManager)
         {
             _quizRepository = quizRepository;
+            _userManager = userManager;
         }
 
         public async Task<Quiz> GetQuizFromFile(string fileName)
@@ -45,7 +51,6 @@ namespace EduQuiz.Service.Implementation
                     if (string.IsNullOrWhiteSpace(questionId))
                         continue;
 
-                    // Create or get existing question
                     if (!questionsDict.ContainsKey(questionId))
                     {
                         questionsDict[questionId] = new Question
@@ -55,7 +60,6 @@ namespace EduQuiz.Service.Implementation
                         };
                     }
 
-                    // Add answer
                     questionsDict[questionId].Answers.Add(new Answer
                     {
                         AnswerText = answerText,
@@ -68,6 +72,83 @@ namespace EduQuiz.Service.Implementation
             _quizRepository.Insert(quiz);
             return quiz;
 
+        }
+
+        public async Task<List<UserResponse>> GetStudentsFromFile(string fileName)
+        {
+            var response = new List<UserResponse>();
+            var students = new List<EduQuizUser>();
+            var passwords = new List<string>();
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "files", fileName);
+
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+            using (var stream = System.IO.File.Open(filePath, FileMode.Open, FileAccess.Read))
+            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            {
+                while (reader.Read())
+                {
+                    var result = new UserResponse();
+
+                    try
+                    {
+                        var createdStudent = getStudent(reader);
+                        students.Add(createdStudent);
+                        var password = reader.GetString(4);
+                        passwords.Add(password);
+
+                        if (await _userManager.FindByEmailAsync(createdStudent.Email) != null)
+                        {
+                            result.Message = "Email Already Exists";
+                            result.IsSuccess = false;
+                            response.Add(result);
+                            continue;
+                        }
+
+                        if (await _userManager.FindByNameAsync(createdStudent.UserName) != null)
+                        {
+                            result.Message = "Username Already Exists";
+                            result.IsSuccess = false;
+                            response.Add(result);
+                            continue;
+                        }
+
+                        result.Message = "User Created";
+                        result.UserName = createdStudent.UserName;
+                        result.UserId = createdStudent.Id;
+                        result.FirstName = createdStudent.FirstName;
+                        result.LastName = createdStudent.LastName;
+                        result.Email = createdStudent.Email;
+                        result.IsSuccess = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Message = $"Error: {ex.Message}";
+                        result.IsSuccess = false;
+                    }
+
+                    response.Add(result);
+                }
+            }
+
+            for (var i = 0; i < students.Count; i++)
+            {
+                await _userManager.CreateAsync(students[i], passwords[i]);
+            }
+
+            return response;
+        }
+
+
+        private EduQuizUser getStudent(IExcelDataReader reader)
+        {
+            return new EduQuizUser
+            {
+                FirstName = reader.GetString(0),
+                LastName = reader.GetString(1),
+                Email = reader.GetString(2),
+                UserName = reader.GetString(3),
+            };
         }
     }
 }
