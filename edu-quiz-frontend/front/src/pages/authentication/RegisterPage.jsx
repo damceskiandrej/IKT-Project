@@ -1,110 +1,128 @@
 import { useState } from 'react';
-import CustomButton from "../../components/CustomButton";
-import { registerUser } from '../../api/authApi'; // Import the registerUser function
+import { registerUser } from '../../api/authApi';
 
 function RegisterPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [username, setUsername] = useState('');
     const [error, setError] = useState('');
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Basic validation
-        if (!email || !password || !firstName || !lastName || !username) {
-            setError('All fields are required');
+        if (!email || !password || !firstName || !lastName) {
+            setError('Сите полиња се задолжителни');
             return;
         }
 
-        // Prepare user data
-        const userData = {
-            email,
-            password,
-            firstName,
-            lastName,
-            username,
-        };
-
         try {
-            // Call the registerUser API function
-            const result = await registerUser(userData);
-
-            // Handle successful registration (e.g., redirect or show success message)
+            const result = await registerUser({
+                email,
+                password,
+                firstName,
+                lastName,
+                username: email, // you can adjust this
+            });
             console.log('Registration successful:', result);
-            // Redirect user or show success message
         } catch (err) {
-            setError('Failed to register. Please try again.');
+            setError('Регистрацијата не беше успешна. Обидете се повторно.');
         }
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '40vh' }}>
-            <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '400px' }}>
-                <h2 className="text-center mb-4">Register</h2>
-                {error && <div className="alert alert-danger mb-3">{error}</div>}
-                <div className="form-group mb-3">
-                    <label htmlFor="email">Email address</label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter email"
+        <div style={{ backgroundColor: '#f3f3f3', minHeight: '100vh', padding: '40px 0' }}>
+            <div style={{
+                backgroundColor: '#fff',
+                maxWidth: 1000,
+                margin: '0 auto',
+                display: 'flex',
+                padding: '40px',
+                borderRadius: '10px',
+                boxShadow: '0 0 20px rgba(0,0,0,0.05)'
+            }}>
+                <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <img
+                        src="/img/authentication.png"
+                        alt="Register illustration"
+                        style={{ width: '80%', maxWidth: 400 }}
                     />
                 </div>
-                <div className="form-group mb-3">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                    />
+
+                <div style={{ flex: 1, paddingLeft: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <div style={{textAlign: 'center'}}>
+                    <h2 style={{ color: '#1f8b6c', marginBottom: '10px' }}>EDUQUIZ</h2>
+                    <p style={{ marginBottom: '25px', fontWeight: '600' }}>
+                        Креирајте го вашиот профил за да продолжите кон квизовите
+                    </p>
+                    </div>
+                    <form onSubmit={handleSubmit} style={{ background: '#F0F0F0', padding: '1.5rem' }}>
+                        <input
+                            type="text"
+                            placeholder="Име"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            required
+                            style={inputStyle}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Презиме"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            required
+                            style={inputStyle}
+                        />
+                        <input
+                            type="email"
+                            placeholder="Емаил адреса"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            style={inputStyle}
+                        />
+                        <input
+                            type="password"
+                            placeholder="Лозинка"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            style={inputStyle}
+                        />
+
+                        {error && <div style={{ color: 'red', marginBottom: '10px' }}>{error}</div>}
+
+                        <button type="submit" style={buttonStyle}>
+                            Регистрирај се!
+                        </button>
+                    </form>
+                    <a href="/login" style={{ fontSize: '14px', color: '#555', textDecoration: 'underline', marginTop: '1.5rem' }}>
+                        Already have an account? Login!
+                    </a>
                 </div>
-                <div className="form-group mb-3">
-                    <label htmlFor="firstName">First Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="firstName"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        placeholder="First Name"
-                    />
-                </div>
-                <div className="form-group mb-3">
-                    <label htmlFor="lastName">Last Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="lastName"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        placeholder="Last Name"
-                    />
-                </div>
-                <div className="form-group mb-3">
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Username"
-                    />
-                </div>
-                <CustomButton btnText={"Регистрирај се"} />
-            </form>
+            </div>
         </div>
     );
 }
+
+const inputStyle = {
+    width: '100%',
+    padding: '12px',
+    marginBottom: '25px',
+    borderRadius: '5px',
+    border: '1px solid #ccc',
+    fontSize: '14px',
+    backgroundColor: '#D9D9D9'
+};
+
+const buttonStyle = {
+    width: '100%',
+    padding: '12px',
+    backgroundColor: '#222',
+    color: '#fff',
+    fontWeight: 'bold',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer'
+};
 
 export default RegisterPage;
