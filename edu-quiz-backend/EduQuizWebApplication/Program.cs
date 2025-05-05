@@ -47,6 +47,9 @@ builder.Services.AddTransient<IExportService, ExportService>();
 builder.Services.AddTransient<IImportService, ImportService>();
 builder.Services.AddTransient<IQuizService, QuizService>();
 builder.Services.AddTransient<IResultService, ResultService>();  
+builder.Services.AddHttpClient<IAIService, AIService>();
+builder.Services.AddScoped<IAIService, AIService>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
