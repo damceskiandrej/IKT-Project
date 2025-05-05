@@ -4,6 +4,7 @@ import CustomButton from "../../components/CustomButton";
 import { getQuizById } from "../../api/quizApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import useUser from "../../hooks/useUser";
 
 function QuizQuestionsPage() {
     const { id } = useParams();
@@ -13,7 +14,9 @@ function QuizQuestionsPage() {
     const [error, setError] = useState(null);
     const [selectedAnswers, setSelectedAnswers] = useState([]);
     const navigate = useNavigate()
+    const user = useUser()
 
+    const userId = user ? user.userId : ""  
 
     useEffect(() => {
         const fetchQuiz = async () => {
@@ -36,16 +39,21 @@ function QuizQuestionsPage() {
 
     if (!quiz || quiz.questions.length === 0) return <div>No questions found</div>;
 
-   
+    
+
     const currentQuestion = quiz.questions[currentQuestionIndex];
 
 
-    const handleAnswerClick = (answerText) => {
+    const handleAnswerClick = (answerId) => {
+        const selectedAnswer = currentQuestion.answers.find(ans => ans.id === answerId);
         const updatedAnswers = [...selectedAnswers];
-        updatedAnswers[currentQuestionIndex] = answerText;
+        updatedAnswers[currentQuestionIndex] = {
+            questionId: currentQuestion.id,
+            selectedAnswerId: answerId,
+            selectedAnswerText: selectedAnswer.answerText,
+            correctAnswerText: selectedAnswer.isCorrect ? selectedAnswer.answerText : ''
+        };
         setSelectedAnswers(updatedAnswers);
-        console.log(updatedAnswers); 
-        console.log(answerText)
     };
 
     const calculateScore = () => {
@@ -66,30 +74,44 @@ function QuizQuestionsPage() {
     
 
     const handleNextQuestion = () => {
-
-        if (!selectedAnswers[currentQuestionIndex]) {
-            alert("Please select an answer before proceeding.");
-            return;
-        }
-
         if (currentQuestionIndex < quiz.questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            const score = calculateScore();
-            navigate('/result' , 
-                    { state: 
-                        {
-                            score,
-                            totalQuestions: quiz.questions.length,
-                            questions: quiz.questions, 
-                            selectedAnswers,
-                            title: quiz.title
-                        }
-                    }
-            )
-            alert(`Quiz Completed!!! Your score ${score}/${quiz.questions.length}`);
+            // Calculate score after the last question
+            const score = selectedAnswers.reduce((correctAnswersCount, selection, index) => {
+                const question = quiz.questions[index];
+                const correctAnswer = question.answers.find(answer => answer.isCorrect);
+    
+                // If selected answer ID matches the correct answer ID, increment the score
+                return selection.selectedAnswerId === correctAnswer.id ? correctAnswersCount + 1 : correctAnswersCount;
+            }, 0);
+    
+            // Now build the submission object for result page
+            const submission = {
+                userId: userId,
+                quizId: quiz.id,
+                questionResults: selectedAnswers.map((selection) => ({
+                    questionId: selection.questionId,
+                    selectedAnswerIds: [selection.selectedAnswerId]
+                }))
+            };
+    
+            // Navigate to the result page with the score and selected answers
+            navigate('/result', {
+                state: {
+                    submission,
+                    score,
+                    totalQuestions: quiz.questions.length,
+                    questions: quiz.questions,
+                    selectedAnswers,
+                    title: quiz.title
+                }
+            });
+    
+            alert(`Quiz Completed! Your score is ${score}/${quiz.questions.length}`);
         }
-    }
+    };
+    
 
     const handlePreviousQuestion = () => {
         if (currentQuestionIndex > 0) {
@@ -111,8 +133,8 @@ function QuizQuestionsPage() {
                         <CustomAnswer
                             letter={String.fromCharCode(65 + index)} 
                             answer={answer.answerText}
-                            onClick={() => handleAnswerClick(answer.answerText)}
-                            isSelected={selectedAnswers[currentQuestionIndex] === answer.answerText}
+                            onClick={() => handleAnswerClick(answer.id)}
+                            isSelected={selectedAnswers[currentQuestionIndex]?.selectedAnswerId === answer.id}
                         />
                     </div>
                 ))}

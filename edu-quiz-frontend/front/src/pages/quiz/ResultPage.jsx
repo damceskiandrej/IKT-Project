@@ -1,16 +1,35 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomReviewCard from "../../components/CustomReviewCard";
 import CustomButton from "../../components/CustomButton";
+import useUser from '../../hooks/useUser';
+import { postQuizResult } from "../../api/quizApi"; 
 
 function ResultPage() {
     const location = useLocation();
     const navigate = useNavigate()
-    const { score, totalQuestions, title, questions, selectedAnswers} = location.state || {};
+    const { submission, score, totalQuestions, title, questions, selectedAnswers} = location.state || {};
     const percentage = ((score / totalQuestions) * 100).toFixed(2);
 
-    const handleOnClick = () => {
+    const handleOnClickHome = () => {
         navigate("/home")
     }
+
+    const handleOnCLickBack = () => {
+        navigate("/quizes")
+    }
+
+    const handleOnClick = async () => {
+        try {
+           
+            const response = await postQuizResult(submission);
+            console.log("Quiz submission response:", response);  
+
+           
+        } catch (error) {
+            console.error("Error while submitting quiz:", error);
+            alert("There was an error submitting your quiz. Please try again later.");
+        }
+    };
 
     return (
         <div>
@@ -30,7 +49,7 @@ function ResultPage() {
                     <div className="container mt-5 p-3">
                         <h2 className="fw-bold">БРАВО!</h2>
                         <h4 className="fw-bold">Твојот резултат е {percentage}%.</h4>
-                        <CustomButton btnText={"НАЗАД"} />
+                        <CustomButton btnText={"НАЗАД"} onClick={handleOnCLickBack}/>
                     </div>
                 </div>
             </div>
@@ -46,7 +65,7 @@ function ResultPage() {
                                 <CustomReviewCard 
                                     key={index} 
                                     question={question} 
-                                    selectedAnswer={selectedAnswers[index]}
+                                    selectedAnswer={selectedAnswers[index]?.selectedAnswerText}
                                     correctAnswer={question.answers.find(answer => answer.isCorrect)}
                                 />
                             ))}
@@ -56,9 +75,16 @@ function ResultPage() {
                             <button
                                 style={{ color: 'black', backgroundColor: 'rgba(181, 212, 205, 1)' }}
                                 className="btn btn-success border-0 mt-4 px-4 py-2"
-                                onClick={handleOnClick}
+                                onClick={handleOnClickHome}
                             >
                                 КОН КВИЗОВИ
+                            </button>
+                            <button
+                                style={{ color: 'black', backgroundColor: 'rgba(181, 212, 205, 1)' }}
+                                className="btn btn-success border-0 mt-4 px-4 py-2"
+                                onClick={handleOnClick}
+                            >
+                                Submit Quiz
                             </button>
                         </div>
                     </div>
