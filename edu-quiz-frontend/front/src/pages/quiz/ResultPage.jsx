@@ -8,6 +8,7 @@ function ResultPage() {
     const location = useLocation();
     const navigate = useNavigate()
 <<<<<<< HEAD
+<<<<<<< HEAD
     const { submission, score, totalQuestions, title, questions, selectedAnswers, showCorrectness = true} = location.state || {};
     const percentage = ((score / totalQuestions) * 100).toFixed(2);
 
@@ -15,6 +16,9 @@ function ResultPage() {
         navigate("/quizes")
 =======
     const { submission, score, totalQuestions, title, questions, selectedAnswers} = location.state || {};
+=======
+    const { submission, score, totalQuestions, title, questions, selectedAnswers, showCorrectness = true} = location.state || {};
+>>>>>>> bfa3fb3 (QuizQuestionsReviewPage added + functionalities added)
     const percentage = ((score / totalQuestions) * 100).toFixed(2);
 
     const handleOnClickHome = () => {

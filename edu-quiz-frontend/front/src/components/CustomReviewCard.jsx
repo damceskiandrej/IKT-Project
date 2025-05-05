@@ -8,7 +8,7 @@ function CustomReviewCard({ question, selectedAnswer, correctAnswer, showCorrect
 
         <div className="d-flex flex-column">
           {question.answers.map((answer, index) => {
-            const isSelected = selectedAnswer === answer.answerText
+            const isSelected = selectedAnswer === answer.answerText;
             const isCorrect = answer.isCorrect;
             const isIncorrect = isSelected && !isCorrect;
 
