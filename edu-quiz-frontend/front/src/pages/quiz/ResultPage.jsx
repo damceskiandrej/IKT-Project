@@ -10,8 +10,8 @@ function ResultPage() {
     const { submission, score, totalQuestions, title, questions, selectedAnswers, showCorrectness = true} = location.state || {};
     const percentage = ((score / totalQuestions) * 100).toFixed(2);
 
-    const handleOnClickHome = () => {
-        navigate("/home")
+    const handleOnClickQuizes = () => {
+        navigate("/quizes")
     }
 
     const handleOnCLickBack = () => {
@@ -76,17 +76,11 @@ function ResultPage() {
                             <button
                                 style={{ color: 'black', backgroundColor: 'rgba(181, 212, 205, 1)' }}
                                 className="btn btn-success border-0 mt-4 px-4 py-2"
-                                onClick={handleOnClickHome}
+                                onClick={handleOnClickQuizes}
                             >
                                 КОН КВИЗОВИ
                             </button>
-                            <button
-                                style={{ color: 'black', backgroundColor: 'rgba(181, 212, 205, 1)' }}
-                                className="btn btn-success border-0 mt-4 px-4 py-2"
-                                onClick={handleOnClick}
-                            >
-                                Submit Quiz
-                            </button>
+                            
                         </div>
                     </div>
                 </div>
