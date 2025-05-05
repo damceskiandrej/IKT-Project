@@ -77,8 +77,6 @@ namespace EduQuiz.Service.Implementation
         public async Task<List<UserResponse>> GetStudentsFromFile(string fileName)
         {
             var response = new List<UserResponse>();
-            var students = new List<EduQuizUser>();
-            var passwords = new List<string>();
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "files", fileName);
 
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
@@ -93,9 +91,7 @@ namespace EduQuiz.Service.Implementation
                     try
                     {
                         var createdStudent = getStudent(reader);
-                        students.Add(createdStudent);
                         var password = reader.GetString(4);
-                        passwords.Add(password);
 
                         if (await _userManager.FindByEmailAsync(createdStudent.Email) != null)
                         {
@@ -108,6 +104,15 @@ namespace EduQuiz.Service.Implementation
                         if (await _userManager.FindByNameAsync(createdStudent.UserName) != null)
                         {
                             result.Message = "Username Already Exists";
+                            result.IsSuccess = false;
+                            response.Add(result);
+                            continue;
+                        }
+
+                        var userCreated = await _userManager.CreateAsync(createdStudent, password);
+                        if (!userCreated.Succeeded)
+                        {
+                            result.Message = "User Creation Failed";
                             result.IsSuccess = false;
                             response.Add(result);
                             continue;
@@ -131,11 +136,12 @@ namespace EduQuiz.Service.Implementation
                 }
             }
 
-            for (var i = 0; i < students.Count; i++)
+            //TODO: response.Where(i => i.IsSuccess).Count() can be implemented on the frontend
+            var successfullyAddedStudentsCount = response.Where(i => i.IsSuccess).Count();
+            response.Add(new UserResponse
             {
-                await _userManager.CreateAsync(students[i], passwords[i]);
-            }
-
+                Message = $"Sucessfully added {successfullyAddedStudentsCount} new students"
+            });
             return response;
         }
 
