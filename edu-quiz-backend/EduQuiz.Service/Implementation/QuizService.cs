@@ -253,9 +253,11 @@ namespace EduQuiz.Service.Implementation
                 QuestionCount = quiz.Questions?.Count ?? 0,
                 Questions = quiz.Questions?.Select(q => new QuestionResponse
                 {
+                    Id = q.Id,
                     QuestionText = q.QuestionText,
                     Answers = q.Answers?.Select(a => new AnswerResponse
                     {
+                        Id = a.Id,
                         AnswerText = a.AnswerText,
                         IsCorrect = a.isCorrect
                     }).ToList()

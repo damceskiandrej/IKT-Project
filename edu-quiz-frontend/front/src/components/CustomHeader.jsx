@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUser from '../hooks/useUser'; 
+
 function CustomHeader() {
     const user = useUser(); 
     const navigate = useNavigate(); 
@@ -9,6 +10,11 @@ function CustomHeader() {
     const handleLogout = () => {
         localStorage.removeItem('user');
         navigate('/login');
+    };
+
+    // Navigate to User Page
+    const handleProfileClick = () => {
+        navigate('/profile');
     };
 
     return (
@@ -23,18 +29,24 @@ function CustomHeader() {
                         <li className="ms-4"><a href="/home" className="text-dark text-decoration-none">ПОЧЕТНА</a></li>
                         <li className="ms-4"><a href="/about" className="text-dark text-decoration-none">ЗА НАС</a></li>
                         <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">КВИЗОВИ</a></li>
-                        <li className="ms-4"><a href="/profile" className="text-dark text-decoration-none">ПРОФИЛ</a></li>
+                        <li className="ms-4">
+                            {user ? (
+                                <button 
+                                    className="btn btn-link text-dark fw-bold"
+                                    onClick={handleProfileClick}
+                                >
+                                    {user.firstName} {user.lastName}
+                                </button>
+                            ) : (
+                                <a href="/login" className="text-dark text-decoration-none">ПРОФИЛ</a>
+                            )}
+                        </li>
                     </ul>
 
                     {user && (
-                        <>
-                            <div className="text-dark fw-bold me-4">
-                                Здраво, {user.firstName} {user.lastName}
-                            </div>
-                            <button onClick={handleLogout} className="btn btn-danger">
-                                Logout
-                            </button>
-                        </>
+                        <button onClick={handleLogout} className="btn btn-danger">
+                            Logout
+                        </button>
                     )}
                 </nav>
             </div>
