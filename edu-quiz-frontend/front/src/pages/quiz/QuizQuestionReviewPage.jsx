@@ -3,6 +3,8 @@ import CustomReviewCard from "../../components/CustomReviewCard";
 import CustomButton from "../../components/CustomButton";
 import useUser from '../../hooks/useUser';
 import { postQuizResult } from "../../api/quizApi"; 
+import CustomDialog from "../../components/CustomDialog";
+import { useState } from "react";
 
 function QuizQuestionReviewPage() {
     // const location = useLocation();
@@ -13,6 +15,7 @@ function QuizQuestionReviewPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const { submission, questions, selectedAnswers, title } = location.state || {};
+ 
 
     const quizId = submission ? submission.quizId : ""
 
