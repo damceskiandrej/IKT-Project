@@ -12,6 +12,10 @@ using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//secrets
+builder.Configuration.AddJsonFile("openrouterconfig.json", optional: true, reloadOnChange: true); 
+builder.Configuration.AddEnvironmentVariables(); 
+
 // Add services to the container.
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
