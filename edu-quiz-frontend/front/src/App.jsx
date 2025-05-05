@@ -10,6 +10,7 @@ import LoginPage from './pages/authentication/LoginPage'
 import HomePage from './pages/common/HomePage'
 import UserPage from './pages/authentication/UserPage'
 import ProtectedRoute from './components/ProtectedRoute'
+import QuizQuestionReviewPage from './pages/quiz/QuizQuestionReviewPage'
 
 function App() {
   return (
@@ -25,11 +26,12 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/home" element={<HomePage />} />
-            <Route path="/result" element={<ResultPage />} />
+            <Route path="/resultPage" element={<ResultPage />} />
             <Route path="/quizes" element={<QuizesPage />} />
             <Route path="/about" element={<AboutUsPage />} />
             <Route path="/profile" element={<UserPage />} />
             <Route path="/quiz/:id" element={<QuizQuestionsPage />} />
+            <Route path="/reviewPage" element={<QuizQuestionReviewPage />} />
           </Route>
         </Route>
         {/* Fallback route */}

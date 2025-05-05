@@ -95,9 +95,9 @@ function QuizQuestionsPage() {
                     selectedAnswerIds: [selection.selectedAnswerId]
                 }))
             };
-    
+            // console.log("submission",submission)
             // Navigate to the result page with the score and selected answers
-            navigate('/result', {
+            navigate('/reviewPage', {
                 state: {
                     submission,
                     score,
