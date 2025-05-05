@@ -7,11 +7,19 @@ import { postQuizResult } from "../../api/quizApi";
 function ResultPage() {
     const location = useLocation();
     const navigate = useNavigate()
+<<<<<<< HEAD
     const { submission, score, totalQuestions, title, questions, selectedAnswers, showCorrectness = true} = location.state || {};
     const percentage = ((score / totalQuestions) * 100).toFixed(2);
 
     const handleOnClickQuizes = () => {
         navigate("/quizes")
+=======
+    const { submission, score, totalQuestions, title, questions, selectedAnswers} = location.state || {};
+    const percentage = ((score / totalQuestions) * 100).toFixed(2);
+
+    const handleOnClickHome = () => {
+        navigate("/home")
+>>>>>>> c902049 (Post quiz implementation)
     }
 
     const handleOnCLickBack = () => {
@@ -76,11 +84,25 @@ function ResultPage() {
                             <button
                                 style={{ color: 'black', backgroundColor: 'rgba(181, 212, 205, 1)' }}
                                 className="btn btn-success border-0 mt-4 px-4 py-2"
+<<<<<<< HEAD
                                 onClick={handleOnClickQuizes}
                             >
                                 КОН КВИЗОВИ
                             </button>
                             
+=======
+                                onClick={handleOnClickHome}
+                            >
+                                КОН КВИЗОВИ
+                            </button>
+                            <button
+                                style={{ color: 'black', backgroundColor: 'rgba(181, 212, 205, 1)' }}
+                                className="btn btn-success border-0 mt-4 px-4 py-2"
+                                onClick={handleOnClick}
+                            >
+                                Submit Quiz
+                            </button>
+>>>>>>> c902049 (Post quiz implementation)
                         </div>
                     </div>
                 </div>
