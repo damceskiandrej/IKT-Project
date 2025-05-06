@@ -12,6 +12,8 @@ import UserPage from './pages/authentication/UserPage'
 import ProtectedRoute from './components/ProtectedRoute'
 import QuizQuestionReviewPage from './pages/quiz/QuizQuestionReviewPage'
 import MyQuizesPage from './pages/quiz/MyQuizesPage'
+import QAPage from './pages/QAPage'
+
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
             <Route path="/quiz/:id" element={<QuizQuestionsPage />} />
             <Route path="/reviewPage" element={<QuizQuestionReviewPage />} />
             <Route path="/myQuizesPage" element={<MyQuizesPage />} />
+            <Route path="/qaPage" element={<QAPage />} />
           </Route>
         </Route>
         {/* Fallback route */}

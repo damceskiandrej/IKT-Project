@@ -10,7 +10,7 @@ const useUser = () => {
             
         }
     }, []);
-    console.log(user)
+    // console.log(user)
     return user;
 };
 

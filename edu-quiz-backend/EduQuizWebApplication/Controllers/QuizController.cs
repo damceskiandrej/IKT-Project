@@ -33,7 +33,7 @@ namespace EduQuizWebApplication.Controllers
             var jsonData = JsonConvert.DeserializeObject<List<QuizRequest>>(jsonResponse);
             if (jsonData != null)
             {
-                await _quizService.PopulateDataPerCategory(jsonData);
+                await _quizService.PopulateData(jsonData);
             }
             return new OkObjectResult(jsonData);
         }

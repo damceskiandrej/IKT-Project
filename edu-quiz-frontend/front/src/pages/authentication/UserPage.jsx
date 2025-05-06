@@ -9,13 +9,17 @@ function UserPage() {
         navigate('/myQuizesPage'); // Navigate to the MyQuizesPage route
     };
 
+    const navigateToAllQuizzes = () => {
+        navigate("/quizes")
+    }
+
     return (
         <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '40vh' }}>
             <div className="form-group mb-3">
                 <CustomButton btnText={"Твои квизови"} onClick={goToMyQuizesPage} /> {/* Add onClick to navigate */}
             </div>
             <div className="form-group mb-3">
-                <CustomButton btnText={"Сите квизови"} />
+                <CustomButton btnText={"Сите квизови"} onClick={navigateToAllQuizzes}/>
             </div>
             <div className="form-group mb-3">
                 <CustomButton btnText={"Добиени совети"} />
