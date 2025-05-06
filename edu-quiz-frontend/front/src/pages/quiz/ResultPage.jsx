@@ -1,44 +1,23 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomReviewCard from "../../components/CustomReviewCard";
 import CustomButton from "../../components/CustomButton";
-import useUser from '../../hooks/useUser';
-import { postQuizResult } from "../../api/quizApi"; 
+
+
 
 function ResultPage() {
     const location = useLocation();
     const navigate = useNavigate()
     const { submission, score, totalQuestions, title, questions, selectedAnswers, showCorrectness = true} = location.state || {};
+    const percentage = ((score / totalQuestions) * 100).toFixed(2);
 
     const handleOnClickQuizes = () => {
         navigate("/quizes")
     }
-
-    
-
-    const percentage = ((score / totalQuestions) * 100).toFixed(2);
-
-    const handleOnClickHome = () => {
-        navigate("/home")
-
-    }
-
     const handleOnCLickBack = () => {
         navigate("/quizes")
     }
 
-    const handleOnClick = async () => {
-        try {
-           
-            const response = await postQuizResult(submission);
-            console.log("Quiz submission response:", response);  
-
-           
-        } catch (error) {
-            console.error("Error while submitting quiz:", error);
-            alert("There was an error submitting your quiz. Please try again later.");
-        }
-    };
-
+    
     return (
         <div>
             <div className="d-flex justify-content-center align-items-center vh-100">

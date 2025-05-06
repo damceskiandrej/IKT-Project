@@ -24,6 +24,32 @@ export const getQuizById = async (id) => {
     }
 }
 
+export const getQuizzesByUser = async (userId) => {
+    try {
+
+        if (!userId) throw new Error("User ID is required");
+        const response = await fetch(`${URL}/GetQuizzesByUser?userId=${userId}`, {  
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        console.log("Fetching quizzes for userId:", userId);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to fetch quizzes');
+        }
+
+        const data = await response.json();
+        console.log("getQuizzesByUser data", data)
+        return data;
+    } catch (error) {
+        console.error('Error fetching quizzes by user:', error);
+        throw error;
+    }
+};
+
 export const postQuizResult = async (submission) => {
     try {
         const response = await fetch(`${URL}/SubmitQuizResult`, {

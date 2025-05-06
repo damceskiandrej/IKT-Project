@@ -40,12 +40,12 @@ function QuizQuestionsPage() {
         if (timer > 0 && quiz) {
             timerInterval = setInterval(() => {
                 setTimer(prevTimer => prevTimer - 1);
-            }, 1000); // Decrease the timer every second
+            }, 1000); 
         } else if (timer === 0) {
-            handleNextQuestion(); // Automatically move to the next question when timer hits 0
+            handleNextQuestion(); 
         }
 
-        return () => clearInterval(timerInterval); // Clean up the interval on unmount or when timer changes
+        return () => clearInterval(timerInterval); 
     }, [timer, quiz]);
 
     const handleAnswerClick = (answerId) => {
@@ -77,7 +77,7 @@ function QuizQuestionsPage() {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
             setTimer(timerDuration); // Reset the timer for the next question
         } else {
-            // Calculate score after the last question
+           
             const score = selectedAnswers.reduce((correctAnswersCount, selection, index) => {
                 // Ensure selection exists and has a valid selectedAnswerId
                 if (selection && selection.selectedAnswerId !== undefined) {
@@ -88,7 +88,7 @@ function QuizQuestionsPage() {
                 return correctAnswersCount;
             }, 0);
     
-            // Build the submission object for result page
+            
             const submission = {
                 userId: userId,
                 quizId: quiz.id,
@@ -98,7 +98,7 @@ function QuizQuestionsPage() {
                 }))
             };
     
-            // Navigate to the result page with the score and selected answers
+            
             navigate('/reviewPage', {
                 state: {
                     submission,
@@ -152,7 +152,7 @@ function QuizQuestionsPage() {
                 ))}
             </div>
             <div className="d-flex justify-content-center mt-4">
-                <p>{timer} seconds remaining</p> {/* Display the timer */}
+                <p>{timer} seconds remaining</p> 
             </div>
             <div className="container d-flex justify-content-around">
                 <div className="mt-4 d-flex justify-content-center">
@@ -166,7 +166,7 @@ function QuizQuestionsPage() {
                     <CustomButton
                         btnText={currentQuestionIndex === quiz.questions.length - 1 ? "ФИНАЛНО ПРАШАЊЕ" : "СЛЕДНО ПРАШАЊЕ"}
                         onClick={handleNextQuestion}
-                        disabled={!isAnswerSelected} // Disable the button if no answer is selected
+                        disabled={!isAnswerSelected} 
                     />
                 </div>
             </div>
