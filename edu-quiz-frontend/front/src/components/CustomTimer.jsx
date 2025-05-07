@@ -1,12 +1,18 @@
-function CustomTimer() {
-    return (
-        <div className="d-flex align-items-center">
-          <img src="../../img/timer.png"/>
-          <h4 className="timer-text mb-0" style={{color: "rgba(0, 0, 0, 1)"}}>
-            Time limit: (<strong>10</strong>:<strong>14</strong>)
+function CustomTimer({ timer }) {
+  const formatTime = (seconds) => {
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+      return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
+
+  return (
+      <div className="d-flex align-items-center">
+          <img src="../../img/timer.png" alt="Timer Icon" />
+          <h4 className="timer-text mb-0 ms-2" style={{ color: "rgba(0, 0, 0, 1)" }}>
+              Time left: <strong>{formatTime(timer)}</strong>
           </h4>
-        </div>
-      )
+      </div>
+  );
 }
 
-export default CustomTimer  
+export default CustomTimer;
