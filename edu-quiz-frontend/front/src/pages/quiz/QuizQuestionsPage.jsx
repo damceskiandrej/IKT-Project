@@ -11,6 +11,7 @@ import { getHint } from "../../api/aiApi";
 
 function QuizQuestionsPage() {
     const { id } = useParams();
+    const navigate = useNavigate()
     const [quiz, setQuiz] = useState(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
