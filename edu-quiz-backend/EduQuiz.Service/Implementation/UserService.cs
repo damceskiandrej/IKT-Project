@@ -46,6 +46,7 @@ namespace EduQuiz.Service.Implementation
             result.Email = user.Email;
             result.UserId = user.Id;
             result.IsSuccess = true;
+            result.Role = user.Role;
             return result;
 
         }
@@ -75,7 +76,12 @@ namespace EduQuiz.Service.Implementation
                     Email = request.Email,
                     UserName = request.Username,
                 };
+                var role = isProfessor(request.Email) ? EduQuizRole.PROFESSOR : EduQuizRole.STUDENT;
+                user.Role = role;
+
                 var userCreated = await  _userManager.CreateAsync(user, request.Password);
+                await _userManager.AddToRoleAsync(user, role.ToString());
+
                 if (!userCreated.Succeeded)
                 {
                     var errors = String.Join(", ", userCreated.Errors.Select(x => x.Description)).ToString();
@@ -84,8 +90,6 @@ namespace EduQuiz.Service.Implementation
                     return result;
                 }
 
-                var role = isProfessor(request.Email) ? EduQuizRole.PROFESSOR : EduQuizRole.STUDENT;
-                await _userManager.AddToRoleAsync(user, role.ToString());
 
                 result.Message = "User Created";
                 result.UserName = user.UserName;

@@ -1,18 +1,26 @@
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import CustomButton from "../../components/CustomButton";
+import UploadDocument from "@/components/UploadDocument.jsx";
+import useUser from "@/hooks/useUser.js";
+import {Role} from "@/enum/role.js";
 
 function UserPage() {
-    const navigate = useNavigate(); // Initialize the navigate hook
 
-    // Function to handle the "Твои квизови" button click
-    const goToMyQuizesPage = () => {
-        navigate('/myQuizesPage'); // Navigate to the MyQuizesPage route
-    };
+    const user = useUser();
+
+    debugger;
+    const isProfessor = user && user.role === Role.PROFESSOR;
 
     return (
         <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '40vh' }}>
+            {isProfessor && (
+                <>
+                    <UploadDocument btnText={"Додади студенти"} apiEndpoint="http://localhost:5190/api/Import/ImportStudents" />
+                    <UploadDocument btnText={"Додади квиз"} apiEndpoint="http://localhost:5190/api/Import/ImportQuiz" />
+                </>
+            )}
+
             <div className="form-group mb-3">
-                <CustomButton btnText={"Твои квизови"} onClick={goToMyQuizesPage} /> {/* Add onClick to navigate */}
+                <CustomButton btnText={"Твои квизови"} />
             </div>
             <div className="form-group mb-3">
                 <CustomButton btnText={"Сите квизови"} />
@@ -24,4 +32,4 @@ function UserPage() {
     );
 }
 
-export default UserPage;
+export default UserPage
