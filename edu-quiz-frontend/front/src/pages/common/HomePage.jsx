@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
 
+
 function HomePage() {
     const navigate = useNavigate(); 
 
@@ -11,6 +12,7 @@ function HomePage() {
     const onClickToAboutUs = () => {
         navigate("/about")
     }  
+
     return (
     <div className="flex flex-col min-h-screen bg-gray-100">
         <div className="container py-5">

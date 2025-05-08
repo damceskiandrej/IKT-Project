@@ -1,30 +1,38 @@
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom'; 
 import CustomButton from "../../components/CustomButton";
+import CustomCircleButton from '../../components/CustomCircleButton';
 
 function UserPage() {
-    const navigate = useNavigate(); // Initialize the navigate hook
+    const navigate = useNavigate(); 
 
-    // Function to handle the "Твои квизови" button click
+   
     const goToMyQuizesPage = () => {
-        navigate('/myQuizesPage'); // Navigate to the MyQuizesPage route
+        navigate('/myQuizesPage'); 
     };
 
     const navigateToAllQuizzes = () => {
         navigate("/quizes")
     }
 
+    const navigateToQAPage = () => {
+        navigate("/qaPage")
+    }
+
     return (
-        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '40vh' }}>
-            <div className="form-group mb-3">
-                <CustomButton btnText={"Твои квизови"} onClick={goToMyQuizesPage} /> {/* Add onClick to navigate */}
+    <>
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '40vh'  }}>
+            <div className="form-group mb-3" style={{padding: '2rem'}}>
+                <CustomCircleButton btnText={"Твои квизови"} onClick={goToMyQuizesPage}/>  
             </div>
-            <div className="form-group mb-3">
-                <CustomButton btnText={"Сите квизови"} onClick={navigateToAllQuizzes}/>
+            <div className="form-group mb-3" style={{padding: '2rem'}}>
+                <CustomCircleButton btnText={"Сите квизови"} onClick={navigateToAllQuizzes}/>  
             </div>
-            <div className="form-group mb-3">
-                <CustomButton btnText={"Добиени совети"} />
+            <div className="form-group mb-3" style={{padding: '2rem'}}>
+                <CustomCircleButton btnText={"Добиени совети"} onClick={navigateToQAPage}/>  
             </div>
         </div>
+    </>
+        
     );
 }
 
