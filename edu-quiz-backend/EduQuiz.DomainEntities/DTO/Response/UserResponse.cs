@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EduQuiz.DomainEntities.Roles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,6 @@ namespace EduQuiz.DomainEntities.DTO.Response
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public EduQuizRole Role { get; set; }
     }
 }

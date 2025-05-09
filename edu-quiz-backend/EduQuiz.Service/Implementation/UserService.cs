@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EduQuiz.DomainEntities.DTO.Response;
+using EduQuiz.DomainEntities.Roles;
 
 namespace EduQuiz.Service.Implementation
 {
@@ -75,16 +76,22 @@ namespace EduQuiz.Service.Implementation
                     UserName = request.Username,
                 };
                 var userCreated = await  _userManager.CreateAsync(user, request.Password);
-                if(!userCreated.Succeeded)
+                if (!userCreated.Succeeded)
                 {
-                    result.Message = "User Creation Failed";
+                    var errors = String.Join(", ", userCreated.Errors.Select(x => x.Description)).ToString();
+                    result.Message = errors;
                     result.IsSuccess = false;
                     return result;
                 }
+
+                var role = isProfessor(request.Email) ? EduQuizRole.PROFESSOR : EduQuizRole.STUDENT;
+                await _userManager.AddToRoleAsync(user, role.ToString());
+
                 result.Message = "User Created";
                 result.UserName = user.UserName;
                 result.UserId = user.Id;
                 result.IsSuccess = true;
+                result.Role = role;
                 return result;
 
             }
@@ -96,6 +103,11 @@ namespace EduQuiz.Service.Implementation
             }
                
         }
+        private bool isProfessor(string email)
+        {
+            return email.Contains("professor");
+        }
+
         public async Task<UserResponse> GetUserProfile(string userId)
         {
             var result = new UserResponse();
