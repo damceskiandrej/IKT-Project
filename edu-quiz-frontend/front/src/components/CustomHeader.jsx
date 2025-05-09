@@ -1,20 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import useUser from '../hooks/useUser'; 
+import useUser from '../hooks/useUser';
 
 function CustomHeader() {
-    const user = useUser(); 
-    const navigate = useNavigate(); 
+    const user = useUser();
+    const navigate = useNavigate();
 
-    // Logout function
     const handleLogout = () => {
         localStorage.removeItem('user');
         navigate('/login');
-    };
-
-    // Navigate to User Page
-    const handleProfileClick = () => {
-        navigate('/profile');
     };
 
     return (
@@ -31,12 +25,9 @@ function CustomHeader() {
                         <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">КВИЗОВИ</a></li>
                         <li className="ms-4">
                             {user ? (
-                                <button 
-                                    className="btn btn-link text-dark fw-bold"
-                                    onClick={handleProfileClick}
-                                >
+                                <a href="/profile" className="text-dark fw-bold">
                                     {user.firstName} {user.lastName}
-                                </button>
+                                </a>
                             ) : (
                                 <a href="/login" className="text-dark text-decoration-none">ПРОФИЛ</a>
                             )}
