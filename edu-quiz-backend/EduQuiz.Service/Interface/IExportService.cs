@@ -1,3 +1,4 @@
+using EduQuiz.DomainEntities.DTO.Request;
 using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,6 @@ namespace EduQuiz.Service.Interface
 {
     public interface IExportService
     {
-        PdfDocument GeneratePdf();
+        Task<PdfDocument> GeneratePdf(PdfRequest request);
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EduQuiz.Service.Interface;
+using EduQuiz.DomainEntities.DTO.Request;
 
 namespace EduQuizWebApplication.Controllers
 {
@@ -16,9 +17,9 @@ namespace EduQuizWebApplication.Controllers
         }
 
         [HttpPost]
-        public FileContentResult GeneratePdf()
+        public async Task<FileContentResult> GeneratePdf([FromBody] PdfRequest request)
         {
-            var document = _exportService.GeneratePdf();
+            var document = await _exportService.GeneratePdf(request);
             MemoryStream stream = new MemoryStream();
             document.Save(stream);
 
@@ -28,7 +29,7 @@ namespace EduQuizWebApplication.Controllers
             stream.Close();
 
 
-            return File(bytes, "application/pdf", "Invoice.pdf");
+            return File(bytes, "application/pdf", "QuizSummaryReport.pdf");
         }
     }
 }

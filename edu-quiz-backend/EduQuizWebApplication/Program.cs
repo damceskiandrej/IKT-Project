@@ -9,8 +9,13 @@ using EduQuiz.Service.Interface;
 using EduQuizWebApplication.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
+using EduQuiz.DomainEntities.Roles;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//secrets
+builder.Configuration.AddJsonFile("openrouterconfig.json", optional: true, reloadOnChange: true); 
+builder.Configuration.AddEnvironmentVariables(); 
 
 // Add services to the container.
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -19,8 +24,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<EduQuizUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<EduQuizUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 ;
@@ -47,11 +53,33 @@ builder.Services.AddTransient<IExportService, ExportService>();
 builder.Services.AddTransient<IImportService, ImportService>();
 builder.Services.AddTransient<IQuizService, QuizService>();
 builder.Services.AddTransient<IResultService, ResultService>();  
+builder.Services.AddHttpClient<IAIService, AIService>();
+builder.Services.AddScoped<IAIService, AIService>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+static async Task SeedRolesAsync(IServiceProvider serviceProvider)
+{
+    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    foreach (var role in Enum.GetNames(typeof(EduQuizRole)))
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+}
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await SeedRolesAsync(services);
+}
 
 if (!app.Environment.IsDevelopment())
 {

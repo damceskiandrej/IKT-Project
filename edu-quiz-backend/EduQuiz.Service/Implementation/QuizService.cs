@@ -21,12 +21,14 @@ namespace EduQuiz.Service.Implementation
         public IQuizRepository _quizRepository;
         private readonly IResultRepository _resultRepository;
         private readonly UserManager<EduQuizUser> _userManager;
+        private readonly IAIService _aiService;
 
-        public QuizService(IQuizRepository quizRepository, IResultRepository resultRepository, UserManager<EduQuizUser> userManager)
-        {
+        public QuizService(IQuizRepository quizRepository, IResultRepository resultRepository, UserManager<EduQuizUser> userManager, IAIService aiService)
+        {   
             _quizRepository = quizRepository;
             _resultRepository = resultRepository;
             _userManager = userManager;
+            _aiService = aiService;
         }
 
         public Task PopulateData(List<QuizRequest> quizRequests)
@@ -253,9 +255,11 @@ namespace EduQuiz.Service.Implementation
                 QuestionCount = quiz.Questions?.Count ?? 0,
                 Questions = quiz.Questions?.Select(q => new QuestionResponse
                 {
+                    Id = q.Id,
                     QuestionText = q.QuestionText,
                     Answers = q.Answers?.Select(a => new AnswerResponse
                     {
+                        Id = a.Id,
                         AnswerText = a.AnswerText,
                         IsCorrect = a.isCorrect
                     }).ToList()
@@ -331,6 +335,37 @@ namespace EduQuiz.Service.Implementation
                 Category = q.Category,
                 QuestionCount = q.Questions?.Count ?? 0
             }).ToList();
+        }
+        
+        public async Task<string> GetQuestionHintAsync(Guid quizId, Guid questionId)
+        {
+            var quiz = await _quizRepository.GetById(quizId);
+            var question = quiz?.Questions.FirstOrDefault(q => q.Id == questionId);
+        
+            if (question == null) throw new KeyNotFoundException("Question not found");
+        
+            return await _aiService.GetHintAsync(
+                question.QuestionText,
+                question.Answers.Select(a => a.AnswerText).ToList()
+            );
+        }
+
+        public async Task<string> GetQuizSummaryAsync(Guid quizId)
+        {
+            var quiz = await _quizRepository.GetById(quizId);
+            if (quiz == null) throw new KeyNotFoundException("Quiz not found");
+
+            var questions = quiz.Questions.Select(q => new QuestionSummaryDto
+            {
+                QuestionText = q.QuestionText,
+                Answers = q.Answers.Select(a => new AnswerSummaryDto
+                {
+                    AnswerText = a.AnswerText,
+                    IsCorrect = a.isCorrect
+                }).ToList()
+            }).ToList();
+
+            return await _aiService.GetQuizSummaryAsync(questions);
         }
 
     }

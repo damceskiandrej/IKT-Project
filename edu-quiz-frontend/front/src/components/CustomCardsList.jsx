@@ -1,6 +1,6 @@
 import CustomCard from './CustomCard'
 
-function CustomCardsList({ quizzes }) {
+function CustomCardsList({ quizzes,  hideStartButton }) {
     if (quizzes.length === 0) {
         return (
             <div className="text-center my-5">
@@ -18,6 +18,7 @@ function CustomCardsList({ quizzes }) {
                             title={quiz.title}
                             category={quiz.category}
                             questionCount={quiz.questionCount}
+                            hideStartButton={hideStartButton}
                         />
                     </div>
                 ))}

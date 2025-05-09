@@ -2,16 +2,22 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CustomReviewCard from "../../components/CustomReviewCard";
 import CustomButton from "../../components/CustomButton";
 
+
+
 function ResultPage() {
     const location = useLocation();
     const navigate = useNavigate()
-    const { score, totalQuestions, title, questions, selectedAnswers} = location.state || {};
+    const { submission, score, totalQuestions, title, questions, selectedAnswers, showCorrectness = true} = location.state || {};
     const percentage = ((score / totalQuestions) * 100).toFixed(2);
 
-    const handleOnClick = () => {
-        navigate("/home")
+    const handleOnClickQuizes = () => {
+        navigate("/quizes")
+    }
+    const handleOnCLickBack = () => {
+        navigate("/quizes")
     }
 
+    
     return (
         <div>
             <div className="d-flex justify-content-center align-items-center vh-100">
@@ -30,7 +36,7 @@ function ResultPage() {
                     <div className="container mt-5 p-3">
                         <h2 className="fw-bold">БРАВО!</h2>
                         <h4 className="fw-bold">Твојот резултат е {percentage}%.</h4>
-                        <CustomButton btnText={"НАЗАД"} />
+                        <CustomButton btnText={"НАЗАД"} onClick={handleOnCLickBack}/>
                     </div>
                 </div>
             </div>
@@ -46,8 +52,9 @@ function ResultPage() {
                                 <CustomReviewCard 
                                     key={index} 
                                     question={question} 
-                                    selectedAnswer={selectedAnswers[index]}
+                                    selectedAnswer={selectedAnswers[index]?.selectedAnswerText}
                                     correctAnswer={question.answers.find(answer => answer.isCorrect)}
+                                    showCorrectness = {showCorrectness}
                                 />
                             ))}
                         </div>
@@ -56,10 +63,12 @@ function ResultPage() {
                             <button
                                 style={{ color: 'black', backgroundColor: 'rgba(181, 212, 205, 1)' }}
                                 className="btn btn-success border-0 mt-4 px-4 py-2"
-                                onClick={handleOnClick}
+                                onClick={handleOnClickQuizes}
+                               
                             >
                                 КОН КВИЗОВИ
                             </button>
+                            
                         </div>
                     </div>
                 </div>

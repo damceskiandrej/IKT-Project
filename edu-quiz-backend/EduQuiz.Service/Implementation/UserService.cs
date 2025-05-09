@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EduQuiz.DomainEntities.DTO.Response;
+using EduQuiz.DomainEntities.Roles;
 
 namespace EduQuiz.Service.Implementation
 {
@@ -45,6 +46,7 @@ namespace EduQuiz.Service.Implementation
             result.Email = user.Email;
             result.UserId = user.Id;
             result.IsSuccess = true;
+            result.Role = user.Role;
             return result;
 
         }
@@ -74,17 +76,25 @@ namespace EduQuiz.Service.Implementation
                     Email = request.Email,
                     UserName = request.Username,
                 };
+                var role = isProfessor(request.Email) ? EduQuizRole.PROFESSOR : EduQuizRole.STUDENT;
+                user.Role = role;
+
                 var userCreated = await  _userManager.CreateAsync(user, request.Password);
-                if(!userCreated.Succeeded)
+                await _userManager.AddToRoleAsync(user, role.ToString());
+
+                if (!userCreated.Succeeded)
                 {
-                    result.Message = "User Creation Failed";
+                    var errors = String.Join(", ", userCreated.Errors.Select(x => x.Description)).ToString();
+                    result.Message = errors;
                     result.IsSuccess = false;
                     return result;
                 }
+
                 result.Message = "User Created";
                 result.UserName = user.UserName;
                 result.UserId = user.Id;
                 result.IsSuccess = true;
+                result.Role = role;
                 return result;
 
             }
@@ -96,6 +106,11 @@ namespace EduQuiz.Service.Implementation
             }
                
         }
+        private bool isProfessor(string email)
+        {
+            return email.Contains("professor");
+        }
+
         public async Task<UserResponse> GetUserProfile(string userId)
         {
             var result = new UserResponse();
