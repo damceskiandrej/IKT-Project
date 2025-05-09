@@ -27,8 +27,4 @@
     <ProjectReference Include="..\EduQuiz.Service\EduQuiz.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Files\" />
-  </ItemGroup>
-
 </Project>

@@ -90,7 +90,6 @@ namespace EduQuiz.Service.Implementation
                     return result;
                 }
 
-
                 result.Message = "User Created";
                 result.UserName = user.UserName;
                 result.UserId = user.Id;
