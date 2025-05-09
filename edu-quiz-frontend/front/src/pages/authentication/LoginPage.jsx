@@ -32,6 +32,8 @@ function LoginPage() {
                 backgroundColor: '#fff',
                 maxWidth: 1000,
                 width: '100%',
+                minHeight: '50vh',
+                alignItems: 'center',
                 display: 'flex',
                 flexWrap: 'wrap',
                 padding: '40px',
