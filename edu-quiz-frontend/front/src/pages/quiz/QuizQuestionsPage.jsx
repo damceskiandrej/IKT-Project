@@ -5,19 +5,24 @@ import { getQuizById } from "../../api/quizApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useUser from "../../hooks/useUser";
+import CustomHint from "../../components/CustomHint";
+import CustomTimer from "../../components/CustomTimer"
+import { getHint } from "../../api/aiApi";
 
 function QuizQuestionsPage() {
     const { id } = useParams();
+    const navigate = useNavigate()
     const [quiz, setQuiz] = useState(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedAnswers, setSelectedAnswers] = useState([]);
-    const [timer, setTimer] = useState(30); // Initial timer value (30 seconds per question)
-    const [timerDuration] = useState(30); // You can adjust this value for the timer duration
-    const navigate = useNavigate();
+    const [timer, setTimer] = useState(300); 
+    const [timerDuration] = useState(300); 
     const user = useUser();
     const userId = user ? user.userId : "";
+    const [hints, setHints] = useState({}); 
+
 
     useEffect(() => {
         const fetchQuiz = async () => {
@@ -47,6 +52,15 @@ function QuizQuestionsPage() {
 
         return () => clearInterval(timerInterval); 
     }, [timer, quiz]);
+
+    useEffect(() => {
+        const currentQuestionId = quiz?.questions[currentQuestionIndex]?.id;
+        if (currentQuestionId && !(currentQuestionId in hints)) {
+            setHints(prev => ({ ...prev, [currentQuestionId]: null }));
+        }
+    }, [currentQuestionIndex, quiz]);
+    
+    
 
     const handleAnswerClick = (answerId) => {
         const selectedAnswer = quiz.questions[currentQuestionIndex].answers.find(ans => ans.id === answerId);
@@ -122,6 +136,24 @@ function QuizQuestionsPage() {
         }
     };
 
+    const fetchHintForQuestion = async (questionId) => {
+        try {
+            const hintText = await getHint(quiz.id, questionId);
+            console.log("Hint:", hintText);
+    
+            setHints(prev => ({
+                ...prev,
+                [questionId]: hintText || "No hint available."
+            }));
+        } catch (err) {
+            console.error(err);
+            setHints(prev => ({ ...prev, [questionId]: "Error loading hint." }));
+        }
+    };
+    
+    
+    
+
     // Check if the current question has a selected answer
     const isAnswerSelected = selectedAnswers[currentQuestionIndex]?.selectedAnswerId !== undefined;
 
@@ -129,10 +161,13 @@ function QuizQuestionsPage() {
     if (error) return <div>Error: {error}</div>;
     if (!quiz || quiz.questions.length === 0) return <div>No questions found</div>;
 
+
+
     const currentQuestion = quiz.questions[currentQuestionIndex];
 
     return (
         <div className="container mt-5">
+            <CustomTimer timer={timer}/>
             <CustomQuestion
                 title={quiz.title}
                 question={currentQuestion.questionText}
@@ -151,9 +186,12 @@ function QuizQuestionsPage() {
                     </div>
                 ))}
             </div>
-            <div className="d-flex justify-content-center mt-4">
-                <p>{timer} seconds remaining</p> 
-            </div>
+            <CustomHint
+                hint={hints[currentQuestion.id]}
+                fetchHint={() => fetchHintForQuestion(currentQuestion.id)}
+            />
+
+
             <div className="container d-flex justify-content-around">
                 <div className="mt-4 d-flex justify-content-center">
                     <CustomButton
@@ -169,6 +207,7 @@ function QuizQuestionsPage() {
                         disabled={!isAnswerSelected} 
                     />
                 </div>
+                
             </div>
         </div>
     );

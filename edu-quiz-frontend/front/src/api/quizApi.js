@@ -65,7 +65,7 @@ export const postQuizResult = async (submission) => {
         }
 
         const data = await response.json();
-        console.log("Submission response:", data); // You can log or process the response as needed
+        console.log("Submission response:", data); 
         return data;
     } catch (error) {
         console.error("Error submitting quiz:", error);

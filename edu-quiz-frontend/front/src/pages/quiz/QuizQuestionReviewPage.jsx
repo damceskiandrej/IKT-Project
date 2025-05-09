@@ -36,11 +36,10 @@ function QuizQuestionReviewPage() {
 
     const handleOnClick = async () => {
         try {
-            const score = calculateScore(); // Calculate the score
+            const score = calculateScore(); 
             const response = await postQuizResult(submission);
             console.log("Quiz submission response:", response);
 
-            // Navigate to ResultPage with the quiz details
             navigate("/resultPage", {
                 state: {
                     submission,
@@ -52,6 +51,8 @@ function QuizQuestionReviewPage() {
                     showCorrectness: true,
                 },
             });
+
+            console.log("submission",submission)
         } catch (error) {
             console.error("Error while submitting quiz:", error);
             alert("There was an error submitting your quiz. Please try again later.");
