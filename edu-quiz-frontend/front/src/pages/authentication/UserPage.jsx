@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import CustomButton from "../../components/CustomButton";
+import {useNavigate} from 'react-router-dom';
 import CustomCircleButton from '../../components/CustomCircleButton';
 import UploadDocument from "@/components/UploadDocument.jsx";
 import useUser from "@/hooks/useUser.js";
-import { Role } from "@/enum/role.js";
+import {Role} from "@/enum/role.js";
+import AnimationComputer from "@/components/AnimationComputer.jsx";
 
 function UserPage() {
     const navigate = useNavigate();
@@ -52,7 +52,8 @@ function UserPage() {
                 </div>
 
                 <div className="col-6 d-flex justify-content-center align-items-center">
-                    <img src="/img/authentication.png" alt="Illustration" style={{ maxWidth: '50%', height: 'auto' }} />
+                    {/*<img src="/img/authentication.png" alt="Illustration" style={{ maxWidth: '50%', height: 'auto' }} />*/}
+                    <AnimationComputer/>
                 </div>
             </div>
             </div>

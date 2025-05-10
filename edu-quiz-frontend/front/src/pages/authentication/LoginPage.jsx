@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../api/authApi";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {loginUser} from "@/api/authApi.js";
+import AnimationWave from "@/components/AnimationWave.jsx";
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -48,11 +49,12 @@ function LoginPage() {
                     alignItems: 'center',
                     padding: '10px'
                 }}>
-                    <img
-                        src="/img/authentication.png"
-                        alt="Login illustration"
-                        style={{ width: '80%', maxWidth: 400 }}
-                    />
+                    {/*<img*/}
+                    {/*    src="/img/authentication.png"*/}
+                    {/*    alt="Login illustration"*/}
+                    {/*    style={{ width: '80%', maxWidth: 400 }}*/}
+                    {/*/>*/}
+                    <AnimationWave/>
                 </div>
 
                 {/* Login Form */}

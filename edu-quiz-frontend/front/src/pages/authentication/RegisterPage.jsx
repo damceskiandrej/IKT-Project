@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import { registerUser } from '../../api/authApi';
+import {useState} from 'react';
+import {useNavigate} from "react-router-dom";
+import {registerUser} from '@/api/authApi.js';
+import AnimationWave from "@/components/AnimationWave.jsx";
 
 function RegisterPage() {
     const [email, setEmail] = useState('');
@@ -54,11 +55,7 @@ function RegisterPage() {
                 boxShadow: '0 0 20px rgba(0,0,0,0.05)'
             }}>
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <img
-                        src="/img/authentication.png"
-                        alt="Register illustration"
-                        style={{ width: '80%', maxWidth: 400 }}
-                    />
+                   <AnimationWave/>
                 </div>
 
                 <div style={{ flex: 1, paddingLeft: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
