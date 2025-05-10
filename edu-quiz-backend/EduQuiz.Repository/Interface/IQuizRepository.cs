@@ -1,4 +1,5 @@
 using EduQuiz.DomainEntities.Domain;
+using EduQuiz.DomainEntities.DTO.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace EduQuiz.Repository.Interface
         Task<Quiz> GetQuizByQuestion(string question);
         Task<List<Quiz>> GetQuizzesByCategories(List<string> allUniqueCategories);
         Task<Quiz> GetById(Guid id);
-        Task<List<Quiz>> GetAll();
+        Task<List<QuizResponse>> GetAllMapped();
         Task<List<Quiz>> GetQuizzesByCategory(string category);
         Task<List<Quiz>> GetQuizzesByIds(List<Guid> ids);
        

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EduQuiz.DomainEntities.DTO.Response;
 
 namespace EduQuiz.Repository.Implementation
 {
@@ -36,11 +37,16 @@ namespace EduQuiz.Repository.Implementation
         .FirstOrDefaultAsync(q => q.Id == id);
         }
 
-        public async Task<List<Quiz>> GetAll()
+        public async Task<List<QuizResponse>> GetAllMapped()
         {
             return await _entities
-                .Include(q => q.Questions)
-                .ThenInclude(q => q.Answers)
+                .Select(q => new QuizResponse
+                {
+                    Id = q.Id,
+                    Title = q.Title,
+                    Category = q.Category,
+                    QuestionCount = q.Questions.Count
+                })
                 .ToListAsync();
         }
 

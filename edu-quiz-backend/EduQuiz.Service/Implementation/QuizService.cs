@@ -229,14 +229,7 @@ namespace EduQuiz.Service.Implementation
         
         public async Task<List<QuizResponse>> GetAllQuizzes()
         {
-            var quizzes = await _quizRepository.GetAll();
-            return quizzes.Select(q => new QuizResponse
-            {
-                Id = q.Id,
-                Title = q.Title,
-                Category = q.Category,
-                QuestionCount = q.Questions?.Count ?? 0
-            }).ToList();
+            return await _quizRepository.GetAllMapped();
         }
 
         public async Task<QuizResponse> GetQuizById(Guid id)
