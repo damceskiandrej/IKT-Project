@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import CustomButton from './CustomButton';
+import React, {useRef, useState} from 'react';
+import CustomCircleButton from "@/components/CustomCircleButton.jsx";
 
 function UploadDocument({btnText, apiEndpoint}) {
     const fileInputRef = useRef(null);
@@ -44,7 +44,7 @@ function UploadDocument({btnText, apiEndpoint}) {
 
     return (
         <div className="form-group mb-3">
-            <CustomButton
+            <CustomCircleButton
                 btnText={isUploading ? 'Uploading...' : btnText}
                 onClick={handleButtonClick}
                 disabled={isUploading}
