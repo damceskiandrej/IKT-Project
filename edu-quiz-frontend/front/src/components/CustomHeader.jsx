@@ -23,6 +23,8 @@ function CustomHeader() {
                         <li className="ms-4"><a href="/home" className="nav-link-custom">ПОЧЕТНА</a></li>
                         <li className="ms-4"><a href="/about" className="nav-link-custom">ЗА НАС</a></li>
                         <li className="ms-4"><a href="/quizes" className="nav-link-custom">КВИЗОВИ</a></li>
+                        <li className="ms-4"><a href="/quizes" className="nav-link-custom">КВИЗ НА ДЕНОТ</a></li>
+
                         <li className="ms-4">
                             {user ? (
                                 <a href="/profile" className="nav-link-custom fw-bold">
