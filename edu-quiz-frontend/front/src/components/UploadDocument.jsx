@@ -1,7 +1,8 @@
 import React, {useRef, useState} from 'react';
 import CustomCircleButton from "@/components/CustomCircleButton.jsx";
+import {toast} from "react-toastify";
 
-function UploadDocument({btnText, apiEndpoint}) {
+function UploadDocument({btnText, apiEndpoint, successText, showToast}) {
     const fileInputRef = useRef(null);
     const [isUploading, setIsUploading] = useState(false);
 
@@ -13,9 +14,10 @@ function UploadDocument({btnText, apiEndpoint}) {
         const file = event.target.files[0];
         if (file) {
             console.log('Selected file:', file);
-
             const formData = new FormData();
             formData.append('file', file);
+
+            let success = false;
 
             try {
                 setIsUploading(true);
@@ -23,9 +25,6 @@ function UploadDocument({btnText, apiEndpoint}) {
                 const response = await fetch(apiEndpoint, {
                     method: 'POST',
                     body: formData,
-                    headers: {
-                        // 'Accept': 'application/json',
-                    },
                 });
 
                 if (!response.ok) {
@@ -34,13 +33,19 @@ function UploadDocument({btnText, apiEndpoint}) {
 
                 const result = await response.json();
                 console.log('Upload Done:', result);
+                success = true;
             } catch (error) {
                 console.error('Error uploading file:', error);
+                toast.error("Додека прикачувавте документ се појави грешка.");
             } finally {
                 setIsUploading(false);
+                if (success && showToast) {
+                    showToast(successText || "Датотеката е успешно прикачена.");
+                }
             }
         }
-    };
+    }
+
 
     return (
         <div className="form-group mb-3">
@@ -52,7 +57,7 @@ function UploadDocument({btnText, apiEndpoint}) {
             <input
                 type="file"
                 ref={fileInputRef}
-                style={{ display: 'none' }}
+                style={{display: 'none'}}
                 onChange={handleFileChange}
             />
         </div>

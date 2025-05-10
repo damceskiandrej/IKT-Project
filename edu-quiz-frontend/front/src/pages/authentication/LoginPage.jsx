@@ -2,6 +2,9 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {loginUser} from "@/api/authApi.js";
 import AnimationWave from "@/components/AnimationWave.jsx";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -14,13 +17,15 @@ function LoginPage() {
         try {
             const result = await loginUser({ email, password });
             localStorage.setItem('user', JSON.stringify(result));
-            navigate('/quizes');
+            // toast.success("Добредојдовте");
+            navigate('/home', { state: { showToast: true } });
         } catch (err) {
             setError(err.message || 'Најавувањето не беше успешно.');
         }
     };
 
     return (
+        <>
         <div style={{
             backgroundColor: '#f3f3f3',
             minHeight: '100vh',
@@ -102,6 +107,19 @@ function LoginPage() {
                 </div>
             </div>
         </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
+        </>
     );
 }
 

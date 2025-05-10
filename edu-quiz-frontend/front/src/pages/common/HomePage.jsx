@@ -1,9 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
+import {useEffect} from "react";
+import {toast, ToastContainer} from "react-toastify";
 
 
 function HomePage() {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.state?.showToast) {
+            toast.success('Добредојдовте!');
+        }
+    }, [location.state]);
 
     const onClickToQuizzes = () => {
         navigate("/quizes")
@@ -44,6 +53,18 @@ function HomePage() {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div>
     );
 }
