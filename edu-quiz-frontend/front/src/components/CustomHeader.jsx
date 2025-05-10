@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUser from '../hooks/useUser';
+import { useTranslation } from 'react-i18next';
 
 function CustomHeader() {
     const user = useUser();
@@ -11,6 +12,8 @@ function CustomHeader() {
         navigate('/login');
     };
 
+    const { t, i18n } = useTranslation();
+
     return (
         <header className="bg-light py-2">
             <div className="container d-flex justify-content-between align-items-center">
@@ -20,17 +23,17 @@ function CustomHeader() {
 
                 <nav className="d-flex align-items-center">
                     <ul className="d-flex list-unstyled mb-0 me-4">
-                        <li className="ms-4"><a href="/home" className="text-dark text-decoration-none">ПОЧЕТНА</a></li>
-                        <li className="ms-4"><a href="/about" className="text-dark text-decoration-none">ЗА НАС</a></li>
-                        <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">КВИЗОВИ</a></li>
-                        <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">КВИЗ НА ДЕНОТ</a></li>
+                        <li className="ms-4"><a href="/home" className="text-dark text-decoration-none">{t('header_option_1')}</a></li>
+                        <li className="ms-4"><a href="/about" className="text-dark text-decoration-none">{t('header_option_2')}</a></li>
+                        <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">{t('header_option_3')}</a></li>
+                        <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">{t('header_option_4')}</a></li>
                         <li className="ms-4">
                             {user ? (
                                 <a href="/profile" className="text-dark text-decoration-none">
                                     {user.firstName.toUpperCase()} {user.lastName.toUpperCase()}
                                 </a>
                             ) : (
-                                <a href="/login" className="text-dark text-decoration-none">ПРОФИЛ</a>
+                                <a href="/login" className="text-dark text-decoration-none">{t('header_option_5')}</a>
                             )}
                         </li>
                     </ul>
