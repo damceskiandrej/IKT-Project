@@ -4,6 +4,7 @@ import UploadDocument from "@/components/UploadDocument.jsx";
 import useUser from "@/hooks/useUser.js";
 import {Role} from "@/enum/role.js";
 import AnimationComputer from "@/components/AnimationComputer.jsx";
+import {toast, ToastContainer} from "react-toastify";
 
 function UserPage() {
     const navigate = useNavigate();
@@ -21,6 +22,10 @@ function UserPage() {
     const navigateToQAPage = () => {
         navigate("/qaPage")
     }
+
+    const showToast = (message) => {
+        toast.success(message);
+    };
 
     return (
         <>
@@ -44,8 +49,14 @@ function UserPage() {
                         </div>
                         {isProfessor && (
                             <div className="d-flex justify-content-center gap-5 mt-3">
-                                <UploadDocument btnText={"ДОДАДИ СТУДЕНТИ"} apiEndpoint="http://localhost:5190/api/Import/ImportStudents" />
-                                <UploadDocument btnText={"ДОДАДИ КВИЗ"} apiEndpoint="http://localhost:5190/api/Import/ImportQuiz" />
+                                <UploadDocument btnText={"ДОДАДИ СТУДЕНТИ"}
+                                                apiEndpoint="http://localhost:5190/api/Import/ImportStudents"
+                                                successText="Усшено додадени студенти!"
+                                                showToast={showToast}/>
+                                <UploadDocument btnText={"ДОДАДИ КВИЗ"}
+                                                apiEndpoint="http://localhost:5190/api/Import/ImportQuiz"
+                                                successText="Усшено додадени квизови!"
+                                                showToast={showToast}/>
                             </div>
                         )}
                     </div>
@@ -57,6 +68,19 @@ function UserPage() {
                 </div>
             </div>
             </div>
+
+            <ToastContainer
+                position="bottom-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </>
 
     );

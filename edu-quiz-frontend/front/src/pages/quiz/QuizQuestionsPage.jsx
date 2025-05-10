@@ -1,13 +1,14 @@
 import CustomQuestion from "../../components/CustomQuestion";
 import CustomAnswer from "../../components/CustomAnswer";
 import CustomButton from "../../components/CustomButton";
-import { getQuizById } from "../../api/quizApi";
+import { getQuizById } from "@/api/quizApi.js";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useUser from "../../hooks/useUser";
 import CustomHint from "../../components/CustomHint";
 import CustomTimer from "../../components/CustomTimer"
-import { getHint } from "../../api/aiApi";
+import { getHint } from "@/api/aiApi.js";
+import {toast, ToastContainer} from "react-toastify";
 
 function QuizQuestionsPage() {
     const { id } = useParams();
@@ -111,20 +112,25 @@ function QuizQuestionsPage() {
                     selectedAnswerIds: [selection.selectedAnswerId]
                 }))
             };
-    
-            
-            navigate('/reviewPage', {
-                state: {
-                    submission,
-                    score,
-                    totalQuestions: quiz.questions.length,
-                    questions: quiz.questions,
-                    selectedAnswers,
-                    title: quiz.title
+
+            toast.info(`Квизот е завршен! Вашиот резултат е ${score}/${quiz.questions.length}. Кликнете за да продолжите`, {
+                autoClose: false,
+                closeButton: false,
+                draggable: false,
+                closeOnClick: true,
+                onClose: () => {
+                    navigate('/reviewPage', {
+                        state: {
+                            submission,
+                            score,
+                            totalQuestions: quiz.questions.length,
+                            questions: quiz.questions,
+                            selectedAnswers,
+                            title: quiz.title
+                        }
+                    });
                 }
             });
-    
-            alert(`Quiz Completed! Your score is ${score}/${quiz.questions.length}`);
         }
     };
     
@@ -209,6 +215,20 @@ function QuizQuestionsPage() {
                 </div>
                 
             </div>
+
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
+
         </div>
     );
 }
