@@ -23,10 +23,11 @@ function CustomHeader() {
                         <li className="ms-4"><a href="/home" className="text-dark text-decoration-none">ПОЧЕТНА</a></li>
                         <li className="ms-4"><a href="/about" className="text-dark text-decoration-none">ЗА НАС</a></li>
                         <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">КВИЗОВИ</a></li>
+                        <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">КВИЗ НА ДЕНОТ</a></li>
                         <li className="ms-4">
                             {user ? (
-                                <a href="/profile" className="text-dark fw-bold">
-                                    {user.firstName} {user.lastName}
+                                <a href="/profile" className="text-dark text-decoration-none">
+                                    {user.firstName.toUpperCase()} {user.lastName.toUpperCase()}
                                 </a>
                             ) : (
                                 <a href="/login" className="text-dark text-decoration-none">ПРОФИЛ</a>
