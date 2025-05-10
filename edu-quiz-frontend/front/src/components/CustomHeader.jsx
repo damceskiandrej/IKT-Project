@@ -20,16 +20,16 @@ function CustomHeader() {
 
                 <nav className="d-flex align-items-center">
                     <ul className="d-flex list-unstyled mb-0 me-4">
-                        <li className="ms-4"><a href="/home" className="text-dark text-decoration-none">ПОЧЕТНА</a></li>
-                        <li className="ms-4"><a href="/about" className="text-dark text-decoration-none">ЗА НАС</a></li>
-                        <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">КВИЗОВИ</a></li>
+                        <li className="ms-4"><a href="/home" className="nav-link-custom">ПОЧЕТНА</a></li>
+                        <li className="ms-4"><a href="/about" className="nav-link-custom">ЗА НАС</a></li>
+                        <li className="ms-4"><a href="/quizes" className="nav-link-custom">КВИЗОВИ</a></li>
                         <li className="ms-4">
                             {user ? (
-                                <a href="/profile" className="text-dark fw-bold">
+                                <a href="/profile" className="nav-link-custom fw-bold">
                                     {user.firstName} {user.lastName}
                                 </a>
                             ) : (
-                                <a href="/login" className="text-dark text-decoration-none">ПРОФИЛ</a>
+                                <a href="/login" className="nav-link-custom">ПРОФИЛ</a>
                             )}
                         </li>
                     </ul>
