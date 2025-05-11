@@ -1,7 +1,9 @@
-import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import useUser from '../hooks/useUser';
+
 import { useTranslation } from 'react-i18next';
+
 
 function CustomHeader() {
     const user = useUser();

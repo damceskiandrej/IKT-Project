@@ -5,6 +5,8 @@ import useUser from "@/hooks/useUser.js";
 import {Role} from "@/enum/role.js";
 import AnimationComputer from "@/components/AnimationComputer.jsx";
 import {toast, ToastContainer} from "react-toastify";
+import { useTranslation } from 'react-i18next';
+
 
 function UserPage() {
     const navigate = useNavigate();

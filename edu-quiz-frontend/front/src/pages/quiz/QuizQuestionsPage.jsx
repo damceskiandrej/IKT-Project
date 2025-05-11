@@ -9,6 +9,8 @@ import CustomHint from "../../components/CustomHint";
 import CustomTimer from "../../components/CustomTimer"
 import { getHint } from "@/api/aiApi.js";
 import {toast, ToastContainer} from "react-toastify";
+import { useTranslation } from 'react-i18next';
+
 
 function QuizQuestionsPage() {
     const { id } = useParams();
