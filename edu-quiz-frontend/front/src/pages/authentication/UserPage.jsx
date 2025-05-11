@@ -11,6 +11,8 @@ function UserPage() {
     const user = useUser();
     const isProfessor = user && user.role === Role.PROFESSOR;
 
+    const { t, i18n } = useTranslation(); 
+
     const goToMyQuizesPage = () => {
         navigate('/myQuizesPage');
     };
