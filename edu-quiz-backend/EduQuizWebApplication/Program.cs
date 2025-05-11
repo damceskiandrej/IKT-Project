@@ -73,6 +73,12 @@ static async Task SeedRolesAsync(IServiceProvider serviceProvider)
     }
 }
 
+builder.Services.AddHttpClient<AIService>(client =>
+{
+    client.BaseAddress = new Uri("https://openrouter.ai/api/v1/");
+    client.Timeout = TimeSpan.FromMinutes(2);
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

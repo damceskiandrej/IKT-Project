@@ -20,6 +20,6 @@ namespace EduQuiz.Service.Interface
         Task<List<QuizResponse>> GetQuizzesByCategory(string category);
         Task<List<QuizResponse>> GetQuizzesByUser(string userId);
         Task<string> GetQuestionHintAsync(Guid quizId, Guid questionId);
-        Task<string> GetQuizSummaryAsync(Guid quizId);
+        Task<List<QuizExplanationResponse>> GetQuizSummaryAsync(Guid quizId);
     }
 }

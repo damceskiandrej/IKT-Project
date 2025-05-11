@@ -343,7 +343,7 @@ namespace EduQuiz.Service.Implementation
             );
         }
 
-        public async Task<string> GetQuizSummaryAsync(Guid quizId)
+        public async Task<List<QuizExplanationResponse>> GetQuizSummaryAsync(Guid quizId)
         {
             var quiz = await _quizRepository.GetById(quizId);
             if (quiz == null) throw new KeyNotFoundException("Quiz not found");

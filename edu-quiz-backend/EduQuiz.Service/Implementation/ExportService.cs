@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using EduQuiz.DomainEntities.DTO.Request;
 using Microsoft.AspNetCore.Identity;
 using EduQuiz.DomainEntities.Identity;
+using EduQuiz.DomainEntities.DTO.Response;
 
 namespace EduQuiz.Service.Implementation
 {
@@ -34,12 +35,13 @@ namespace EduQuiz.Service.Implementation
             {
                 var document = new Document();
                 var quizSummary = await _quizService.GetQuizSummaryAsync(request.QuizId);
-                var qaDict = FormatQuizSummary(quizSummary);
+                //var quizSummary = "";
+                //var qaDict = FormatQuizSummary(quizSummary);
                 var user = await _userManager.FindByIdAsync(request.UserId);
                 //TODO: Quiz Summary for Quiz... 
                 //user.Quizzes.Where(i => i.Id.Equals(request.QuizId)).FirstOrDefault();
                 //TODO: Add validation
-                BuildDocument(document, qaDict, user);
+                BuildDocument(document, quizSummary, user);
 
                 var pdfRenderer = new PdfDocumentRenderer();
                 pdfRenderer.Document = document;
@@ -74,7 +76,7 @@ namespace EduQuiz.Service.Implementation
 
         }
 
-        private void BuildDocument(Document document, Dictionary<string, string> qaDict, EduQuizUser user)
+        private void BuildDocument(Document document, List<QuizExplanationResponse> quizSummary, EduQuizUser user)
         {
             Section section = document.AddSection();
 
@@ -85,7 +87,7 @@ namespace EduQuiz.Service.Implementation
 
             section.AddParagraph().Format.SpaceBefore = 15;
             AddQuizSummarylHeader(section);
-            AddSummaryBody(section, qaDict);
+            AddSummaryBody(section, quizSummary);
 
             AddFooter(section);
         }
@@ -147,20 +149,20 @@ namespace EduQuiz.Service.Implementation
             summaryParagraph.AddText("Quiz Summary");
         }
 
-        private void AddSummaryBody(Section section, Dictionary<string, string> qaDict)
+        private void AddSummaryBody(Section section, List<QuizExplanationResponse> quizSummary)
         {
             var summaryBody = section.AddParagraph();
             summaryBody.Format.SpaceAfter = "1cm";
             summaryBody.Format.Font.Size = 14;
 
-            foreach (var entry in qaDict)
+            foreach (var explaination in quizSummary)
             {
                 var entryParagraph = section.AddParagraph();
                 entryParagraph.Format.SpaceAfter = "0.5cm";
                 entryParagraph.Format.Font.Size = 12;
 
-                entryParagraph.AddFormattedText($"{entry.Key}: ", TextFormat.Bold);
-                entryParagraph.AddText(entry.Value);
+                entryParagraph.AddFormattedText($"{explaination.Question}: ", TextFormat.Bold);
+                entryParagraph.AddText(explaination.Explanation);
             }
         }
 
