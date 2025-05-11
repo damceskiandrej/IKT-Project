@@ -95,5 +95,11 @@ namespace EduQuizWebApplication.Controllers
             }
             return Ok(result);
         }
+        [HttpGet("{userId}/{quizId}")]
+        public async Task<IActionResult> GetQuizByUser(string userId, Guid quizId)
+        {
+            var response = await _quizService.GetQuizByUser(userId, quizId);
+            return response == null ? NotFound() : Ok(response);
+        }
     }
 }
