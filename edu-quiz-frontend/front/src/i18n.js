@@ -14,7 +14,21 @@ const resources = {
             header_option_7: 'REGISTER',
             start_quiz: "START QUIZ",
             learn_more: "LEARN MORE",
-            home_title: "Education is not the learning of facts, but the training of the mind to think. – Albert Einstein"
+            home_title: "EDUCATION IS NOT THE LEARNING OF FACTS, BUT THE TRAINING OF THE MIND TO THINK. – ALBERT EINSTEIN",
+            about_us: "EDUQUIZ IS A MODERN ONLINE PLATFORM THAT USES ARTIFICIAL INTELLIGENCE TO AUTOMATICALLY GENERATE QUESTIONS AND ANSWERS, TAILORED TO THE USER'S KNOWLEDGE AND INTERESTS. PERFECT FOR STUDENTS, PROFESSIONALS, AND LEARNING ENTHUSIASTS, EDUQUIZ OFFERS INTERACTIVE QUIZZES, PERSONALIZED RECOMMENDATIONS, AND A DETAILED OVERVIEW OF THE ACHIEVED RESULTS. WITH A DYNAMIC APPROACH TO EDUCATION, THIS PLATFORM ENABLES FUN AND EFFECTIVE ACQUISITION OF NEW KNOWLEDGE.",
+            go_to_quizzes: "GO TO QUIZZES",
+            next_question: "NEXT QQUESTION",
+            logout: "LOGOUT",
+            logout: "ОДЈАВИ СЕ",
+            name: "Name",
+            surname: "Surname",
+            email: "Email",
+            password: "Password",
+            my_quizzes: "My Quizzes",
+            all_quizzes: "All Quizzes",
+            hints: "Hints",
+            congrats: "CONGRATS",
+            congrats_description: "YOUR SCORE IS"
         },
     },
     mk: {
@@ -28,7 +42,20 @@ const resources = {
           header_option_7: 'РЕГИСТРИРАЈ СЕ',
           start_quiz: "ПОЧНИ КВИЗ",
           learn_more: "ДОЗНАЈ ПОВЕЌЕ",
-          home_title: "ОБРАЗОВАНИЕТО НЕ Е УЧЕЊЕ НА ФАКТИ, ТУКУ ТРЕНИРАЊЕ НА УМОТ ДА РАЗМИСЛУВА. – АЛБЕРТ АЈНШТАЈН"
+          home_title: "ОБРАЗОВАНИЕТО НЕ Е УЧЕЊЕ НА ФАКТИ, ТУКУ ТРЕНИРАЊЕ НА УМОТ ДА РАЗМИСЛУВА. – АЛБЕРТ АЈНШТАЈН",
+          about_us: "EDUQUIZ Е МОДЕРНА ОНЛАЈН ПЛАТФОРМА КОЈА КОРИСТИ ВЕШТАЧКА ИНТЕЛИГЕНЦИЈА ЗА АВТОМАТСКО ГЕНЕРИРАЊЕ НА ПРАШАЊА И ОДГОВОРИ, ПРИЛАГОДЕНИ НА ЗНАЕЊЕТО И ИНТЕРЕСИТЕ НА КОРИСНИКОТ. СОВРШЕНА ЗА СТУДЕНТИ, ПРОФЕСИОНАЛЦИ И ЉУБИТЕЛИ НА УЧЕЊЕ, EDUQUIZ НУДИ ИНТЕРАКТИВНИ КВИЗОВИ, ПЕРСОНАЛИЗИРАНИ ПРЕПОРАКИ И ДЕТАЛЕН ПРЕГЛЕД НА ПОСТИГНАТИТЕ РЕЗУЛТАТИ. СО ДИНАМИЧЕН ПРИСТАП КОН ОБРАЗОВАНИЕТО, ОВАА ПЛАТФОРМА ОВОЗМОЖУВА ЗАБАВНО И ЕФЕКТИВНО УСВОЈУВАЊЕ НА НОВИ ЗНАЕЊА",
+          go_to_quizzes: "КОН КВИЗОВИ",
+          next_question: "СЛЕДНО ПРАШАЊЕ",
+          logout: "ОДЈАВИ СЕ",
+          name: "Име",
+          surname: "Презиме",
+          email: "Мејл адреса",
+          password: "Лозинка",
+          my_quizzes: "Мои Квизови",
+          all_quizzes: "Сите Квизови",
+          hints: "Совети",
+          congrats: "БРАВО",
+          congrats_description: "ТВОЈОТ РЕЗУЛТАТ Е"
         },
     }
 }

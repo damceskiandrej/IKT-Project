@@ -23,9 +23,9 @@ function Layout() {
       <Outlet />
       <div className="d-flex justify-content-end">
         <button className="btn btn-secondary m-4" onClick={changeLanguage}>
-          {t("changeLanguage")} ({languages[currentLangIndex].toUpperCase()})
+          {t("Language")} ({languages[currentLangIndex].toUpperCase()})
         </button>
-      </div>
+      </div>  
     </>
   )
 }

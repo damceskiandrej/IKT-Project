@@ -24,6 +24,7 @@ function QuizQuestionsPage() {
     const userId = user ? user.userId : "";
     const [hints, setHints] = useState({}); 
 
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         const fetchQuiz = async () => {
@@ -201,14 +202,14 @@ function QuizQuestionsPage() {
             <div className="container d-flex justify-content-around">
                 <div className="mt-4 d-flex justify-content-center">
                     <CustomButton
-                        btnText={"ПРЕТХОДНО"}
+                        btnText={t('previous_question')}
                         onClick={handlePreviousQuestion}
                         disabled={currentQuestionIndex === 0}
                     />
                 </div>
                 <div className="mt-4 d-flex justify-content-center">
                     <CustomButton
-                        btnText={currentQuestionIndex === quiz.questions.length - 1 ? "ФИНАЛНО ПРАШАЊЕ" : "СЛЕДНО ПРАШАЊЕ"}
+                        btnText={currentQuestionIndex === quiz.questions.length - 1 ? t('final_question') : t('next_question')}
                         onClick={handleNextQuestion}
                         disabled={!isAnswerSelected} 
                     />
