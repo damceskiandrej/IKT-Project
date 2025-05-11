@@ -17,7 +17,7 @@ const resources = {
             home_title: "EDUCATION IS NOT THE LEARNING OF FACTS, BUT THE TRAINING OF THE MIND TO THINK. – ALBERT EINSTEIN",
             about_us: "EDUQUIZ IS A MODERN ONLINE PLATFORM THAT USES ARTIFICIAL INTELLIGENCE TO AUTOMATICALLY GENERATE QUESTIONS AND ANSWERS, TAILORED TO THE USER'S KNOWLEDGE AND INTERESTS. PERFECT FOR STUDENTS, PROFESSIONALS, AND LEARNING ENTHUSIASTS, EDUQUIZ OFFERS INTERACTIVE QUIZZES, PERSONALIZED RECOMMENDATIONS, AND A DETAILED OVERVIEW OF THE ACHIEVED RESULTS. WITH A DYNAMIC APPROACH TO EDUCATION, THIS PLATFORM ENABLES FUN AND EFFECTIVE ACQUISITION OF NEW KNOWLEDGE.",
             go_to_quizzes: "GO TO QUIZZES",
-            next_question: "NEXT QQUESTION",
+            next_question: "NEXT QUESTION",
             logout: "LOGOUT",
             logout: "ОДЈАВИ СЕ",
             name: "Name",
@@ -28,7 +28,13 @@ const resources = {
             all_quizzes: "All Quizzes",
             hints: "Hints",
             congrats: "CONGRATS",
-            congrats_description: "YOUR SCORE IS"
+            congrats_description: "YOUR SCORE IS",
+            previous_question: "PREVIOUS QUESTION",
+            final_question: "FINAL QUESTION",
+            new_acc: "You don't have profile? Register now!",
+            have_acc: "Already have an account? Login!",
+            add_quiz: "Add Quiz",
+            add_student: "Add Student"
         },
     },
     mk: {
@@ -55,7 +61,13 @@ const resources = {
           all_quizzes: "Сите Квизови",
           hints: "Совети",
           congrats: "БРАВО",
-          congrats_description: "ТВОЈОТ РЕЗУЛТАТ Е"
+          congrats_description: "ТВОЈОТ РЕЗУЛТАТ Е",
+          previous_question: "ПРЕДХОДНО ПРАШАЊЕ",
+          final_question: "ФИНАЛНО ПРАШАЊЕ",
+          new_acc: "Немате профил? Регистрирајте се!",
+          have_acc: "Веќе имате корисничка сметка? Логирајте се!",
+          add_quiz: "Додади Квиз",
+          add_student: "Додади Студент"
         },
     }
 }
