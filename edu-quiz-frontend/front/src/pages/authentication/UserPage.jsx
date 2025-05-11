@@ -11,6 +11,8 @@ function UserPage() {
     const user = useUser();
     const isProfessor = user && user.role === Role.PROFESSOR;
 
+    const { t, i18n } = useTranslation(); 
+
     const goToMyQuizesPage = () => {
         navigate('/myQuizesPage');
     };
@@ -39,21 +41,21 @@ function UserPage() {
                     </div>
                     <div className="row mb-4">
                         <div className="col-4 d-flex justify-content-center">
-                            <CustomCircleButton btnText={"ТВОИ КВИЗОВИ"} onClick={goToMyQuizesPage} />
+                            <CustomCircleButton btnText={t('my_quizzes')} onClick={goToMyQuizesPage} />
                         </div>
                         <div className="col-4 d-flex justify-content-center">
-                            <CustomCircleButton btnText={"СИТЕ КВИЗОВИ"} onClick={navigateToAllQuizzes} />
+                            <CustomCircleButton btnText={t('all_quizzes')} onClick={navigateToAllQuizzes} />
                         </div>
                         <div className="col-4 d-flex justify-content-center">
-                            <CustomCircleButton btnText={"ДОБИЕНИ СОВЕТИ"} onClick={navigateToQAPage} />
+                            <CustomCircleButton btnText={t('hints')} onClick={navigateToQAPage} />
                         </div>
                         {isProfessor && (
                             <div className="d-flex justify-content-center gap-5 mt-3">
-                                <UploadDocument btnText={"ДОДАДИ СТУДЕНТИ"}
+                                <UploadDocument btnText={t('add_student')}
                                                 apiEndpoint="http://localhost:5190/api/Import/ImportStudents"
                                                 successText="Усшено додадени студенти!"
                                                 showToast={showToast}/>
-                                <UploadDocument btnText={"ДОДАДИ КВИЗ"}
+                                <UploadDocument btnText={t('add_quiz')}
                                                 apiEndpoint="http://localhost:5190/api/Import/ImportQuiz"
                                                 successText="Усшено додадени квизови!"
                                                 showToast={showToast}/>

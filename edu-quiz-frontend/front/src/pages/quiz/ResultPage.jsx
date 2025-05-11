@@ -1,8 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomReviewCard from "../../components/CustomReviewCard";
 import CustomButton from "../../components/CustomButton";
-
-
+import { useTranslation } from 'react-i18next';
 
 function ResultPage() {
     const location = useLocation();
@@ -17,7 +16,8 @@ function ResultPage() {
         navigate("/quizes")
     }
 
-    
+    const { t, i18n } = useTranslation();
+
     return (
         <div>
             <div className="d-flex justify-content-center align-items-center vh-100">
@@ -34,8 +34,8 @@ function ResultPage() {
                         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
                     }}>
                     <div className="container mt-5 p-3">
-                        <h2 className="fw-bold">БРАВО!</h2>
-                        <h4 className="fw-bold">Твојот резултат е {percentage}%.</h4>
+                        <h2 className="fw-bold">{t('congrats')}</h2>
+                        <h4 className="fw-bold">{t('congrats_description')} {percentage}%.</h4>
                         <CustomButton btnText={"НАЗАД"} onClick={handleOnCLickBack}/>
                     </div>
                 </div>
