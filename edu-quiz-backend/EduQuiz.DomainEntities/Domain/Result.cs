@@ -13,5 +13,6 @@ namespace EduQuiz.DomainEntities.Domain
         public Guid QuizId { get; set; }
         public int NumberOfAttempts {  get; set; } 
         public int Score { get; set; }
+        public ICollection<UserAnswer> UserAnswers { get; set; }
     }
 }
