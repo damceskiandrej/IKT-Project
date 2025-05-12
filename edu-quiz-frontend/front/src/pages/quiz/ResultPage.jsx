@@ -36,7 +36,7 @@ function ResultPage() {
                     <div className="container mt-5 p-3">
                         <h2 className="fw-bold">{t('congrats')}</h2>
                         <h4 className="fw-bold">{t('congrats_description')} {percentage}%.</h4>
-                        <CustomButton btnText={"НАЗАД"} onClick={handleOnCLickBack}/>
+                        <CustomButton btnText={t('back')} onClick={handleOnCLickBack}/>
                     </div>
                 </div>
             </div>
@@ -44,8 +44,8 @@ function ResultPage() {
             <div className="contain">
                 <div className="row justify-content-center p-5">
                     <div className="col-md-8">
-                        <h2 className="fw-bold text-success text-center mb-4">ПРЕГЛЕД НА ОДГОВОРИ</h2>
-                        <h4 className="text-success text-center mb-4">За квизот {title}</h4>
+                        <h2 className="fw-bold text-success text-center mb-4">{t('view_answers')}</h2>
+                        <h4 className="text-success text-center mb-4">{t('for_the_quiz')} {title}</h4>
                         
                         <div className="container pt-4">
                             {questions.map((question, index) => (
@@ -66,7 +66,7 @@ function ResultPage() {
                                 onClick={handleOnClickQuizes}
                                
                             >
-                                КОН КВИЗОВИ
+                                {t('go_to_quizzes')}
                             </button>
                             
                         </div>

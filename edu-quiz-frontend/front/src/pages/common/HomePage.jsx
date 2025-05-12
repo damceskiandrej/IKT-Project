@@ -11,7 +11,7 @@ function HomePage() {
 
     useEffect(() => {
         if (location.state?.showToast) {
-            toast.success('Добредојдовте!');
+            toast.success(t('welcome'));
         }
     }, [location.state]);
 

@@ -34,7 +34,11 @@ const resources = {
             new_acc: "You don't have profile? Register now!",
             have_acc: "Already have an account? Login!",
             add_quiz: "Add Quiz",
-            add_student: "Add Student"
+            add_student: "Add Student",
+            back: "BACK",
+            welcome: 'Welcome!',
+            view_answers: "View The Answers",
+            for_the_quiz: 'To The Quiz On'
         },
     },
     mk: {
@@ -67,7 +71,11 @@ const resources = {
           new_acc: "Немате профил? Регистрирајте се!",
           have_acc: "Веќе имате корисничка сметка? Логирајте се!",
           add_quiz: "Додади Квиз",
-          add_student: "Додади Студент"
+          add_student: "Додади Студент",
+          back: 'НАЗАД',
+          welcome: 'Добредојдовте!',
+          view_answers: 'Преглед на Одговори',
+          for_the_quiz: 'За квизот'
         },
     }
 }
