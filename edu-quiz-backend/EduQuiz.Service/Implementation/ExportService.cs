@@ -38,10 +38,15 @@ namespace EduQuiz.Service.Implementation
                 //var quizSummary = "";
                 //var qaDict = FormatQuizSummary(quizSummary);
                 var user = await _userManager.FindByIdAsync(request.UserId);
+                if (user == null)
+                {
+                    throw new Exception("User not Found");
+                }
+                var result = await _quizService.GetQuizByUser(request.UserId, request.QuizId);
                 //TODO: Quiz Summary for Quiz... 
                 //user.Quizzes.Where(i => i.Id.Equals(request.QuizId)).FirstOrDefault();
                 //TODO: Add validation
-                BuildDocument(document, quizSummary, user);
+                BuildDocument(document, quizSummary, user, result);
 
                 var pdfRenderer = new PdfDocumentRenderer();
                 pdfRenderer.Document = document;
@@ -76,14 +81,15 @@ namespace EduQuiz.Service.Implementation
 
         }
 
-        private void BuildDocument(Document document, List<QuizExplanationResponse> quizSummary, EduQuizUser user)
+        private void BuildDocument(Document document, List<QuizExplanationResponse> quizSummary, EduQuizUser user, QuizWithResultsResponse result)
         {
             Section section = document.AddSection();
 
             AddHeader(section, user);
             section.AddParagraph().Format.SpaceAfter = 10;
 
-            // Placeholder for quiz review 
+            AddQuizReviewSection(section, result);
+            section.AddParagraph().Format.SpaceAfter = 10;
 
             section.AddParagraph().Format.SpaceBefore = 15;
             AddQuizSummarylHeader(section);
@@ -139,6 +145,65 @@ namespace EduQuiz.Service.Implementation
             dateParagraph.AddLineBreak();
             dateParagraph.AddText(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
         }
+
+        private void AddQuizReviewSection(Section section, QuizWithResultsResponse result)
+        {
+            var lastResult = result.Results.OrderByDescending(r => r.NumberOfAttempts).FirstOrDefault();
+            if (lastResult == null) return;
+
+            var userAnswersMap = lastResult.UserAnswers.ToDictionary(ua => ua.QuestionId, ua => ua.SelectedAnswerIds.ToHashSet());
+
+            foreach (var question in result.Quiz.Questions)
+            {
+                // Add question text
+                var questionParagraph = section.AddParagraph($"Q: {question.QuestionText}");
+                questionParagraph.Format.Font.Bold = true;
+                questionParagraph.Format.SpaceBefore = 10;
+                questionParagraph.Format.SpaceAfter = 5;
+
+                var userSelectedIds = userAnswersMap.TryGetValue(question.QuestionId, out var selected)
+                    ? selected.ToHashSet()
+                    : new HashSet<Guid>();
+
+                string tickPath = "Files/check.png";
+                string crossPath = "Files/cross.png";
+
+                foreach (var answer in question.Answers)
+                {
+                    if (answer.AnswerText.Contains("n/a"))
+                    {
+                        continue;
+                    }
+                    var isSelected = userSelectedIds.Contains(answer.AnswerId);
+                    var isCorrect = answer.IsCorrect;
+
+                    var para = section.AddParagraph();
+                    para.Format.LeftIndent = "1cm";
+
+                    // Add image (new instance every time)
+                    string imagePath = isSelected
+                        ? (isCorrect ? tickPath : crossPath)
+                        : null;
+
+                    if (imagePath != null)
+                    {
+                        var img = para.AddImage(imagePath); // New image per paragraph
+                        img.Width = "0.4cm";
+                        img.LockAspectRatio = true;
+                        para.AddSpace(1);
+                    }
+
+                    para.AddText(answer.AnswerText);
+
+                    // Optional background color
+                    if (isCorrect)
+                    {
+                        para.Format.Shading.Color = Colors.LightGreen;
+                    }
+                }
+            }
+        }
+
 
         private void AddQuizSummarylHeader(Section section)
         {
