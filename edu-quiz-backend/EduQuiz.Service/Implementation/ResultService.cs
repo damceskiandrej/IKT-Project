@@ -95,7 +95,12 @@ public class ResultService : IResultService
                 UserId = request.UserId,
                 QuizId = request.QuizId,
                 Score = score,
-                NumberOfAttempts = await _resultRepository.GetAttemptCount(request.UserId, request.QuizId) + 1
+                NumberOfAttempts = await _resultRepository.GetAttemptCount(request.UserId, request.QuizId) + 1,
+                UserAnswers = request.QuestionResults.Select(qr => new UserAnswer
+                {
+                    QuestionId = qr.QuestionId,
+                    SelectedAnswerIds = qr.SelectedAnswerIds
+                }).ToList()
             };
 
              _resultRepository.Insert(result);

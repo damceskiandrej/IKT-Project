@@ -4,6 +4,8 @@ using EduQuiz.DomainEntities;
 using EduQuiz.DomainEntities.Domain;
 using EduQuiz.DomainEntities.Identity;
 using System.Reflection.Emit;
+using Newtonsoft.Json;
+
 namespace EduQuiz.Repository;
 
 public class ApplicationDbContext : IdentityDbContext<EduQuizUser>
@@ -14,6 +16,7 @@ public class ApplicationDbContext : IdentityDbContext<EduQuizUser>
     public DbSet<Reccomendation> Reccomendations { get; set; }
     public DbSet<Result> Results { get; set; }
     public DbSet<EduQuizUser> EduQuizUsers { get; set; }
+    public DbSet<UserAnswer> UserAnswers { get; set; }
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     { 
 
@@ -57,6 +60,12 @@ public class ApplicationDbContext : IdentityDbContext<EduQuizUser>
             .HasOne<Quiz>()
             .WithMany()
             .HasForeignKey(r => r.QuizId);
+        modelBuilder.Entity<UserAnswer>()
+            .Property(u => u.SelectedAnswerIds)
+            .HasConversion(
+                v => JsonConvert.SerializeObject(v),
+                v => JsonConvert.DeserializeObject<List<Guid>>(v)
+            );
     }
 
 }
