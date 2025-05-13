@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import CustomButton from './CustomButton'
 
-function CustomCard({ id, title, category, questionCount, hideStartButton }) {
+function CustomCard({ id, title, category, questionCount, hideStartButton, onReviewClick}) {
 
     const navigate = useNavigate()
 
@@ -26,6 +26,15 @@ function CustomCard({ id, title, category, questionCount, hideStartButton }) {
                         <CustomButton onClick={handleStartQuiz} btnText={"ПОЧНИ КВИЗ"} />
                     </div>
                 )}
+                {typeof onReviewClick === 'function' && hideStartButton && (
+                    <button
+                        className="btn btn-outline-success"
+                        onClick={onReviewClick}
+                    >
+                        Review Quiz
+                    </button>
+                )}
+
             </div>
         </div>
     )

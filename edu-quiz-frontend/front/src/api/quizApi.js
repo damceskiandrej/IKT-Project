@@ -9,6 +9,19 @@ export const getAllQuizzes = async () => {
     return response.json();
 };
 
+
+export async function getQuizResultByUserAndQuizId(userId, quizId) {
+    const response = await fetch(`${URL}/GetQuizByUser/${userId}/${quizId}`);
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch quiz result: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+}
+
+
 export const getQuizById = async (id) => {
     try {
         const response = await fetch(`${URL}/GetQuiz?id=${id}`);  

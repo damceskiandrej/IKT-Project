@@ -1,6 +1,6 @@
 import CustomCard from './CustomCard'
 
-function CustomCardsList({ quizzes,  hideStartButton }) {
+function CustomCardsList({ quizzes,  hideStartButton, onReviewClick  }) {
     if (quizzes.length === 0) {
         return (
             <div className="text-center my-5">
@@ -19,6 +19,7 @@ function CustomCardsList({ quizzes,  hideStartButton }) {
                             category={quiz.category}
                             questionCount={quiz.questionCount}
                             hideStartButton={hideStartButton}
+                            onReviewClick={() => onReviewClick?.(quiz.id)}
                         />
                     </div>
                 ))}

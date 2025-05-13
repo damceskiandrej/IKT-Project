@@ -31,8 +31,8 @@ function CustomHeader() {
                         <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">{t('header_option_4')}</a></li>
                         <li className="ms-4">
                             {user ? (
-                                <a href="/profile" className="nav-link-custom fw-bold">
-                                    {user.firstName} {user.lastName}
+                                <a href="/profile" className="nav-link-custom">
+                                    {user.firstName.toUpperCase()} {user.lastName.toUpperCase()}
                                 </a>
                             ) : (
                                 <a href="/login" className="text-dark text-decoration-none">{t('header_option_5')}</a>
