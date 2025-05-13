@@ -25,10 +25,10 @@ function CustomHeader() {
 
                 <nav className="d-flex align-items-center">
                     <ul className="d-flex list-unstyled mb-0 me-4">
-                        <li className="ms-4"><a href="/home" className="text-dark text-decoration-none">{t('header_option_1')}</a></li>
-                        <li className="ms-4"><a href="/about" className="text-dark text-decoration-none">{t('header_option_2')}</a></li>
-                        <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">{t('header_option_3')}</a></li>
-                        <li className="ms-4"><a href="/quizes" className="text-dark text-decoration-none">{t('header_option_4')}</a></li>
+                        <li className="ms-4"><a href="/home" className="nav-link-custom">{t('header_option_1')}</a></li>
+                        <li className="ms-4"><a href="/about" className="nav-link-custom">{t('header_option_2')}</a></li>
+                        <li className="ms-4"><a href="/quizes" className="nav-link-custom">{t('header_option_3')}</a></li>
+                        <li className="ms-4"><a href="/quizes" className="nav-link-custom">{t('header_option_4')}</a></li>
                         <li className="ms-4">
                             {user ? (
                                 <a href="/profile" className="nav-link-custom">
