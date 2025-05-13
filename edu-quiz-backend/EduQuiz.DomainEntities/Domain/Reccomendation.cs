@@ -11,7 +11,7 @@ namespace EduQuiz.DomainEntities.Domain
     {
         public string UserId { get; set; }
         public Guid QuizId { get; set; }
-        //TODO: Instead of text we can make it a JSON format
-        public string Text {  get; set; }
+        public string Question { get; set; }
+        public string Explanation {  get; set; }
     }
 }

@@ -15,6 +15,7 @@ using EduQuiz.DomainEntities.DTO.Request;
 using Microsoft.AspNetCore.Identity;
 using EduQuiz.DomainEntities.Identity;
 using EduQuiz.DomainEntities.DTO.Response;
+using EduQuiz.Repository.Interface;
 
 namespace EduQuiz.Service.Implementation
 {
@@ -22,11 +23,13 @@ namespace EduQuiz.Service.Implementation
     {
         private readonly IQuizService _quizService;
         private readonly UserManager<EduQuizUser> _userManager;
+        private readonly IReccomendationRepository _reccomendationRepository;
 
-        public ExportService(IQuizService quizService, UserManager<EduQuizUser> userManager)
+        public ExportService(IQuizService quizService, UserManager<EduQuizUser> userManager, IReccomendationRepository reccomendationRepository)
         {
             _quizService = quizService;
             _userManager = userManager;
+            _reccomendationRepository = reccomendationRepository;
         }
 
         public async Task<PdfDocument> GeneratePdf(PdfRequest request)
@@ -34,7 +37,9 @@ namespace EduQuiz.Service.Implementation
             try
             {
                 var document = new Document();
-                var quizSummary = await _quizService.GetQuizSummaryAsync(request.QuizId);
+                //var quizSummary = await _quizService.GetQuizSummaryAsync(request.QuizId);
+                var reccomendations = await _reccomendationRepository.GetReccomendationByUserIdAndQuizId(request.UserId, request.QuizId);
+                var quizSummary = reccomendations.Select(x => new QuizExplanationResponse { Explanation = x.Explanation, Question = x.Question }).ToList();
                 //var quizSummary = "";
                 //var qaDict = FormatQuizSummary(quizSummary);
                 var user = await _userManager.FindByIdAsync(request.UserId);

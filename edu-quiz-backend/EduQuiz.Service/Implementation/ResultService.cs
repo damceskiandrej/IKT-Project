@@ -3,6 +3,7 @@ using EduQuiz.DomainEntities.DTO.Request;
 using EduQuiz.DomainEntities.DTO.Response;
 using EduQuiz.Repository.Interface;
 using EduQuiz.Service.Interface;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EduQuiz.Service.Implementation;
 
@@ -11,16 +12,22 @@ public class ResultService : IResultService
      
         private readonly IQuizRepository _quizRepository;
         private readonly IResultRepository _resultRepository;
+        private readonly IReccomendationRepository _reccomendationRepository;
+        private readonly IQuizService _quizService;
 
-        public ResultService(IQuizRepository quizRepository, IResultRepository resultRepository)
-        {
-            _quizRepository = quizRepository;
-            _resultRepository = resultRepository;
-        }
+    public ResultService(IQuizRepository quizRepository, IResultRepository resultRepository, IReccomendationRepository reccomendationRepository, IQuizService quizService)
+    {
+        _quizRepository = quizRepository;
+        _resultRepository = resultRepository;
+        _reccomendationRepository = reccomendationRepository;
+        _quizService = quizService;
+    }
 
-        public async Task<QuizResultResponse> ProcessResult(QuizResultRequest request)
+    public async Task<QuizResultResponse> ProcessResult(QuizResultRequest request)
         {
             var response = new QuizResultResponse();
+
+            await AddToReccomendationTable(request);
     
             // Validate quiz exists
             var quiz = await _quizRepository.GetById(request.QuizId);
@@ -115,5 +122,43 @@ public class ResultService : IResultService
 
             return response;
         }
-    
+
+    private async Task AddToReccomendationTable(QuizResultRequest request)
+    {
+        try
+        {
+            var reccomendationPerUserAndQuiz = await _reccomendationRepository.GetReccomendationByUserIdAndQuizId(request.UserId, request.QuizId);
+            var hasReccomendationForQuiz = HasReccomendation(reccomendationPerUserAndQuiz);
+
+            if (hasReccomendationForQuiz)
+            {
+                return;
+            }
+
+            var quizExplainations = await _quizService.GetQuizSummaryAsync(request.QuizId);
+
+
+            foreach (var explaination in quizExplainations)
+            {
+
+                var reccomendation = new Reccomendation
+                {
+                    UserId = request.UserId,
+                    QuizId = request.QuizId,
+                    Question = explaination.Question,
+                    Explanation = explaination.Explanation
+                };
+                _reccomendationRepository.InsertReccomendation(reccomendation);
+            }
+        }
+        catch(Exception ex)
+        {
+            return ;
+        }
+    }
+
+    private bool HasReccomendation(List<Reccomendation> reccomendationPerUserAndQuiz)
+    {
+        return !reccomendationPerUserAndQuiz.IsNullOrEmpty();
+    }
 }
