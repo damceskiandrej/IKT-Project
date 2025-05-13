@@ -77,7 +77,7 @@ function QuizQuestionReviewPage() {
                         <h2 className="fw-bold text-success text-center mb-4">ПРЕГЛЕД НА ОДГОВОРИ</h2>
                         <h4 className="text-success text-center mb-4">За квизот</h4>
                         
-                        <div className="container pt-4">
+                        <div className="container pt-4 bg-light rounded-3">
                             {questions.map((question, index) => (
                                 <CustomReviewCard 
                                     key={index} 

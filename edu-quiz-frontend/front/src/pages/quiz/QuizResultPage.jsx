@@ -46,7 +46,7 @@ function QuizResultPage() {
                     </span>
                 </h5>
 
-                <div className="container pt-4">
+                <div className="container pt-4 bg-light rounded-3">
                     {quiz.questions.map((question, index) => (
                         <CustomReviewCard
                             key={index}
