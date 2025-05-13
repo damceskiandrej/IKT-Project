@@ -8,9 +8,8 @@ namespace EduQuiz.DomainEntities.DTO.Response
 {
     public class QuestionResponse
     {
-        public Guid Id { get; set; }
-        public string? QuestionText { get; set; } // The question text
-        public List<AnswerResponse>? Answers { get; set; } // List of answers for the question
-       
+        public string QuestionText { get; set; } // The question text
+        public bool HasMultipleCorrectAnswers { get; set; } 
+        public List<AnswerResponse> Answers { get; set; } // List of answers for the question
     }
 }
