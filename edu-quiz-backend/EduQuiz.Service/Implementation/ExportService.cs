@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using EduQuiz.DomainEntities.DTO.Request;
 using Microsoft.AspNetCore.Identity;
 using EduQuiz.DomainEntities.Identity;
+using EduQuiz.DomainEntities.DTO.Response;
 
 namespace EduQuiz.Service.Implementation
 {
@@ -34,12 +35,18 @@ namespace EduQuiz.Service.Implementation
             {
                 var document = new Document();
                 var quizSummary = await _quizService.GetQuizSummaryAsync(request.QuizId);
-                var qaDict = FormatQuizSummary(quizSummary);
+                //var quizSummary = "";
+                //var qaDict = FormatQuizSummary(quizSummary);
                 var user = await _userManager.FindByIdAsync(request.UserId);
+                if (user == null)
+                {
+                    throw new Exception("User not Found");
+                }
+                var result = await _quizService.GetQuizByUser(request.UserId, request.QuizId);
                 //TODO: Quiz Summary for Quiz... 
                 //user.Quizzes.Where(i => i.Id.Equals(request.QuizId)).FirstOrDefault();
                 //TODO: Add validation
-                BuildDocument(document, qaDict, user);
+                BuildDocument(document, quizSummary, user, result);
 
                 var pdfRenderer = new PdfDocumentRenderer();
                 pdfRenderer.Document = document;
@@ -74,18 +81,19 @@ namespace EduQuiz.Service.Implementation
 
         }
 
-        private void BuildDocument(Document document, Dictionary<string, string> qaDict, EduQuizUser user)
+        private void BuildDocument(Document document, List<QuizExplanationResponse> quizSummary, EduQuizUser user, QuizWithResultsResponse result)
         {
             Section section = document.AddSection();
 
             AddHeader(section, user);
             section.AddParagraph().Format.SpaceAfter = 10;
 
-            // Placeholder for quiz review 
+            AddQuizReviewSection(section, result);
+            section.AddParagraph().Format.SpaceAfter = 10;
 
             section.AddParagraph().Format.SpaceBefore = 15;
             AddQuizSummarylHeader(section);
-            AddSummaryBody(section, qaDict);
+            AddSummaryBody(section, quizSummary);
 
             AddFooter(section);
         }
@@ -138,6 +146,65 @@ namespace EduQuiz.Service.Implementation
             dateParagraph.AddText(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
         }
 
+        private void AddQuizReviewSection(Section section, QuizWithResultsResponse result)
+        {
+            var lastResult = result.Results.OrderByDescending(r => r.NumberOfAttempts).FirstOrDefault();
+            if (lastResult == null) return;
+
+            var userAnswersMap = lastResult.UserAnswers.ToDictionary(ua => ua.QuestionId, ua => ua.SelectedAnswerIds.ToHashSet());
+
+            foreach (var question in result.Quiz.Questions)
+            {
+                // Add question text
+                var questionParagraph = section.AddParagraph($"Q: {question.QuestionText}");
+                questionParagraph.Format.Font.Bold = true;
+                questionParagraph.Format.SpaceBefore = 10;
+                questionParagraph.Format.SpaceAfter = 5;
+
+                var userSelectedIds = userAnswersMap.TryGetValue(question.QuestionId, out var selected)
+                    ? selected.ToHashSet()
+                    : new HashSet<Guid>();
+
+                string tickPath = "Files/check.png";
+                string crossPath = "Files/cross.png";
+
+                foreach (var answer in question.Answers)
+                {
+                    if (answer.AnswerText.Contains("n/a"))
+                    {
+                        continue;
+                    }
+                    var isSelected = userSelectedIds.Contains(answer.AnswerId);
+                    var isCorrect = answer.IsCorrect;
+
+                    var para = section.AddParagraph();
+                    para.Format.LeftIndent = "1cm";
+
+                    // Add image (new instance every time)
+                    string imagePath = isSelected
+                        ? (isCorrect ? tickPath : crossPath)
+                        : null;
+
+                    if (imagePath != null)
+                    {
+                        var img = para.AddImage(imagePath); // New image per paragraph
+                        img.Width = "0.4cm";
+                        img.LockAspectRatio = true;
+                        para.AddSpace(1);
+                    }
+
+                    para.AddText(answer.AnswerText);
+
+                    // Optional background color
+                    if (isCorrect)
+                    {
+                        para.Format.Shading.Color = Colors.LightGreen;
+                    }
+                }
+            }
+        }
+
+
         private void AddQuizSummarylHeader(Section section)
         {
             var summaryParagraph = section.AddParagraph();
@@ -147,20 +214,20 @@ namespace EduQuiz.Service.Implementation
             summaryParagraph.AddText("Quiz Summary");
         }
 
-        private void AddSummaryBody(Section section, Dictionary<string, string> qaDict)
+        private void AddSummaryBody(Section section, List<QuizExplanationResponse> quizSummary)
         {
             var summaryBody = section.AddParagraph();
             summaryBody.Format.SpaceAfter = "1cm";
             summaryBody.Format.Font.Size = 14;
 
-            foreach (var entry in qaDict)
+            foreach (var explaination in quizSummary)
             {
                 var entryParagraph = section.AddParagraph();
                 entryParagraph.Format.SpaceAfter = "0.5cm";
                 entryParagraph.Format.Font.Size = 12;
 
-                entryParagraph.AddFormattedText($"{entry.Key}: ", TextFormat.Bold);
-                entryParagraph.AddText(entry.Value);
+                entryParagraph.AddFormattedText($"{explaination.Question}: ", TextFormat.Bold);
+                entryParagraph.AddText(explaination.Explanation);
             }
         }
 

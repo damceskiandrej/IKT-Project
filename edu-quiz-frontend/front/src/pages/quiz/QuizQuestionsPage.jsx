@@ -33,6 +33,9 @@ function QuizQuestionsPage() {
             try {
                 setIsLoading(true);
                 const data = await getQuizById(id);
+                data.questions.forEach(question => {
+                    question.answers = question.answers.filter(answer => answer.answerText.toLowerCase() !== "n/a");
+                });
                 setQuiz(data);
             } catch (err) {
                 setError(err.message);
