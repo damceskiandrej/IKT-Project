@@ -7,6 +7,7 @@ function MyQuizesPage() {
     const [quizzes, setQuizzes] = useState([]); // State to store quizzes
     const [loading, setLoading] = useState(true); // State to manage loading state
     const [error, setError] = useState(null); // State to manage error messages
+    
     const user = useUser()
     
     const userId = user ? user.userId : "";
