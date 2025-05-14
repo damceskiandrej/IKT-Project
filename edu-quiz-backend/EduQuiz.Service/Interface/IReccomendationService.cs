@@ -9,6 +9,6 @@ namespace EduQuiz.Service.Interface
 {
     public interface IReccomendationService
     {
-        Task<List<Reccomendation>> GetReccomendationByUserIdAndQuizId(string userId, Guid quizId);
+        Task<List<Reccomendation>> GetReccomendationQuizId(Guid quizId);
     }
 }

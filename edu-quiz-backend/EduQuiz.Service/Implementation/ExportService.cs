@@ -38,7 +38,7 @@ namespace EduQuiz.Service.Implementation
             {
                 var document = new Document();
                 //var quizSummary = await _quizService.GetQuizSummaryAsync(request.QuizId);
-                var reccomendations = await _reccomendationRepository.GetReccomendationByUserIdAndQuizId(request.UserId, request.QuizId);
+                var reccomendations = await _reccomendationRepository.GetReccomendationByQuizId(request.QuizId);
                 var quizSummary = reccomendations.Select(x => new QuizExplanationResponse { Explanation = x.Explanation, Question = x.Question }).ToList();
                 //var quizSummary = "";
                 //var qaDict = FormatQuizSummary(quizSummary);
@@ -244,9 +244,6 @@ namespace EduQuiz.Service.Implementation
             footer.Format.Font.Size = 10;
             footer.Format.Font.Color = Colors.Gray;
         }
-
-
-
 
     }
 }

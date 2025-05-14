@@ -9,7 +9,7 @@ namespace EduQuiz.Repository.Interface
 {
     public interface IReccomendationRepository
     {
-        Task<List<Reccomendation>> GetReccomendationByUserIdAndQuizId(string userId, Guid quizId);
+        Task<List<Reccomendation>> GetReccomendationByQuizId(Guid quizId);
         void InsertReccomendation(Reccomendation reccomendation);
     }
 }

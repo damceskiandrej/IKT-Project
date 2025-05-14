@@ -15,14 +15,14 @@ namespace EduQuiz.Repository.Implementation
         {
         }
 
-        public async Task<List<Reccomendation>> GetReccomendationByUserIdAndQuizId(string userId, Guid quizId)
+        public async Task<List<Reccomendation>> GetReccomendationByQuizId(Guid quizId)
         {
-            return await _entities.Where(x => x.QuizId.Equals(quizId) && x.UserId.Equals(userId)).ToListAsync();
+            return await _entities.Where(x => x.QuizId.Equals(quizId)).ToListAsync();
         }
 
         public void InsertReccomendation(Reccomendation reccomendation)
         {
-           _entities.Add(reccomendation);
+            _entities.Add(reccomendation);
         }
     }
 }
