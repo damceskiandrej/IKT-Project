@@ -18,9 +18,9 @@ namespace EduQuiz.Service.Implementation
             _reccomendationRepository = reccomendationRepository;
         }
 
-        public async Task<List<Reccomendation>> GetReccomendationByUserIdAndQuizId(string userId, Guid quizId)
+        public async Task<List<Reccomendation>> GetReccomendationQuizId(Guid quizId)
         {
-            return await _reccomendationRepository.GetReccomendationByUserIdAndQuizId(userId, quizId);
+            return await _reccomendationRepository.GetReccomendationByQuizId(quizId);
         }
     }
 }

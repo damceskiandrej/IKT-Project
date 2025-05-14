@@ -9,9 +9,8 @@ namespace EduQuiz.DomainEntities.Domain
 {
     public class Reccomendation : BaseEntity
     {
-        public string UserId { get; set; }
         public Guid QuizId { get; set; }
         public string Question { get; set; }
-        public string Explanation {  get; set; }
+        public string Explanation { get; set; }
     }
 }
