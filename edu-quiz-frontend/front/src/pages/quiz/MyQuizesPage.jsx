@@ -30,6 +30,8 @@ function MyQuizesPage() {
         fetchQuizzes();
     }, [userId]);
 
+    
+
     const handleReviewClick = async (quizId) => {
         try {
             const quizResult = await getQuizResultByUserAndQuizId(userId, quizId);
@@ -45,20 +47,22 @@ function MyQuizesPage() {
         }
     }
 
-    const handleAISummaryClick = async (quizId) => {
+    const handleAISummaryClick = async (quizId, quizTitle) => {
     try {
-        const explanations = await getQuizExplanationResponses(quizId, userId);
+        const aiSummaryData = await getQuizExplanationResponses(quizId, userId);
+
         navigate("/qaPage", {
             state: {
-                aiSummary: explanations,
-                quizId,
-            },
+                summary: aiSummaryData,
+                quizTitle: quizTitle
+            }
         });
     } catch (error) {
-        console.error("Failed to fetch AI summary:", error);
+        console.error("Error fetching AI Summary:", error);
         setError("Failed to fetch AI summary.");
     }
-    }
+    };
+
 
     return (
         <div className="container my-4">
@@ -76,9 +80,10 @@ function MyQuizesPage() {
                     quizzes={quizzes}
                     hideStartButton
                     onReviewClick={handleReviewClick}
-                    showAISummaryButton 
-                    onAISummaryClick={handleAISummaryClick}
+                    onAISummaryClick={handleAISummaryClick} // ✅
+                    showAISummaryButton
                 />
+
             ) : (
                 !loading && <div>No quizzes found.</div>
             )}

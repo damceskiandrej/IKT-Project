@@ -20,7 +20,7 @@ function CustomCardsList({ quizzes,  hideStartButton, onReviewClick, showAISumma
                             questionCount={quiz.questionCount}
                             hideStartButton={hideStartButton}
                             onReviewClick={() => onReviewClick?.(quiz.id)}
-                            onAISummaryClick={() => onAISummaryClick?.(quiz.id)}
+                            onAISummaryClick={(id, title) => onAISummaryClick?.(id,title)}
                             showAISummaryButton={showAISummaryButton} 
                         />
                     </div>

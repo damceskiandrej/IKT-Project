@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom'
-import CustomButton from './CustomButton'
+import { useNavigate } from 'react-router-dom';
+import CustomButton from './CustomButton';
 
 function CustomCard({ id, title, category, questionCount, hideStartButton, onReviewClick, showAISummaryButton, onAISummaryClick }) {
     const navigate = useNavigate();
@@ -21,29 +21,27 @@ function CustomCard({ id, title, category, questionCount, hideStartButton, onRev
                     </div>
                 </div>
 
-                {!hideStartButton && (
-                    <div className="d-flex justify-content-center mt-3">
+                {/* Button group horizontally aligned */}
+                <div className="d-flex justify-content-center gap-2 mt-4 flex-wrap">
+                    {!hideStartButton && (
                         <CustomButton onClick={handleStartQuiz} btnText={"ПОЧНИ КВИЗ"} />
-                    </div>
-                )}
+                    )}
 
-                {typeof onReviewClick === 'function' && hideStartButton && (
-                    <button className="btn btn-outline-success mt-2" onClick={onReviewClick}>
-                        Review Quiz
-                    </button>
-                )}
+                    {typeof onReviewClick === 'function' && hideStartButton && (
+                        <button className="btn btn-outline-success" onClick={onReviewClick}>
+                            Review Quiz
+                        </button>
+                    )}
 
-                {showAISummaryButton && (
-                    <div className="d-flex justify-content-center mt-2">
-                        <button className="btn btn-outline-info" onClick={onAISummaryClick}>
+                    {showAISummaryButton && (
+                        <button className="btn btn-outline-info" onClick={() => onAISummaryClick(id,title)}>
                             AI Summary
                         </button>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
         </div>
     );
 }
 
-
-export default CustomCard
+export default CustomCard;
