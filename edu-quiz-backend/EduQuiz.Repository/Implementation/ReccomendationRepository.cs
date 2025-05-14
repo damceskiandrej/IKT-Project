@@ -1,4 +1,5 @@
 ﻿using EduQuiz.DomainEntities.Domain;
+using EduQuiz.DomainEntities.DTO.Response;
 using EduQuiz.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +19,17 @@ namespace EduQuiz.Repository.Implementation
         public async Task<List<Reccomendation>> GetReccomendationByQuizId(Guid quizId)
         {
             return await _entities.Where(x => x.QuizId.Equals(quizId)).ToListAsync();
+        }
+
+        public async Task<List<QuizExplanationResponse>> GetReccomendationByQuizIdAndUserId(Guid quizId, string userId)
+        {
+            return await _entities
+                .Where(x => x.QuizId.Equals(quizId) && x.UserId.Equals(userId))
+                .Select(x => new QuizExplanationResponse {
+                    Explanation = x.Explanation, 
+                    Question = x.Question }
+                )
+                .ToListAsync();
         }
 
         public void InsertReccomendation(Reccomendation reccomendation)

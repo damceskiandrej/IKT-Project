@@ -1,4 +1,5 @@
 ﻿using EduQuiz.DomainEntities.Domain;
+using EduQuiz.DomainEntities.DTO.Response;
 using EduQuiz.Repository.Interface;
 using EduQuiz.Service.Interface;
 using System;
@@ -21,6 +22,11 @@ namespace EduQuiz.Service.Implementation
         public async Task<List<Reccomendation>> GetReccomendationQuizId(Guid quizId)
         {
             return await _reccomendationRepository.GetReccomendationByQuizId(quizId);
+        }
+
+        public async Task<List<QuizExplanationResponse>> GetReccomendationQuizIdAndUserId(Guid quizId, string userId)
+        {
+            return await _reccomendationRepository.GetReccomendationByQuizIdAndUserId(quizId, userId);
         }
     }
 }
