@@ -143,6 +143,7 @@ public class ResultService : IResultService
 
                 var reccomendation = new Reccomendation
                 {
+                    UserId = request.UserId,
                     QuizId = request.QuizId,
                     Question = explaination.Question,
                     Explanation = explaination.Explanation
