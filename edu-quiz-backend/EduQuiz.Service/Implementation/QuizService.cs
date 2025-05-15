@@ -39,8 +39,8 @@ namespace EduQuiz.Service.Implementation
             //represents one quiz
 
             var quiz = new Quiz();
-            quiz.Title = "Random Quiz";
-            quiz.Category = "Category 1";
+            quiz.Title = "Quiz of the day";
+            quiz.Category = "Misterious category";
 
             var questions = new List<Question>();
 

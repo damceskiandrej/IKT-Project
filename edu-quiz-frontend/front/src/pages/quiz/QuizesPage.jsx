@@ -17,20 +17,22 @@ function QuizesPage() {
 
     
     useEffect(() => {
-        const fetchQuizzes = async () => {
-            try {
-                setIsLoading(true);
-                const data = await getAllQuizzes();
-                setQuizzes(data);
-                setFilteredQuizzes(data); 
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchQuizzes();
+    const fetchQuizzes = async () => {
+        try {
+            setIsLoading(true);
+            const data = await getAllQuizzes();
+            const reversed = [...data].reverse();
+            setQuizzes(reversed);
+            setFilteredQuizzes(reversed); 
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    fetchQuizzes();
     }, []);
+
 
     const handleSearchChange = (term) => {
         setSearchTerm(term);
@@ -46,18 +48,21 @@ function QuizesPage() {
     }
 
     const handleFetchExternal = async () => {
-        try {
-            setIsLoading(true);
-            await fetchExternalQuiz(); 
-
-        } catch (err) {
-            setError("Failed to fetch external quiz");
-        }
+    try {
+        setIsLoading(true);
+        await fetchExternalQuiz(); 
+        const updatedQuizzes = await getAllQuizzes();
+        const reversed = [...updatedQuizzes].reverse();
+        setQuizzes(reversed);
+        setFilteredQuizzes(reversed);
+    } catch (err) {
+        setError("Failed to fetch external quiz");
+    } finally {
+        setIsLoading(false);
+    }
     };
 
-    if (error) {
-        return <div className="text-center my-5">Error: {error}</div>;
-    }
+
 
     return (
         <>
