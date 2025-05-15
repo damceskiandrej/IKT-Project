@@ -39,8 +39,8 @@ namespace EduQuiz.Service.Implementation
             //represents one quiz
 
             var quiz = new Quiz();
-            quiz.Title = "Random Quiz";
-            quiz.Category = "Category 1";
+            quiz.Title = "Quiz of the day";
+            quiz.Category = "Misterious category";
 
             var questions = new List<Question>();
 
@@ -343,7 +343,7 @@ namespace EduQuiz.Service.Implementation
             );
         }
 
-        public async Task<string> GetQuizSummaryAsync(Guid quizId)
+        public async Task<List<QuizExplanationResponse>> GetQuizSummaryAsync(Guid quizId)
         {
             var quiz = await _quizRepository.GetById(quizId);
             if (quiz == null) throw new KeyNotFoundException("Quiz not found");
@@ -359,6 +359,58 @@ namespace EduQuiz.Service.Implementation
             }).ToList();
 
             return await _aiService.GetQuizSummaryAsync(questions);
+        }
+        
+        public async Task<QuizWithResultsResponse> GetQuizByUser(string userId, Guid quizId)
+        {
+            var quiz = await _quizRepository.GetById(quizId);
+            if (quiz == null) return null;
+
+            var results = await _resultRepository.GetResultsByUserAndQuiz(userId, quizId);
+            if (!results.Any()) return null;
+
+            return new QuizWithResultsResponse
+            {
+                Quiz = MapToQuizDetail(quiz),
+                Results = results.Select(r => MapToResultResponse(r)).ToList()
+            };
+        }
+
+        private QuizDetailResponse MapToQuizDetail(Quiz quiz)
+        {
+            return new QuizDetailResponse
+            {
+                Id = quiz.Id,
+                Title = quiz.Title,
+                Category = quiz.Category,
+                Questions = quiz.Questions.Select(q => new QuestionDetailResponse
+                {
+                    QuestionId = q.Id,
+                    QuestionText = q.QuestionText,
+                    HasMultipleCorrectAnswers = q.HasMultipleCorrectAnswers,
+                    Answers = q.Answers.Select(a => new AnswerDetailResponse
+                    {
+                        AnswerId = a.Id,
+                        AnswerText = a.AnswerText,
+                        IsCorrect = a.isCorrect
+                    }).ToList()
+                }).ToList()
+            };
+        }
+
+        private ResultResponse MapToResultResponse(Result result)
+        {
+            return new ResultResponse
+            {
+                ResultId = result.Id,
+                Score = result.Score,
+                NumberOfAttempts = result.NumberOfAttempts,
+                UserAnswers = result.UserAnswers.Select(ua => new UserAnswerResponse
+                {
+                    QuestionId = ua.QuestionId,
+                    SelectedAnswerIds = ua.SelectedAnswerIds
+                }).ToList()
+            };
         }
 
     }

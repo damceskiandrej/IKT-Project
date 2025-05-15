@@ -9,6 +9,8 @@ import CustomHint from "../../components/CustomHint";
 import CustomTimer from "../../components/CustomTimer"
 import { getHint } from "@/api/aiApi.js";
 import {toast, ToastContainer} from "react-toastify";
+import { useTranslation } from 'react-i18next';
+
 
 function QuizQuestionsPage() {
     const { id } = useParams();
@@ -31,6 +33,9 @@ function QuizQuestionsPage() {
             try {
                 setIsLoading(true);
                 const data = await getQuizById(id);
+                data.questions.forEach(question => {
+                    question.answers = question.answers.filter(answer => answer.answerText.toLowerCase() !== "n/a");
+                });
                 setQuiz(data);
             } catch (err) {
                 setError(err.message);
@@ -173,7 +178,7 @@ function QuizQuestionsPage() {
     const currentQuestion = quiz.questions[currentQuestionIndex];
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 bg-light rounded-3">
             <CustomTimer timer={timer}/>
             <CustomQuestion
                 title={quiz.title}

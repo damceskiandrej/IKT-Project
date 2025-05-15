@@ -31,6 +31,14 @@ namespace EduQuiz.Repository.Implementation
         {
             return await _entities.Where(r => r.UserId == userId && r.QuizId == quizId).CountAsync();
         }
+        
+        public async Task<List<Result>> GetResultsByUserAndQuiz(string userId, Guid quizId)
+        {
+            return await _context.Results
+                .Include(r => r.UserAnswers)
+                .Where(r => r.UserId == userId && r.QuizId == quizId)
+                .ToListAsync();
+        }
 
      
     }

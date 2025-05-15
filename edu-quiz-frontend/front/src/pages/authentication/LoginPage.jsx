@@ -16,8 +16,16 @@ function LoginPage() {
         e.preventDefault();
         try {
             const result = await loginUser({ email, password });
-            localStorage.setItem('user', JSON.stringify(result));
-            // toast.success("Добредојдовте");
+
+            const isProfessor = result.email.toLowerCase().includes('professor');
+
+            const userWithRole = {
+                ...result,
+                role: isProfessor ? 'professor' : 'user'
+            };
+
+            localStorage.setItem('user', JSON.stringify(userWithRole));
+
             navigate('/home', { state: { showToast: true } });
         } catch (err) {
             setError(err.message || 'Најавувањето не беше успешно.');

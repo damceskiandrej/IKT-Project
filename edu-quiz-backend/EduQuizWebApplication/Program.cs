@@ -10,6 +10,7 @@ using EduQuizWebApplication.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using EduQuiz.DomainEntities.Roles;
+using EduQuiz.Service.BackgroundWorker;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,10 +47,12 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 builder.Services.AddScoped(typeof(IQuizRepository), typeof(QuizRepository));
+builder.Services.AddScoped(typeof(IReccomendationRepository), typeof(ReccomendationRepository));
 builder.Services.AddScoped<IResultRepository, ResultRepository>();
 
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IExportService, ExportService>();
+builder.Services.AddTransient<IReccomendationService, ReccomendationService>();
 builder.Services.AddTransient<IImportService, ImportService>();
 builder.Services.AddTransient<IQuizService, QuizService>();
 builder.Services.AddTransient<IResultService, ResultService>();  
@@ -59,6 +62,9 @@ builder.Services.AddScoped<IAIService, AIService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<IQuizProcessingQueue, QuizProcessingQueue>();
+builder.Services.AddHostedService<QuizProcessingService>();
 
 static async Task SeedRolesAsync(IServiceProvider serviceProvider)
 {
@@ -72,6 +78,12 @@ static async Task SeedRolesAsync(IServiceProvider serviceProvider)
         }
     }
 }
+
+builder.Services.AddHttpClient<AIService>(client =>
+{
+    client.BaseAddress = new Uri("https://openrouter.ai/api/v1/");
+    client.Timeout = TimeSpan.FromMinutes(2);
+});
 
 var app = builder.Build();
 

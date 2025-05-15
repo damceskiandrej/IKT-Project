@@ -93,12 +93,19 @@ namespace EduQuiz.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("QuizId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Text")
+                    b.Property<string>("Explanation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsProcessed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("QuizId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -139,6 +146,29 @@ namespace EduQuiz.Repository.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Results");
+                });
+
+            modelBuilder.Entity("EduQuiz.DomainEntities.Domain.UserAnswer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("QuestionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ResultId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("SelectedAnswerIds")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ResultId");
+
+                    b.ToTable("UserAnswers");
                 });
 
             modelBuilder.Entity("EduQuiz.DomainEntities.Identity.EduQuizUser", b =>
@@ -415,6 +445,17 @@ namespace EduQuiz.Repository.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("EduQuiz.DomainEntities.Domain.UserAnswer", b =>
+                {
+                    b.HasOne("EduQuiz.DomainEntities.Domain.Result", "Result")
+                        .WithMany("UserAnswers")
+                        .HasForeignKey("ResultId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Result");
+                });
+
             modelBuilder.Entity("EduQuizUserQuiz", b =>
                 {
                     b.HasOne("EduQuiz.DomainEntities.Domain.Quiz", null)
@@ -489,6 +530,11 @@ namespace EduQuiz.Repository.Migrations
             modelBuilder.Entity("EduQuiz.DomainEntities.Domain.Quiz", b =>
                 {
                     b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("EduQuiz.DomainEntities.Domain.Result", b =>
+                {
+                    b.Navigation("UserAnswers");
                 });
 #pragma warning restore 612, 618
         }

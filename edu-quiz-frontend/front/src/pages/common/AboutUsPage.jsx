@@ -18,8 +18,8 @@ function AboutUsPage() {
                     <p className="lead">
                         {t('about_us')}
                     </p>
-                    <button style={{color: "black", backgroundColor: "rgba(181, 212, 205, 1)"}} 
-                            className="btn btn-success border-0 mt-4 px-4 py-2"
+                    <button 
+                            className="btn btn-dark border-0 mt-4 px-4 py-2"
                             onClick={handleOnClick}
                     >{t('go_to_quizzes')}</button>
                 </div>
