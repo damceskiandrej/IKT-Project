@@ -5,17 +5,29 @@ import { useTranslation } from 'react-i18next';
 import {toast, ToastContainer} from "react-toastify";
 import {useEffect} from "react";
 
+
 function ResultPage() {
     const location = useLocation();
     const navigate = useNavigate()
     const { submission, score, totalQuestions, title, questions, selectedAnswers, showCorrectness = true} = location.state || {};
     const percentage = ((score / totalQuestions) * 100).toFixed(2);
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         if (location.state?.showToast) {
-            toast.info('AI Summary wil be Generated Shortly');
+            const key = getCongratsMessageKey(percentage);
+            toast.info(t(key));
+            toast.info(t('ai_summary_will_be_generated_shortly'));
         }
-    }, [location.state]);
+    }, [location.state, percentage, t]);
+
+
+    const getCongratsMessageKey = (percentage) => {
+        if (percentage >= 90) return 'congrats_msg_1';
+        if (percentage >= 75) return 'congrats_msg_2';
+        if (percentage >= 50) return 'congrats_msg_3';
+        return 'congrats_msg_4';
+    };
 
     const handleOnClickQuizes = () => {
         navigate("/quizes")
@@ -24,7 +36,6 @@ function ResultPage() {
         navigate("/quizes")
     }
 
-    const { t, i18n } = useTranslation();
 
     return (
         <div>
@@ -43,8 +54,9 @@ function ResultPage() {
                     }}>
                     <div className="container mt-5 p-3">
                         <h2 className="fw-bold">{t('congrats')}</h2>
-                        <h4 className="fw-bold">{t('congrats_description')} {percentage}%.</h4>
-                        <CustomButton btnText={"НАЗАД"} onClick={handleOnCLickBack}/>
+                        <h4 className="fw-bold">{t(getCongratsMessageKey(percentage))}</h4>
+                        <h5 className="fw-bold mt-3">{t('congrats_description')} {percentage}%.</h5>
+                        <CustomButton btnText={"НАЗАД"} onClick={handleOnCLickBack} />
                     </div>
                 </div>
             </div>

@@ -34,7 +34,13 @@ const resources = {
             new_acc: "You don't have profile? Register now!",
             have_acc: "Already have an account? Login!",
             add_quiz: "Add Quiz",
-            add_student: "Add Student"
+            add_student: "Add Student",
+            congrats_msg_1: "🚀 Excellent! You mastered the quiz!",
+            congrats_msg_2: "👏 Great job! You have solid knowledge.",
+            congrats_msg_3: "🙂 Not bad! There’s room for improvement.",
+            congrats_msg_4: "📘 Keep practicing, you’ll get better!",
+            ai_summary_will_be_generated_shortly: "AI Summary will be generated shortly",
+            welcome: "Welcome !!!"
         },
     },
     mk: {
@@ -67,7 +73,13 @@ const resources = {
           new_acc: "Немате профил? Регистрирајте се!",
           have_acc: "Веќе имате корисничка сметка? Логирајте се!",
           add_quiz: "Додади Квиз",
-          add_student: "Додади Студент"
+          add_student: "Додади Студент",
+          congrats_msg_1: "🚀 Одлично! Совршено го совладавте квизот!",
+          congrats_msg_2: "👏 Добра работа! Имате солидно знаење.",
+          congrats_msg_3: "🙂 Прилично добро, но има простор за подобрување.",
+          congrats_msg_4: "📘 Вежбајте повеќе, ќе успеете!",
+          ai_summary_will_be_generated_shortly: "AI советите ќе бидат генерирани за кратко",
+          welcome: "Добредојдовте !!!"
         },
     }
 }
