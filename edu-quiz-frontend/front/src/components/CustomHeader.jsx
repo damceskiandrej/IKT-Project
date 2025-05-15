@@ -16,6 +16,10 @@ function CustomHeader() {
         navigate('/login');
     };
 
+    const goToProfilePage = () => {
+        navigate("/profile")
+    }
+
     const toggleDropdown = () => {
         setDropdownOpen(prev => !prev);
     };
@@ -86,12 +90,23 @@ function CustomHeader() {
                                         <button
                                             className="dropdown-item"
                                             onClick={() => {
+                                                navigate('/goToProfilePage');
+                                                setDropdownOpen(false);
+                                            }}
+                                        >
+                                            {t('profile')}
+                                        </button>
+
+                                        <button
+                                            className="dropdown-item"
+                                            onClick={() => {
                                                 navigate('/myQuizesPage');
                                                 setDropdownOpen(false);
                                             }}
                                         >
                                             {t('my_quizzes')}
                                         </button>
+                                        
                                         <button
                                             className="dropdown-item"
                                             onClick={() => {

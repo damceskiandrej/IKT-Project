@@ -40,7 +40,16 @@ const resources = {
             congrats_msg_3: "🙂 Not bad! There’s room for improvement.",
             congrats_msg_4: "📘 Keep practicing, you’ll get better!",
             ai_summary_will_be_generated_shortly: "AI Summary will be generated shortly",
-            welcome: "Welcome !!!"
+            welcome: "Welcome !!!",
+            your_quizes: "Your Quizes",
+            review_quiz: "Review of the questions",
+            for_the_quiz: "For the",
+            back_button_text: "BACK",
+            submit_quiz_button_text: "SUBMIT QUIZ",
+            start_quiz: "START QUIZ",
+            review_quiz_btn: "REVIEW QUIZ",
+            ai_summary_btn: "AI SUMMARY",
+            profile: "My Profile",
         },
     },
     mk: {
@@ -79,7 +88,16 @@ const resources = {
           congrats_msg_3: "🙂 Прилично добро, но има простор за подобрување.",
           congrats_msg_4: "📘 Вежбајте повеќе, ќе успеете!",
           ai_summary_will_be_generated_shortly: "AI советите ќе бидат генерирани за кратко",
-          welcome: "Добредојдовте !!!"
+          welcome: "Добредојдовте !!!",
+          your_quizes: "Твои Квизови",
+          review_quiz: "Преглед на одговори",
+          for_the_quiz: "За ",
+          back_button_text: "НАЗАД",
+          submit_quiz_button_text: "ПОДНЕСИ КВИЗ",
+          start_quiz: "ПОЧНИ КВИЗ",
+          review_quiz_btn: "ПРЕГЛЕДАЈ КВИЗ",
+          ai_summary_btn: "AI ЗАКЛУЧОК",
+          profile: "Мој Профил",
         },
     }
 }

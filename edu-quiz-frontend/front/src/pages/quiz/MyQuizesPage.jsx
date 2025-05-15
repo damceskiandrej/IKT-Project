@@ -4,6 +4,7 @@ import CustomCardsList from '../../components/CustomCardsList';
 import { getQuizzesByUser, getQuizResultByUserAndQuizId } from '../../api/quizApi';
 import useUser from '../../hooks/useUser';
 import { getQuizExplanationResponses } from '../../api/reccomendationsApi';
+import { useTranslation } from 'react-i18next';
 
 function MyQuizesPage() {
     const [quizzes, setQuizzes] = useState([]);
@@ -12,6 +13,7 @@ function MyQuizesPage() {
     const user = useUser();
     const navigate = useNavigate();
     const userId = user ? user.userId : "";
+    const {t} = useTranslation()
 
     useEffect(() => {
         if (!userId) return;
@@ -71,7 +73,7 @@ function MyQuizesPage() {
         <div className="container my-4">
             <div className="row mb-4 m-2">
                 <div className="col d-flex justify-content-center">
-                    <h3 style={{ color: "rgba(60, 141, 123, 1)" }}>ТВОИ КВИЗОВИ</h3>
+                    <h3 style={{ color: "rgba(60, 141, 123, 1)" }}>{t('your_quizes')}</h3>
                 </div>
             </div>
 
