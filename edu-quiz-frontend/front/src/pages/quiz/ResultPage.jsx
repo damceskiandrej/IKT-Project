@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+﻿import { useLocation, useNavigate } from "react-router-dom";
 import CustomReviewCard from "../../components/CustomReviewCard";
 import CustomButton from "../../components/CustomButton";
 import { useTranslation } from 'react-i18next';
@@ -64,8 +64,8 @@ function ResultPage() {
             <div className="contain">
                 <div className="row justify-content-center p-5">
                     <div className="col-md-8">
-                        <h2 className="fw-bold text-success text-center mb-4">ПРЕГЛЕД НА ОДГОВОРИ</h2>
-                        <h4 className="text-success text-center mb-4">За квизот {title}</h4>
+                        <h2 className="fw-bold text-success text-center mb-4">{t('view_answers')}</h2>
+                        <h4 className="text-success text-center mb-4">{t('for_the_quiz')} {title}</h4>
                         
                         <div className="container pt-4 bg-light rounded-3">
                             {questions.map((question, index) => (
@@ -86,7 +86,7 @@ function ResultPage() {
                                 onClick={handleOnClickQuizes}
                                
                             >
-                                КОН КВИЗОВИ
+                                {t('go_to_quizzes')}
                             </button>
                             
                         </div>
