@@ -48,9 +48,9 @@ function UserPage() {
                         <div className="col-4 d-flex justify-content-center">
                             <CustomCircleButton btnText={t('all_quizzes')} onClick={navigateToAllQuizzes} />
                         </div>
-                        <div className="col-4 d-flex justify-content-center">
+                        {/* <div className="col-4 d-flex justify-content-center">
                             <CustomCircleButton btnText={t('hints')} onClick={navigateToQAPage} />
-                        </div>
+                        </div> */}
                         {isProfessor && (
                             <div className="d-flex justify-content-center gap-5 mt-3">
                                 <UploadDocument btnText={t('add_student')}

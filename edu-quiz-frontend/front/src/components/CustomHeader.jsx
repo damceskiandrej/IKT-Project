@@ -1,27 +1,51 @@
-
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUser from '../hooks/useUser';
-
 import { useTranslation } from 'react-i18next';
-import { fetchExternalQuiz } from '../api/quizApi';
-
 
 function CustomHeader() {
     const user = useUser();
     const navigate = useNavigate();
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
+
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
 
     const handleLogout = () => {
         localStorage.removeItem('user');
         navigate('/login');
     };
 
-    
+    const toggleDropdown = () => {
+        setDropdownOpen(prev => !prev);
+    };
+
+    const goToMyQuizesPage = () => {
+        navigate('/myQuizesPage');
+    };
+
+    const navigateToAllQuizzes = () => {
+        navigate("/quizes")
+    }
+
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setDropdownOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
         <header className="bg-light py-2">
             <div className="container d-flex justify-content-between align-items-center">
                 <a href="/home" className="d-flex align-items-center text-decoration-none">
-                    <img src="../../img/logo.png" style={{ width: "85px" }} alt="Logo" />
+                    <img src="img\logo.png" style={{ width: "85px" }} alt="Logo" />
                 </a>
 
                 <nav className="d-flex align-items-center">
@@ -41,9 +65,60 @@ function CustomHeader() {
                     </ul>
 
                     {user && (
-                        <button onClick={handleLogout} className="btn btn-danger">
-                            Logout
-                        </button>
+                        <>
+                            <div className="position-relative" ref={dropdownRef}>
+                               
+                                <button
+                                    onClick={toggleDropdown}
+                                    className="btn p-0 border-0 rounded-circle overflow-hidden"
+                                    style={{ width: "40px", height: "40px", cursor: "pointer" }}
+                                    aria-haspopup="true"
+                                    aria-expanded={dropdownOpen}
+                                >
+                                    <img
+                                        src="img\student.png" 
+                                        alt="Student"
+                                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                    />
+                                </button>
+
+                            
+                                {dropdownOpen && (
+                                    <div
+                                        className="dropdown-menu show shadow"
+                                        style={{ right: 0, left: "auto", minWidth: "150px" }}
+                                    >
+                                        <button
+                                            className="dropdown-item"
+                                            onClick={() => {
+                                                navigate('/myQuizesPage');
+                                                setDropdownOpen(false);
+                                            }}
+                                        >
+                                            {t('my_quizzes')}
+                                        </button>
+                                        <button
+                                            className="dropdown-item"
+                                            onClick={() => {
+                                                navigate('/quizes');
+                                                setDropdownOpen(false);
+                                            }}
+                                        >
+                                            {t('all_quizzes')}
+                                        </button>
+                                        <button
+                                            className="dropdown-item text-danger"
+                                            onClick={() => {
+                                                handleLogout();
+                                                setDropdownOpen(false);
+                                            }}
+                                        >
+                                            Logout
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </>
                     )}
                 </nav>
             </div>
