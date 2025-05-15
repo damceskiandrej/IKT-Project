@@ -2,7 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CustomReviewCard from "../../components/CustomReviewCard";
 import CustomButton from "../../components/CustomButton";
 import { useTranslation } from 'react-i18next';
-import {ToastContainer} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
+import {useEffect} from "react";
 
 function ResultPage() {
     const location = useLocation();
