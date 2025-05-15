@@ -50,6 +50,7 @@ const resources = {
             review_quiz_btn: "REVIEW QUIZ",
             ai_summary_btn: "AI SUMMARY",
             profile: "My Profile",
+            search_placeholder: "Search quiz by category",
         },
     },
     mk: {
@@ -98,6 +99,7 @@ const resources = {
           review_quiz_btn: "ПРЕГЛЕДАЈ КВИЗ",
           ai_summary_btn: "AI ЗАКЛУЧОК",
           profile: "Мој Профил",
+          search_placeholder: "Пребарај квиз по категорија",
         },
     }
 }
