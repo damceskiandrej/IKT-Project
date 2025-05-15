@@ -26,9 +26,10 @@ namespace EduQuiz.Repository.Implementation
             return await _entities
                 .Where(x => x.QuizId.Equals(quizId) && x.UserId.Equals(userId))
                 .Select(x => new QuizExplanationResponse {
-                    Explanation = x.Explanation, 
-                    Question = x.Question }
-                )
+                    Explanation = x.Explanation,
+                    Question = x.Question,
+                    IsProcessed = x.IsProcessed
+                })
                 .ToListAsync();
         }
 

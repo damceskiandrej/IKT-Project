@@ -5,6 +5,7 @@ using EduQuiz.DomainEntities.Domain;
 using EduQuiz.DomainEntities.DTO.Request;
 using System.Text.Json;
 using EduQuiz.Service.Interface;
+using EduQuiz.Service.BackgroundWorker;
 
 namespace EduQuizWebApplication.Controllers
 {
@@ -16,12 +17,14 @@ namespace EduQuizWebApplication.Controllers
         private readonly string _initialUrl = "https://quizapi.io/api/v1/questions?apiKey=v0X51vT9BPXbCuPrgBybFKHVHkomwqr9Az5VaL95";
         private readonly IQuizService _quizService;
         private readonly IResultService _resultService;
+        private readonly IQuizProcessingQueue _quizProcessingQueue;
 
-        public QuizController(IHttpClientFactory httpClientFactory, IQuizService quizService, IResultService resultService)
+        public QuizController(IHttpClientFactory httpClientFactory, IQuizService quizService, IResultService resultService, IQuizProcessingQueue quizProcessingQueue)
         {
             _httpClientFactory = httpClientFactory;
             _quizService = quizService;
             _resultService = resultService;
+            _quizProcessingQueue = quizProcessingQueue;
         }
 
         [HttpGet]
@@ -88,12 +91,14 @@ namespace EduQuizWebApplication.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitQuizResult([FromBody] QuizResultRequest request)
         {
-            var result = await _resultService.ProcessResult(request);
-            if (!result.IsSuccess)
-            {
-                return BadRequest(result);
-            }
-            return Ok(result);
+            //var result = await _resultService.ProcessResult(request);
+            //if (!result.IsSuccess)
+            //{
+            //    return BadRequest(result);
+            //}
+            //return Ok(result);
+            _quizProcessingQueue.Enqueue(request);
+            return Ok(new { message = "Quiz submission received. Explanation will be generated shortly." });
         }
         [HttpGet("{userId}/{quizId}")]
         public async Task<IActionResult> GetQuizByUser(string userId, Guid quizId)

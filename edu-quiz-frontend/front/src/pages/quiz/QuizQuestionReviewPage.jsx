@@ -42,6 +42,8 @@ function QuizQuestionReviewPage() {
 
             navigate("/resultPage", {
                 state: {
+                    showToast: true,
+                    response: response,
                     submission,
                     score,
                     totalQuestions: questions.length,

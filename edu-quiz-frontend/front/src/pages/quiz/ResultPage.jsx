@@ -2,12 +2,20 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CustomReviewCard from "../../components/CustomReviewCard";
 import CustomButton from "../../components/CustomButton";
 import { useTranslation } from 'react-i18next';
+import {toast, ToastContainer} from "react-toastify";
+import {useEffect} from "react";
 
 function ResultPage() {
     const location = useLocation();
     const navigate = useNavigate()
     const { submission, score, totalQuestions, title, questions, selectedAnswers, showCorrectness = true} = location.state || {};
     const percentage = ((score / totalQuestions) * 100).toFixed(2);
+
+    useEffect(() => {
+        if (location.state?.showToast) {
+            toast.info('AI Summary wil be Generated Shortly');
+        }
+    }, [location.state]);
 
     const handleOnClickQuizes = () => {
         navigate("/quizes")
@@ -73,6 +81,18 @@ function ResultPage() {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div>
     );
 }
