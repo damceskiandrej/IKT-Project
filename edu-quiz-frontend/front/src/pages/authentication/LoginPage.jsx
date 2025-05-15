@@ -13,24 +13,24 @@ function LoginPage() {
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-        const result = await loginUser({ email, password });
+        e.preventDefault();
+        try {
+            const result = await loginUser({ email, password });
 
-        const isProfessor = result.email.toLowerCase().includes('professor');
+            const isProfessor = result.email.toLowerCase().includes('professor');
 
-        const userWithRole = {
-            ...result,
-            role: isProfessor ? 'professor' : 'user'
-        };
+            const userWithRole = {
+                ...result,
+                role: isProfessor ? 'professor' : 'user'
+            };
 
-        localStorage.setItem('user', JSON.stringify(userWithRole));
+            localStorage.setItem('user', JSON.stringify(userWithRole));
 
-        navigate('/home', { state: { showToast: true } });
-    } catch (err) {
-        setError(err.message || 'Најавувањето не беше успешно.');
-    }
-};
+            navigate('/home', { state: { showToast: true } });
+        } catch (err) {
+            setError(err.message || 'Најавувањето не беше успешно.');
+        }
+    };
 
     return (
         <>

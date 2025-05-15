@@ -28,13 +28,13 @@ function CustomCard({ id, title, category, questionCount, hideStartButton, onRev
                     )}
 
                     {typeof onReviewClick === 'function' && hideStartButton && (
-                        <button className="btn btn-outline-success" onClick={onReviewClick}>
+                        <button className="btn btn-dark" onClick={onReviewClick}>
                             Review Quiz
                         </button>
                     )}
 
                     {showAISummaryButton && (
-                        <button className="btn btn-outline-info" onClick={() => onAISummaryClick(id,title)}>
+                        <button className="btn btn-info" onClick={() => onAISummaryClick(id,title)}>
                             AI Summary
                         </button>
                     )}

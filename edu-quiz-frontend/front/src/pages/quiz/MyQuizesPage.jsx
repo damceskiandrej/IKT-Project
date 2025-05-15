@@ -50,13 +50,16 @@ function MyQuizesPage() {
     const handleAISummaryClick = async (quizId, quizTitle) => {
     try {
         const aiSummaryData = await getQuizExplanationResponses(quizId, userId);
-
         navigate("/qaPage", {
             state: {
                 summary: aiSummaryData,
-                quizTitle: quizTitle
+                quizTitle: quizTitle,
+                quizId: quizId,
+                userId: userId
             }
         });
+        console.log("quizId: quizId,",quizId)
+        console.log("userId: userId,",userId)
     } catch (error) {
         console.error("Error fetching AI Summary:", error);
         setError("Failed to fetch AI summary.");

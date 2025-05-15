@@ -1,15 +1,32 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import CustomAIMessage from "../components/CustomAIMessage";
 import { useTranslation } from 'react-i18next';
+import { generatePdf } from '../api/exportApi';
 
 function QAPage() {
     const { t } = useTranslation();
     const location = useLocation();
-    const { summary = [], quizTitle = "" } = location.state || {};
+    const { summary = [], quizTitle = "", quizId = "", userId = ""} = location.state || {};
+    const navigate = useNavigate()
+    
+    const handleExportQuiz = async () => {
+        try {
+            const blob = await generatePdf(quizId, userId);
+            const url = window.URL.createObjectURL(blob);
 
-
-
-    console.log("Summary", summary);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${quizTitle || "quiz"}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("Failed to export quiz PDF:", error);
+            alert("Export failed. Please try again.");
+        }
+    };
 
     return (
         <div className="container text-center py-5">
@@ -35,9 +52,15 @@ function QAPage() {
                             )
                         ))}
                     </div>
-                    <button style={{ color: "black", backgroundColor: "rgba(181, 212, 205, 1)" }} className="btn btn-success border-0 mt-4 px-4 py-2">
-                        КОН КВИЗОВИ
-                    </button>
+                    <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                        <button className="btn btn-dark border-0 mt-4 px-4 py-2" onClick={() => navigate("/quizes")}>
+                            КОН КВИЗОВИ
+                        </button >
+                        <button className="btn btn-dark border-0 mt-4 px-4 py-2" onClick={handleExportQuiz}>
+                            ЕКСПОРТ КВИЗ
+                        </button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
