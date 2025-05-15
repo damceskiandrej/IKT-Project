@@ -11,7 +11,9 @@ import { useTranslation } from 'react-i18next';
 function UserPage() {
     const navigate = useNavigate();
     const user = useUser();
-    const isProfessor = user && user.role === Role.PROFESSOR;
+   
+
+    
 
     const { t, i18n } = useTranslation(); 
 
@@ -41,6 +43,10 @@ function UserPage() {
                             {user?.firstName?.toUpperCase()} {user?.lastName?.toUpperCase()}
                         </div>
                     </div>
+                    {/* <div>
+                        {user && <p>Welcome, {user.firstName}</p>}
+                        {user?.role === 'professor' && <button>Go to Admin Panel</button>}
+                    </div> */}
                     <div className="row mb-4">
                         <div className="col-4 d-flex justify-content-center">
                             <CustomCircleButton btnText={t('my_quizzes')} onClick={goToMyQuizesPage} />
@@ -51,7 +57,7 @@ function UserPage() {
                         {/* <div className="col-4 d-flex justify-content-center">
                             <CustomCircleButton btnText={t('hints')} onClick={navigateToQAPage} />
                         </div> */}
-                        {isProfessor && (
+                        { user?.role === 'professor' && (
                             <div className="d-flex justify-content-center gap-5 mt-3">
                                 <UploadDocument btnText={t('add_student')}
                                                 apiEndpoint="http://localhost:5190/api/Import/ImportStudents"

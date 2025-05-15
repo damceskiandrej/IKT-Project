@@ -20,14 +20,6 @@ function CustomHeader() {
         setDropdownOpen(prev => !prev);
     };
 
-    const goToMyQuizesPage = () => {
-        navigate('/myQuizesPage');
-    };
-
-    const navigateToAllQuizzes = () => {
-        navigate("/quizes")
-    }
-
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -41,12 +33,15 @@ function CustomHeader() {
         };
     }, []);
 
+
     return (
         <header className="bg-light py-2">
             <div className="container d-flex justify-content-between align-items-center">
                 <a href="/home" className="d-flex align-items-center text-decoration-none">
                     <img src="img\logo.png" style={{ width: "85px" }} alt="Logo" />
                 </a>
+
+                
 
                 <nav className="d-flex align-items-center">
                     <ul className="d-flex list-unstyled mb-0 me-4">
