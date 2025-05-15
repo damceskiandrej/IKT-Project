@@ -178,7 +178,7 @@ function QuizQuestionsPage() {
     const currentQuestion = quiz.questions[currentQuestionIndex];
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 bg-light rounded-3">
             <CustomTimer timer={timer}/>
             <CustomQuestion
                 title={quiz.title}

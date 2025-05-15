@@ -21,6 +21,22 @@ export async function getQuizResultByUserAndQuizId(userId, quizId) {
     return data;
 }
 
+export const fetchExternalQuiz = async () => {
+    try {
+        const response = await fetch(`${URL}/FetchExternal`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch external quiz: ${response.statusText}`);
+        }
+        const data = await response.json();
+        console.log("Fetched external quiz:", data);
+        return data; 
+    } catch (error) {
+        console.error("Error fetching external quiz:", error);
+        throw error;
+    }
+};
+
+
 
 export const getQuizById = async (id) => {
     try {

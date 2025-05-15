@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ Needed for navigation
+import { useNavigate } from 'react-router-dom'; 
 import CustomCardsList from '../../components/CustomCardsList';
-import { getQuizzesByUser, getQuizResultByUserAndQuizId } from '../../api/quizApi'; // ✅ Make sure this exists
+import { getQuizzesByUser, getQuizResultByUserAndQuizId } from '../../api/quizApi';
 import useUser from '../../hooks/useUser';
+import { getQuizExplanationResponses } from '../../api/reccomendationsApi';
 
 function MyQuizesPage() {
     const [quizzes, setQuizzes] = useState([]);
@@ -29,6 +30,8 @@ function MyQuizesPage() {
         fetchQuizzes();
     }, [userId]);
 
+    
+
     const handleReviewClick = async (quizId) => {
         try {
             const quizResult = await getQuizResultByUserAndQuizId(userId, quizId);
@@ -42,7 +45,24 @@ function MyQuizesPage() {
             console.error("Error fetching quiz result:", error);
             setError("Failed to fetch quiz results.");
         }
+    }
+
+    const handleAISummaryClick = async (quizId, quizTitle) => {
+    try {
+        const aiSummaryData = await getQuizExplanationResponses(quizId, userId);
+
+        navigate("/qaPage", {
+            state: {
+                summary: aiSummaryData,
+                quizTitle: quizTitle
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching AI Summary:", error);
+        setError("Failed to fetch AI summary.");
+    }
     };
+
 
     return (
         <div className="container my-4">
@@ -60,7 +80,10 @@ function MyQuizesPage() {
                     quizzes={quizzes}
                     hideStartButton
                     onReviewClick={handleReviewClick}
+                    onAISummaryClick={handleAISummaryClick} // ✅
+                    showAISummaryButton
                 />
+
             ) : (
                 !loading && <div>No quizzes found.</div>
             )}
