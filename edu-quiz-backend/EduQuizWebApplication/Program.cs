@@ -10,6 +10,7 @@ using EduQuizWebApplication.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using EduQuiz.DomainEntities.Roles;
+using EduQuiz.Service.BackgroundWorker;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,6 +62,9 @@ builder.Services.AddScoped<IAIService, AIService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<IQuizProcessingQueue, QuizProcessingQueue>();
+builder.Services.AddHostedService<QuizProcessingService>();
 
 static async Task SeedRolesAsync(IServiceProvider serviceProvider)
 {

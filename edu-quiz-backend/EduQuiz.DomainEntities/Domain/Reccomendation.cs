@@ -13,5 +13,6 @@ namespace EduQuiz.DomainEntities.Domain
         public Guid QuizId { get; set; }
         public string Question { get; set; }
         public string Explanation {  get; set; }
+        public bool IsProcessed { get; set; }
     }
 }

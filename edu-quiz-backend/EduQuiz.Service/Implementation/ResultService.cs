@@ -146,7 +146,8 @@ public class ResultService : IResultService
                     UserId = request.UserId,
                     QuizId = request.QuizId,
                     Question = explaination.Question,
-                    Explanation = explaination.Explanation
+                    Explanation = explaination.Explanation,
+                    IsProcessed = true
                 };
                 _reccomendationRepository.InsertReccomendation(reccomendation);
             }
