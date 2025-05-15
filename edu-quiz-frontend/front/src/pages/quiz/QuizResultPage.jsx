@@ -60,8 +60,8 @@ function QuizResultPage() {
 
                 <div className="container d-flex justify-content-center">
                     <button
-                        style={{ color: 'black', backgroundColor: 'rgba(181, 212, 205, 1)' }}
-                        className="btn btn-success border-0 mt-4 px-4 py-2"
+                        
+                        className="btn btn-dark border-0 mt-4 px-4 py-2"
                         onClick={handleGoBack}
                     >
                         НАЗАД

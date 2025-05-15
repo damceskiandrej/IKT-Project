@@ -90,7 +90,7 @@ function CustomHeader() {
                                         <button
                                             className="dropdown-item"
                                             onClick={() => {
-                                                navigate('/goToProfilePage');
+                                                navigate('/profile');
                                                 setDropdownOpen(false);
                                             }}
                                         >
