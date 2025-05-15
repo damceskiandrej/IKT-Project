@@ -21,7 +21,7 @@ function Layout() {
     <>
       <CustomHeader />
       <Outlet />
-      <div className="d-flex justify-content-end">
+      <div className="d-flex justify-content-end" style={{ position: 'fixed', bottom: '40px', right: '70px', zIndex: 1000, }}>
         <button className="btn btn-secondary m-4" onClick={changeLanguage}>
           {t("Language")} ({languages[currentLangIndex].toUpperCase()})
         </button>

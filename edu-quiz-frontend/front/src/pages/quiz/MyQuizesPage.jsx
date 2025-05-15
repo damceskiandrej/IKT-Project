@@ -80,7 +80,7 @@ function MyQuizesPage() {
                     quizzes={quizzes}
                     hideStartButton
                     onReviewClick={handleReviewClick}
-                    onAISummaryClick={handleAISummaryClick} // ✅
+                    onAISummaryClick={handleAISummaryClick} 
                     showAISummaryButton
                 />
 
