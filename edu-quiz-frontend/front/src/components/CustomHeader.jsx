@@ -91,11 +91,20 @@ function CustomHeader() {
                                     aria-haspopup="true"
                                     aria-expanded={dropdownOpen}
                                 >
-                                    <img
-                                        src="img\student.png" 
-                                        alt="Student"
-                                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                                    />
+                                    {
+                                        user?.role === 'professor' ? 
+                                        <img
+                                            src="img\professor.png" 
+                                            alt="Professor"
+                                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                        />
+                                        :
+                                        <img
+                                            src="img\student.png" 
+                                            alt="Student"
+                                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                        />
+                                    }
                                 </button>
 
                             
