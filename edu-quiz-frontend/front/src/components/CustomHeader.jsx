@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUser from '../hooks/useUser';
 import { useTranslation } from 'react-i18next';
+import i18n from "i18next";
 
 function CustomHeader() {
     const user = useUser();
@@ -22,6 +23,22 @@ function CustomHeader() {
 
     const toggleDropdown = () => {
         setDropdownOpen(prev => !prev);
+    };
+
+    const languages = ["en", "mk"];
+    const flagMap = {
+        en: "/img/uk_flag.svg",
+        mk: "/img/mk_flag.svg",
+    };
+    const [currentLangIndex, setCurrentLangIndex] = useState(
+        languages.indexOf(i18n.language) !== -1 ? languages.indexOf(i18n.language) : 0
+    );
+
+    const changeLanguage = () => {
+        const nextIndex = (currentLangIndex + 1) % languages.length; // Cycle through languages
+        const nextLang = languages[nextIndex];
+        i18n.changeLanguage(nextLang);
+        setCurrentLangIndex(nextIndex);
     };
 
 
@@ -130,6 +147,13 @@ function CustomHeader() {
                             </div>
                         </>
                     )}
+                        <button className="btn ms-3" onClick={changeLanguage}>
+                            <img
+                                src={flagMap[languages[currentLangIndex]]}
+                                alt={languages[currentLangIndex]}
+                                style={{ width: '24px', height: '24px' }}
+                            />
+                        </button>
                 </nav>
             </div>
         </header>

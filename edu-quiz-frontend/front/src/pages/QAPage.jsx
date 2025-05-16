@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import CustomAIMessage from "../components/CustomAIMessage";
 import { useTranslation } from 'react-i18next';
 import { generatePdf } from '../api/exportApi';
+import {toast, ToastContainer} from "react-toastify";
 
 function QAPage() {
     const { t } = useTranslation();
@@ -11,6 +12,7 @@ function QAPage() {
     
     const handleExportQuiz = async () => {
         try {
+            toast.success("A PDF Document will be generated shortly");
             const blob = await generatePdf(quizId, userId);
             const url = window.URL.createObjectURL(blob);
 
@@ -63,6 +65,18 @@ function QAPage() {
                     
                 </div>
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div>
     );
 }

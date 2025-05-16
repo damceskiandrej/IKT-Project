@@ -3,7 +3,7 @@ import CustomReviewCard from "../../components/CustomReviewCard";
 import CustomButton from "../../components/CustomButton";
 import { useTranslation } from 'react-i18next';
 import {toast, ToastContainer} from "react-toastify";
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 
 
 function ResultPage() {
@@ -12,6 +12,7 @@ function ResultPage() {
     const { submission, score, totalQuestions, title, questions, selectedAnswers, showCorrectness = true} = location.state || {};
     const percentage = ((score / totalQuestions) * 100).toFixed(2);
     const { t, i18n } = useTranslation();
+    const reviewRef = useRef(null);
 
     useEffect(() => {
         if (location.state?.showToast) {
@@ -32,8 +33,8 @@ function ResultPage() {
     const handleOnClickQuizes = () => {
         navigate("/quizes")
     }
-    const handleOnCLickBack = () => {
-        navigate("/quizes")
+    const handleOnResultsView = () => {
+        reviewRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
 
 
@@ -42,8 +43,8 @@ function ResultPage() {
             <div className="d-flex justify-content-center align-items-center vh-100">
                 <div
                     style={{
-                        width: '350px',
-                        height: '350px',
+                        width: '400px',
+                        height: '400px',
                         borderRadius: '50%',
                         backgroundColor: '#538c7a',
                         position: 'relative',
@@ -52,17 +53,19 @@ function ResultPage() {
                         padding: '40px 20px',
                         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
                     }}>
-                    <div className="container mt-5 p-3">
+                    <div className="container mt-4 p-3">
                         <h2 className="fw-bold">{t('congrats')}</h2>
                         <h4 className="fw-bold">{t(getCongratsMessageKey(percentage))}</h4>
                         <h5 className="fw-bold mt-3">{t('congrats_description')} {percentage}%.</h5>
-                        <CustomButton btnText={"НАЗАД"} onClick={handleOnCLickBack} />
+                        <div className="mt-5">
+                        <CustomButton btnText={"View Results"} onClick={handleOnResultsView} />
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div className="contain">
-                <div className="row justify-content-center p-5">
+                <div className="row justify-content-center p-5" ref={reviewRef} >
                     <div className="col-md-8">
                         <h2 className="fw-bold text-success text-center mb-4">{t('view_answers')}</h2>
                         <h4 className="text-success text-center mb-4">{t('for_the_quiz')} {title}</h4>

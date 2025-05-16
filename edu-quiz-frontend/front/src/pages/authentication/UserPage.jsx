@@ -11,9 +11,6 @@ import { useTranslation } from 'react-i18next';
 function UserPage() {
     const navigate = useNavigate();
     const user = useUser();
-   
-
-    
 
     const { t, i18n } = useTranslation(); 
 
@@ -34,49 +31,52 @@ function UserPage() {
     };
 
     return (
-        <>
-            <div className="container">
-            <div className="row mt-5">
-                <div className="col-6">
+        <div
+            className="container-fluid"
+            style={{ height: '100vh', display: 'flex', alignItems: 'center' }}
+        >
+            <div className="row w-100 h-100">
+                <div className="col-6 d-flex flex-column justify-content-center gap-3">
                     <div className="row mb-5">
-                        <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '2rem', paddingTop: '2rem', color: '#368278' }}>
+                        <div
+                            style={{
+                                textAlign: 'center',
+                                fontWeight: 'bold',
+                                fontSize: '3rem',
+                                color: '#368278',
+                            }}
+                        >
                             {user?.firstName?.toUpperCase()} {user?.lastName?.toUpperCase()}
                         </div>
                     </div>
-                    {/* <div>
-                        {user && <p>Welcome, {user.firstName}</p>}
-                        {user?.role === 'professor' && <button>Go to Admin Panel</button>}
-                    </div> */}
+
                     <div className="row mb-4">
-                        <div className="col-4 d-flex justify-content-center">
+                        <div className="col-12 d-flex justify-content-center gap-5">
                             <CustomCircleButton btnText={t('my_quizzes')} onClick={goToMyQuizesPage} />
-                        </div>
-                        <div className="col-4 d-flex justify-content-center">
                             <CustomCircleButton btnText={t('all_quizzes')} onClick={navigateToAllQuizzes} />
                         </div>
-                        {/* <div className="col-4 d-flex justify-content-center">
-                            <CustomCircleButton btnText={t('hints')} onClick={navigateToQAPage} />
-                        </div> */}
-                        { user?.role === 'professor' && (
-                            <div className="d-flex justify-content-center gap-5 mt-3">
-                                <UploadDocument btnText={t('add_student')}
-                                                apiEndpoint="http://localhost:5190/api/Import/ImportStudents"
-                                                successText="Усшено додадени студенти!"
-                                                showToast={showToast}/>
-                                <UploadDocument btnText={t('add_quiz')}
-                                                apiEndpoint="http://localhost:5190/api/Import/ImportQuiz"
-                                                successText="Усшено додадени квизови!"
-                                                showToast={showToast}/>
-                            </div>
-                        )}
                     </div>
+                    {user?.role === 'professor' && (
+                        <div className="d-flex justify-content-center gap-5 mt-3">
+                            <UploadDocument
+                                btnText={t('add_student')}
+                                apiEndpoint="http://localhost:5190/api/Import/ImportStudents"
+                                successText="Успешно додадени студенти!"
+                                showToast={showToast}
+                            />
+                            <UploadDocument
+                                btnText={t('add_quiz')}
+                                apiEndpoint="http://localhost:5190/api/Import/ImportQuiz"
+                                successText="Успешно додадени квизови!"
+                                showToast={showToast}
+                            />
+                        </div>
+                    )}
                 </div>
 
                 <div className="col-6 d-flex justify-content-center align-items-center">
-                    {/*<img src="/img/authentication.png" alt="Illustration" style={{ maxWidth: '50%', height: 'auto' }} />*/}
-                    <AnimationComputer/>
+                    <AnimationComputer />
                 </div>
-            </div>
             </div>
 
             <ToastContainer
@@ -91,10 +91,8 @@ function UserPage() {
                 pauseOnHover
                 theme="colored"
             />
-        </>
-
+        </div>
     );
 }
 
 export default UserPage;
-

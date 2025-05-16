@@ -178,63 +178,96 @@ function QuizQuestionsPage() {
     const currentQuestion = quiz.questions[currentQuestionIndex];
 
     return (
-        <div className="container mt-5 bg-light rounded-3">
-            <CustomTimer timer={timer}/>
-            <CustomQuestion
-                title={quiz.title}
-                question={currentQuestion.questionText}
-                currentQuestionNumber={currentQuestionIndex + 1}
-                totalQuestions={quiz.questions.length}
-            />
-            <div className="row mt-5 g-3">
-                {currentQuestion.answers.map((answer, index) => (
-                    <div className="col-md-6" key={index}>
-                        <CustomAnswer
-                            letter={String.fromCharCode(65 + index)}
-                            answer={answer.answerText}
-                            onClick={() => handleAnswerClick(answer.id)}
-                            isSelected={selectedAnswers[currentQuestionIndex]?.selectedAnswerId === answer.id}
-                        />
-                    </div>
-                ))}
-            </div>
-            <CustomHint
-                hint={hints[currentQuestion.id]}
-                fetchHint={() => fetchHintForQuestion(currentQuestion.id)}
-            />
-
-
-            <div className="container d-flex justify-content-around">
-                <div className="mt-4 d-flex justify-content-center">
-                    <CustomButton
-                        btnText={t('previous_question')}
-                        onClick={handlePreviousQuestion}
-                        disabled={currentQuestionIndex === 0}
-                    />
+        <div className="container mt-5 p-5 rounded-5 shadow-lg bg-gradient bg-light">
+            {/* Top section with title and timer */}
+            <div className="d-flex justify-content-between align-items-center mb-4">
+                <h2 className="fw-bold">{quiz.title}</h2>
+                <div className="position-relative">
+                    <CustomTimer timer={timer} />
+                    {/* Animated pulse when timer is low */}
+                    {timer <= 10 && <div className="pulse-timer" />}
                 </div>
-                <div className="mt-4 d-flex justify-content-center">
-                    <CustomButton
-                        btnText={currentQuestionIndex === quiz.questions.length - 1 ? t('final_question') : t('next_question')}
-                        onClick={handleNextQuestion}
-                        disabled={!isAnswerSelected} 
-                    />
-                </div>
-                
             </div>
 
+            {/* Progress Bar */}
+            <div className="progress mb-4 rounded-pill" style={{ height: '1.5rem' }}>
+                <div
+                    className="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                    role="progressbar"
+                    style={{
+                        width: `${((currentQuestionIndex + 1) / quiz.questions.length) * 100}%`,
+                    }}
+                >
+                    {`${currentQuestionIndex + 1} / ${quiz.questions.length}`}
+                </div>
+            </div>
+
+            {/* Question Section with light animation */}
+            <div className="mb-4 animate-slide-in">
+                <CustomQuestion
+                    title={quiz.title}
+                    question={currentQuestion.questionText}
+                    currentQuestionNumber={currentQuestionIndex + 1}
+                    totalQuestions={quiz.questions.length}
+                />
+            </div>
+
+            {/* Answer Options Grid */}
+            <div className="row g-4">
+                {currentQuestion.answers.map((answer, index) => {
+                    const isSelected =
+                        selectedAnswers[currentQuestionIndex]?.selectedAnswerId === answer.id;
+
+                    return (
+                        <div className="col-md-6" key={index}>
+                            <CustomAnswer
+                                letter={String.fromCharCode(65 + index)}
+                                answer={answer.answerText}
+                                onClick={() => handleAnswerClick(answer.id)}
+                                isSelected={isSelected}
+                                additionalClass={isSelected ? 'selected-answer-card' : ''}
+                            />
+                        </div>
+                    );
+                })}
+            </div>
+
+            {/* Hint Box */}
+            <div className="mt-4">
+                <CustomHint
+                    hint={hints[currentQuestion.id]}
+                    fetchHint={() => fetchHintForQuestion(currentQuestion.id)}
+                    style={{ border: '2px dashed #6c757d', borderRadius: '1rem', padding: '1rem' }}
+                />
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="d-flex justify-content-between align-items-center mt-5">
+                <CustomButton
+                    btnText={t('previous_question')}
+                    onClick={handlePreviousQuestion}
+                    disabled={currentQuestionIndex === 0}
+                    variant="outline-secondary"
+                />
+                <CustomButton
+                    btnText={
+                        currentQuestionIndex === quiz.questions.length - 1
+                            ? t('final_question')
+                            : t('next_question')
+                    }
+                    onClick={handleNextQuestion}
+                    disabled={!isAnswerSelected}
+                    variant="success"
+                />
+            </div>
+
+            {/* Toast Notification */}
             <ToastContainer
                 position="top-center"
                 autoClose={3000}
                 hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
                 theme="colored"
             />
-
         </div>
     );
 }
