@@ -40,7 +40,7 @@ namespace EduQuiz.Service.Implementation
 
             var quiz = new Quiz();
             quiz.Title = "Quiz of the day";
-            quiz.Category = "Misterious category";
+            quiz.Category = "Mysterious Category";
 
             var questions = new List<Question>();
 

@@ -9,14 +9,14 @@ function QAPage() {
     const location = useLocation();
     const { summary = [], quizTitle = "", quizId = "", userId = ""} = location.state || {};
     const navigate = useNavigate()
-    
+
     const handleExportQuiz = async () => {
         try {
-            toast.success("A PDF Document will be generated shortly");
+            toast.success(t('generate_pdf'));
             const blob = await generatePdf(quizId, userId);
             const url = window.URL.createObjectURL(blob);
 
-            
+
             const link = document.createElement('a');
             link.href = url;
             link.download = `${quizTitle || "quiz"}.pdf`;
@@ -35,7 +35,7 @@ function QAPage() {
             <div className="row justify-content-center p-5">
                 <div className="col-md-8">
 
-                    <h2 className="text-success mb-4">{quizTitle}</h2> 
+                    <h2 className="text-success mb-4">{quizTitle}</h2>
                     <div className="container p-4">
                         {summary.map((item, index) => (
                             item.isProcessed ? (
@@ -56,13 +56,13 @@ function QAPage() {
                     </div>
                     <div style={{display: 'flex', justifyContent: 'space-around'}}>
                         <button className="btn btn-dark border-0 mt-4 px-4 py-2" onClick={() => navigate("/quizes")}>
-                            КОН КВИЗОВИ
+                            {t('go_to_quizzes')}
                         </button >
                         <button className="btn btn-dark border-0 mt-4 px-4 py-2" onClick={handleExportQuiz}>
-                            ЕКСПОРТ КВИЗ
+                            {t('export_quiz')}
                         </button>
                     </div>
-                    
+
                 </div>
             </div>
             <ToastContainer

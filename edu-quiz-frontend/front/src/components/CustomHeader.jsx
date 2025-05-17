@@ -62,7 +62,7 @@ function CustomHeader() {
                     <img src="img\logo.png" style={{ width: "85px" }} alt="Logo" />
                 </a>
 
-                
+
 
                 <nav className="d-flex align-items-center">
                     <ul className="d-flex list-unstyled mb-0 me-4">
@@ -83,7 +83,7 @@ function CustomHeader() {
                     {user && (
                         <>
                             <div className="position-relative" ref={dropdownRef}>
-                               
+
                                 <button
                                     onClick={toggleDropdown}
                                     className="btn p-0 border-0 rounded-circle overflow-hidden"
@@ -92,22 +92,22 @@ function CustomHeader() {
                                     aria-expanded={dropdownOpen}
                                 >
                                     {
-                                        user?.role === 'professor' ? 
-                                        <img
-                                            src="img\professor.png" 
-                                            alt="Professor"
-                                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                                        />
-                                        :
-                                        <img
-                                            src="img\student.png" 
-                                            alt="Student"
-                                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                                        />
+                                        user?.role === 'professor' ?
+                                            <img
+                                                src="img\professor.png"
+                                                alt="Professor"
+                                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                            />
+                                            :
+                                            <img
+                                                src="img\student.png"
+                                                alt="Student"
+                                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                            />
                                     }
                                 </button>
 
-                            
+
                                 {dropdownOpen && (
                                     <div
                                         className="dropdown-menu show shadow"
@@ -132,7 +132,7 @@ function CustomHeader() {
                                         >
                                             {t('my_quizzes')}
                                         </button>
-                                        
+
                                         <button
                                             className="dropdown-item"
                                             onClick={() => {
@@ -149,20 +149,20 @@ function CustomHeader() {
                                                 setDropdownOpen(false);
                                             }}
                                         >
-                                            Logout
+                                            {t('logout')}
                                         </button>
                                     </div>
                                 )}
                             </div>
                         </>
                     )}
-                        <button className="btn ms-3" onClick={changeLanguage}>
-                            <img
-                                src={flagMap[languages[currentLangIndex]]}
-                                alt={languages[currentLangIndex]}
-                                style={{ width: '24px', height: '24px' }}
-                            />
-                        </button>
+                    <button className="btn ms-3" onClick={changeLanguage}>
+                        <img
+                            src={flagMap[languages[currentLangIndex]]}
+                            alt={languages[currentLangIndex]}
+                            style={{ width: '24px', height: '24px' }}
+                        />
+                    </button>
                 </nav>
             </div>
         </header>

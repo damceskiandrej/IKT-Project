@@ -20,11 +20,11 @@ function QuizQuestionsPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedAnswers, setSelectedAnswers] = useState([]);
-    const [timer, setTimer] = useState(300); 
-    const [timerDuration] = useState(300); 
+    const [timer, setTimer] = useState(300);
+    const [timerDuration] = useState(300);
     const user = useUser();
     const userId = user ? user.userId : "";
-    const [hints, setHints] = useState({}); 
+    const [hints, setHints] = useState({});
 
     const { t, i18n } = useTranslation();
 
@@ -52,12 +52,12 @@ function QuizQuestionsPage() {
         if (timer > 0 && quiz) {
             timerInterval = setInterval(() => {
                 setTimer(prevTimer => prevTimer - 1);
-            }, 1000); 
+            }, 1000);
         } else if (timer === 0) {
-            handleNextQuestion(); 
+            handleNextQuestion();
         }
 
-        return () => clearInterval(timerInterval); 
+        return () => clearInterval(timerInterval);
     }, [timer, quiz]);
 
     useEffect(() => {
@@ -66,8 +66,8 @@ function QuizQuestionsPage() {
             setHints(prev => ({ ...prev, [currentQuestionId]: null }));
         }
     }, [currentQuestionIndex, quiz]);
-    
-    
+
+
 
     const handleAnswerClick = (answerId) => {
         const selectedAnswer = quiz.questions[currentQuestionIndex].answers.find(ans => ans.id === answerId);
@@ -98,7 +98,7 @@ function QuizQuestionsPage() {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
             setTimer(timerDuration); // Reset the timer for the next question
         } else {
-           
+
             const score = selectedAnswers.reduce((correctAnswersCount, selection, index) => {
                 // Ensure selection exists and has a valid selectedAnswerId
                 if (selection && selection.selectedAnswerId !== undefined) {
@@ -108,8 +108,8 @@ function QuizQuestionsPage() {
                 }
                 return correctAnswersCount;
             }, 0);
-    
-            
+
+
             const submission = {
                 userId: userId,
                 quizId: quiz.id,
@@ -119,7 +119,7 @@ function QuizQuestionsPage() {
                 }))
             };
 
-            toast.info(`Квизот е завршен! Вашиот резултат е ${score}/${quiz.questions.length}. Кликнете за да продолжите`, {
+            toast.info(`${t('quiz_done')} ${score}/${quiz.questions.length}. ${t('click_to_continue')}`, {
                 autoClose: false,
                 closeButton: false,
                 draggable: false,
@@ -139,7 +139,7 @@ function QuizQuestionsPage() {
             });
         }
     };
-    
+
 
     const handlePreviousQuestion = () => {
         if (currentQuestionIndex > 0) {
@@ -152,7 +152,7 @@ function QuizQuestionsPage() {
         try {
             const hintText = await getHint(quiz.id, questionId);
             console.log("Hint:", hintText);
-    
+
             setHints(prev => ({
                 ...prev,
                 [questionId]: hintText || "No hint available."
@@ -162,9 +162,9 @@ function QuizQuestionsPage() {
             setHints(prev => ({ ...prev, [questionId]: "Error loading hint." }));
         }
     };
-    
-    
-    
+
+
+
 
     // Check if the current question has a selected answer
     const isAnswerSelected = selectedAnswers[currentQuestionIndex]?.selectedAnswerId !== undefined;

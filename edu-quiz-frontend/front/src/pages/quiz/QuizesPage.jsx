@@ -5,6 +5,8 @@ import { getAllQuizzes, fetchExternalQuiz } from '../../api/quizApi';
 import CustomCircleButton from '../../components/CustomCircleButton';
 import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
+import confetti from 'canvas-confetti';
+
 
 
 function QuizesPage() {
@@ -50,11 +52,26 @@ function QuizesPage() {
     const handleFetchExternal = async () => {
     try {
         setIsLoading(true);
-        await fetchExternalQuiz(); 
+        await fetchExternalQuiz();
         const updatedQuizzes = await getAllQuizzes();
         const reversed = [...updatedQuizzes].reverse();
         setQuizzes(reversed);
         setFilteredQuizzes(reversed);
+
+        confetti({
+            particleCount: 150,
+            angle: 60,
+            spread: 100,
+            origin: { x: 0, y: 0.6 }
+        });
+        confetti({
+            particleCount: 150,
+            angle: 120,
+            spread: 100,
+            origin: { x: 1, y: 0.6 }
+        });
+
+
     } catch (err) {
         setError("Failed to fetch external quiz");
     } finally {

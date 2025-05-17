@@ -58,7 +58,7 @@ function ResultPage() {
                         <h4 className="fw-bold">{t(getCongratsMessageKey(percentage))}</h4>
                         <h5 className="fw-bold mt-3">{t('congrats_description')} {percentage}%.</h5>
                         <div className="mt-5">
-                        <CustomButton btnText={"View Results"} onClick={handleOnResultsView} />
+                            <CustomButton btnText={"View Results"} onClick={handleOnResultsView} />
                         </div>
                     </div>
                 </div>
@@ -69,12 +69,12 @@ function ResultPage() {
                     <div className="col-md-8">
                         <h2 className="fw-bold text-success text-center mb-4">{t('view_answers')}</h2>
                         <h4 className="text-success text-center mb-4">{t('for_the_quiz')} {title}</h4>
-                        
+
                         <div className="container pt-4 bg-light rounded-3">
                             {questions.map((question, index) => (
                                 <CustomReviewCard
-                                    key={index} 
-                                    question={question} 
+                                    key={index}
+                                    question={question}
                                     selectedAnswer={selectedAnswers[index]?.selectedAnswerText}
                                     correctAnswer={question.answers.find(answer => answer.isCorrect)}
                                     showCorrectness = {showCorrectness}
@@ -84,14 +84,14 @@ function ResultPage() {
 
                         <div className="container d-flex justify-content-center">
                             <button
-                               
+
                                 className="btn btn-dark border-0 mt-4 px-4 py-2"
                                 onClick={handleOnClickQuizes}
-                               
+
                             >
                                 {t('go_to_quizzes')}
                             </button>
-                            
+
                         </div>
                     </div>
                 </div>

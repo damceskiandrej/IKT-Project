@@ -11,15 +11,15 @@ import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function Model(props) {
-  const { nodes, materials } = useGLTF('/computer.gltf')
-  return (
-    <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
-          <mesh geometry={nodes.Object_2.geometry} material={materials.None} scale={5.5}/>
-          <mesh geometry={nodes.Object_3.geometry} material={materials.None} scale={5.5}/>
-      </group>
-    </group>
-  )
+    const { nodes, materials } = useGLTF('/computer.gltf')
+    return (
+        <group {...props} dispose={null}>
+            <group rotation={[-Math.PI / 2, 0, 0]}>
+                <mesh geometry={nodes.Object_2.geometry} material={materials.None} scale={4.5}/>
+                <mesh geometry={nodes.Object_3.geometry} material={materials.None} scale={4.5}/>
+            </group>
+        </group>
+    )
 }
 
 useGLTF.preload('/computer.gltf')
